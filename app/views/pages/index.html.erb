@@ -1,0 +1,42 @@
+<div class="home_header">
+  <div class="home_header_content">
+    <h1>Pharma Talk</h1>
+    <ul>
+      <li>Pharma Talkについて</li>
+      <li>新規登録／ログイン</li>
+    </ul>
+    <p>先輩の声を聞いて</p>
+    <p>職場の雰囲気をつかもう</p>
+    <%= image_tag 'Chat.png', class: 'top-image' %>
+    <div id="popup" class="popup">
+      <div class="popup-inner">
+        <div id="close-btn" class="close-btn">X</div>
+        <h2 class="title-border">新規会員登録</h2>
+        <p>あなたは薬剤師ですか？</p>
+        <p>学生ですか？</p>
+        <div class="btn user-type">薬剤師</div>
+        <div class="btn user-type">学生</div>
+      </div>
+      <div id="bg-black" class="bg-black"></div>
+    </div>
+    <div id="sign-up-btn" class="btn sign-up">新規登録</div>
+  </div>
+</div>
+<p>先輩を探す</p>
+<main>
+  <div>
+    <p>フリーワード</p>
+  </div>
+  <div>
+    <p>勤務先タイプ</p>
+    <ul>
+      <li>調剤薬局</li>
+      <li>ドラッグストア</li>
+      <li>病院</li>
+    </ul>
+  </div>
+  <div>
+    <p>エリア</p>
+  </div>
+</main>
+<button>検索</button>
