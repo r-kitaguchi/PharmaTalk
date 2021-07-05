@@ -9,6 +9,14 @@ body {
   font-size: 1.6em;
   margin: 0;
 }
+
+.btn {
+  background-color: #63BED2;
+  border-radius: 4.0rem;
+  cursor: pointer;
+  display: inline-block;
+}
+
 .home_header {
   background-color: #D7EBBA;
   .home_header_content {
@@ -29,14 +37,19 @@ body {
     top: 0;
     right: 0;
     li {
+      cursor: pointer;
       margin: 1.0rem;
+      a{
+        text-decoration: none;
+        color: black;
+      }
     }
   }
   p {
     font-size: 4.0rem;
     margin: 4.0rem;
   }
-  .top-image {
+  .top_image {
     width: 20em;
     position: absolute;
     top: 10rem;
@@ -56,11 +69,11 @@ body {
       font-size: 2.0rem;
     }
   }
-  .popup.is-show {
+  .popup.is_show {
     opacity: 1;
     visibility: visible;
   }
-  .popup-inner {
+  .popup_inner {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -71,42 +84,40 @@ body {
     padding: 5.0rem;
     background-color: #fff;
     z-index: 2;
-    .title-border {
+    .title_border {
       display: flex;
       align-items: center;
     }
-    .title-border:before,
-    .title-border:after {
+    .title_border:before,
+    .title_border:after {
       content: "";
       height: 1px;
       flex-grow: 1;
       background-color: #000;
     }
-    .title-border:before {
+    .title_border:before {
       margin-right: 1.5rem;
     }
-    .title-border:after {
+    .title_border:after {
       margin-left: 1.5rem;
     }
-    .user-type {
+    .user_type_btn {
       width: 80%;
       padding: 1.0rem 0;
       margin: 1.0rem 0;
     }
   }
-  .close-btn {
+  .close_btn {
     position: absolute;
     right: 0;
     top: 0;
     width: 5.0rem;
     height: 5.0rem;
-    border-radius: 50%;
     line-height: 5.0rem;
     font-size: 2.0rem;
-    font-weight: bold;
     cursor: pointer;
   }
-  .bg-black {
+  .bg_black {
     position: absolute;
     left: 0;
     top: 0;
@@ -116,19 +127,37 @@ body {
     z-index: 1;
     cursor: pointer;
   }
-  .btn {
-    background-color: #63BED2;
-    border-radius: 4.0rem;
-    cursor: pointer;
-    display: inline-block;
-  }
   .btn:hover {
     background-color: #6bd1e7;
   }
-  .sign-up {
+  .sign_up {
     font-size: 3.0rem;
     margin: 7.0rem;
     padding: 1.0rem 6.0rem;
+  }
+}
+
+main {
+  margin: 0 auto;
+  h2 {
+    text-align: center;
+  }
+  max-width: 70rem;
+  ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding-left: 0;
+  }
+  i {
+    margin-right: 1rem;
+  }
+  .search_btn {
+    display: block;
+    width: 20rem;
+    padding: 1rem 0;
+    text-align: center;
+    margin: 0 auto;
   }
 }
 

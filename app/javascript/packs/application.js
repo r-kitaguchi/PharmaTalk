@@ -16,19 +16,20 @@ function popupSetting(){
   let popup = document.getElementById('popup');
   if(!popup) return;
 
-  let bgBlack = document.getElementById('bg-black');
-  let closeBtn = document.getElementById('close-btn');
-  let signUpBtn = document.getElementById('sign-up-btn');
+  let bgBlack = document.getElementById('bg_black');
+  let closeBtn = document.getElementById('close_btn');
+  let signUpBtn = document.querySelectorAll('.js-sign_up');
 
   popUp(bgBlack);
   popUp(closeBtn);
-  popUp(signUpBtn);
+  popUp(signUpBtn[0]);
+  popUp(signUpBtn[1]);
 
   function popUp(elem){
     if(!elem) return;
 
     elem.addEventListener('click', function(){
-      popup.classList.toggle('is-show');
+      popup.classList.toggle('is_show');
     });
   }
 }

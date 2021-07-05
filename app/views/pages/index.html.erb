@@ -2,33 +2,33 @@
   <div class="home_header_content">
     <h1>Pharma Talk</h1>
     <ul>
-      <li>Pharma Talkについて</li>
-      <li>新規登録／ログイン</li>
+      <li><%= link_to "Pharma Talkについて", concepts_path %></li>
+      <li class="js-sign_up">新規登録／ログイン</li>
     </ul>
     <p>先輩の声を聞いて</p>
     <p>職場の雰囲気をつかもう</p>
-    <%= image_tag 'Chat.png', class: 'top-image' %>
+    <%= image_tag 'Chat.png', class: 'top_image' %>
     <div id="popup" class="popup">
-      <div class="popup-inner">
-        <div id="close-btn" class="close-btn">X</div>
-        <h2 class="title-border">新規会員登録</h2>
+      <div class="popup_inner">
+        <div id="close_btn" class="close_btn"><i class="fas fa-times" aria-hidden="true"></i></div>
+        <h2 class="title_border">新規会員登録</h2>
         <p>あなたは薬剤師ですか？</p>
         <p>学生ですか？</p>
-        <div class="btn user-type">薬剤師</div>
-        <div class="btn user-type">学生</div>
+        <div class="btn user_type_btn">薬剤師</div>
+        <div class="btn user_type_btn">学生</div>
       </div>
-      <div id="bg-black" class="bg-black"></div>
+      <div id="bg_black" class="bg_black"></div>
     </div>
-    <div id="sign-up-btn" class="btn sign-up">新規登録</div>
+    <div class="btn sign_up js-sign_up">新規登録</div>
   </div>
 </div>
-<p>先輩を探す</p>
 <main>
+  <h2>先輩を探す</h2>
   <div>
-    <p>フリーワード</p>
+    <p><i class="fas fa-pencil-alt" aria-hidden="true"></i>フリーワード</p>
   </div>
   <div>
-    <p>勤務先タイプ</p>
+    <p><i class="fas fa-clinic-medical" aria-hidden="true"></i>勤務先タイプ</p>
     <ul>
       <li>調剤薬局</li>
       <li>ドラッグストア</li>
@@ -36,7 +36,7 @@
     </ul>
   </div>
   <div>
-    <p>エリア</p>
+    <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i>エリア</p>
   </div>
+  <div class="btn search_btn">検索</div>
 </main>
-<button>検索</button>
