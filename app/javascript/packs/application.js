@@ -12,6 +12,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+window.onload = function(){ document.addEventListener("turbolinks:load", popupSetting());}
+
 function popupSetting(){
   let popup = document.getElementById('popup');
   if(!popup) return;
@@ -33,5 +35,3 @@ function popupSetting(){
     });
   }
 }
-
-popupSetting();

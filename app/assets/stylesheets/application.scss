@@ -16,3 +16,52 @@
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6em;
+  margin: 0;
+}
+
+.header {
+  background-color: #D7EBBA;
+  .header_content {
+    width: 80%;
+    margin: 0 auto;
+    min-width: 96rem;
+    position: relative;
+    a{
+      text-decoration: none;
+      color: black;
+    }
+    h1{
+      margin: 0;
+      padding: 2.0rem;
+    }
+    ul {
+      display: flex;
+      list-style: none;
+      padding-left: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      li {
+        cursor: pointer;
+        margin: 1.0rem;
+      }
+    }
+  }
+}
+
+.btn {
+  background-color: #63BED2;
+  border-radius: 4.0rem;
+  cursor: pointer;
+  display: inline-block;
+}

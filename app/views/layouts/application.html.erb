@@ -6,14 +6,25 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <div class="header">
+      <div class="header_content">
+        <h1><%= link_to "Pharma Talk", root_path %></h1>
+        <ul>
+          <% if controller.controller_name == "pages" %>
+            <li><%= link_to "Pharma Talkについて", concepts_path %></li>
+          <% end %>
+          <li class="js-sign_up">新規登録／ログイン</li>
+        </ul>
+      </div>
+    </div>
     <%= yield %>
     <footer>
       Pharma Talk
     </footer>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
