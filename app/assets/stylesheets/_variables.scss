@@ -1,0 +1,21 @@
+$main_color: #D7EBBA;
+
+@mixin title_border($color: #000) {
+  .title_border {
+    display: flex;
+    align-items: center;
+  }
+  .title_border:before,
+  .title_border:after {
+    content: "";
+    height: 1px;
+    flex-grow: 1;
+    background-color: $color;
+  }
+  .title_border:before {
+    margin-right: 1.5rem;
+  }
+  .title_border:after {
+    margin-left: 1.5rem;
+  }
+}

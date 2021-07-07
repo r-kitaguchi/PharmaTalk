@@ -10,10 +10,11 @@
   </head>
 
   <body>
-    <%= yield %>
-    <footer>
-      Pharma Talk
-    </footer>
+    <div class="container">
+      <%= render "layouts/header" %>
+      <%= yield %>
+      <%= render "layouts/footer" %>
+    </div>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

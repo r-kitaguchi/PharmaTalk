@@ -13,7 +13,10 @@ Turbolinks.start()
 ActiveStorage.start()
 
 window.onload = document.addEventListener("turbolinks:load", function(){
-  function popupSetting(){
+                                            popupSetting()
+                                          });
+
+function popupSetting(){
   let popup = document.getElementById('popup');
   if(!popup) return;
 
@@ -34,7 +37,3 @@ window.onload = document.addEventListener("turbolinks:load", function(){
     });
   }
 }
-
-popupSetting();
-
-})
