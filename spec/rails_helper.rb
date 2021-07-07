@@ -62,4 +62,36 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:each) do |example|
+    if example.metadata[:type] == :system
+      if example.metadata[:js]
+        driven_by :selenium_chrome_headless, screen_size: [1400, 1400]
+      else
+        driven_by :rack_test
+      end
+    end
+  end
+end
+
+module SystemHelper
+  extend ActiveSupport::Concern
+
+  included do |example_group|
+    # Screenshots are not taken correctly
+    # because RSpec::Rails::SystemExampleGroup calls after_teardown before before_teardown
+    example_group.after do
+      take_failed_screenshot
+    end
+  end
+
+  def take_failed_screenshot
+    return if @is_failed_screenshot_taken
+    super
+    @is_failed_screenshot_taken = true
+  end
+end
+
+RSpec.configure do |config|
+  config.include SystemHelper, type: :system
 end
