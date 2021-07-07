@@ -1,3 +1,30 @@
 // Place all the styles related to the concepts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@import "variables";
+
+.concept {
+  padding-top: 5rem;
+  h1 {
+    color:rgb(44, 44, 44);
+    font-size: 5rem;
+    text-align: center;
+  }
+  .concept_contents {
+    color: #707274;
+    font-size: 2rem;
+    max-width: 92rem;
+    margin: 0 auto;
+    padding: 5rem 0;
+    h2 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 10rem;
+    }
+    p {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    @include title_border(rgb(44, 44, 44))
+  }
+}

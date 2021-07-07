@@ -12,7 +12,9 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-window.onload = function(){ document.addEventListener("turbolinks:load", popupSetting());}
+window.onload = document.addEventListener("turbolinks:load", function(){
+                                            popupSetting()
+                                          });
 
 function popupSetting(){
   let popup = document.getElementById('popup');
@@ -20,7 +22,7 @@ function popupSetting(){
 
   let bgBlack = document.getElementById('bg_black');
   let closeBtn = document.getElementById('close_btn');
-  let signUpBtn = document.querySelectorAll('.js-sign_up');
+  let signUpBtn = document.querySelectorAll('.js_sign_up');
 
   popUp(bgBlack);
   popUp(closeBtn);
