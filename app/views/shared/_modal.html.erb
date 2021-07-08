@@ -4,8 +4,8 @@
     <h2 class="title_border">新規会員登録</h2>
     <p>あなたは薬剤師ですか？</p>
     <p>学生ですか？</p>
-    <div class="btn user_type_btn">薬剤師</div>
-    <div class="btn user_type_btn">学生</div>
+    <%= link_to "薬剤師", new_pharmacist_registration_path, class:"btn user_type_btn" %>
+    <%= link_to "学生", new_student_registration_path, class:"btn user_type_btn" %>
   </div>
   <div id="bg_black" class="bg_black"></div>
 </div>
