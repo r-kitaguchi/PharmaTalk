@@ -1,0 +1,43 @@
+@import "variables";
+
+.form {
+  h2 {
+    @include page_title;
+  }
+  .form_contents {
+    max-width: 92rem;
+    margin: 5rem auto;
+    text-align: center;
+    .field {
+      margin-bottom: 5rem;
+    }
+    label {
+      display: inline-block;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    input {
+      border-radius: 4.0rem;
+      font-size: 2rem;
+      height: 3rem;
+      letter-spacing: 2px;
+      padding-left: 1rem;
+      width: 50rem;
+    }
+    input:focus {
+      border-radius: 4.0rem;
+      border: 2px solid #7161EF;
+      outline: 0;
+    }
+    .btn {
+      @include btn;
+      border-color: transparent;
+      height: 4rem;
+      margin-bottom: 2rem;
+    }
+    a {
+      color: #396e7a;
+      text-decoration: none;
+    }
+  }
+}

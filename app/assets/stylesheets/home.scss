@@ -22,7 +22,8 @@
     top: 3rem;
     right: 10rem;
   }
-  .sign_up {
+  .btn {
+    @include btn;
     font-size: 3.0rem;
     margin: 7.0rem;
     padding: 1.0rem 6.0rem;
@@ -44,7 +45,8 @@ main {
   i {
     margin-right: 1rem;
   }
-  .search_btn {
+  .btn {
+    @include btn;
     display: block;
     width: 20rem;
     padding: 1rem 0;
