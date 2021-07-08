@@ -10,8 +10,7 @@
     text-align: center;
     .field {
       margin-bottom: 5rem;
-    }
-    label {
+      label {
       display: inline-block;
       font-size: 2rem;
       margin-bottom: 1.5rem;
@@ -29,15 +28,23 @@
       border: 2px solid #7161EF;
       outline: 0;
     }
+    }
+    .check_box {
+      margin: 2rem 0;
+    }
     .btn {
       @include btn;
       border-color: transparent;
+      font-size: 2rem;
       height: 4rem;
       margin-bottom: 2rem;
+      width: 50rem;
     }
     a {
       color: #396e7a;
+      display: inline-block;
       text-decoration: none;
+      margin-bottom: 2rem;
     }
   }
 }
