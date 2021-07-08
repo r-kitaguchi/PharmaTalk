@@ -66,16 +66,6 @@ body {
   }
 }
 
-.btn {
-  background-color: #63BED2;
-  border-radius: 4.0rem;
-  cursor: pointer;
-  display: inline-block;
-}
-.btn:hover {
-  background-color: #6bd1e7;
-}
-
 // login modal
 .popup {
   position: fixed;
@@ -111,7 +101,8 @@ body {
     color: #000;
     text-decoration: none;
   }
-  .user_type_btn {
+  .btn {
+    @include btn;
     width: 80%;
     padding: 1.0rem 0;
     margin: 1.0rem 0;
