@@ -3,9 +3,10 @@
     <h1><%= link_to "Pharma Talk", root_path %></h1>
     <ul>
       <% if controller.controller_name == "pages" %>
-        <li><%= link_to "Pharma Talkについて", concepts_path %></li>
+        <li><i class="fas fa-comments"></i><%= link_to "Pharma Talkについて", concepts_path %></li>
       <% end %>
-      <li class="js_sign_up">新規登録／ログイン</li>
+      <li class="js_log_in"><i class="fas fa-sign-in-alt"></i>ログイン</li>
+      <li class="js_sign_up"><i class="fas fa-user-edit"></i>新規登録</li>
     </ul>
   </div>
 </div>

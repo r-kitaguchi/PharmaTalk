@@ -1,22 +1,43 @@
 require 'rails_helper'
 
 RSpec.describe 'ホーム画面', type: :system do
-  describe 'クリック時の挙動' do
-    before do
-      visit root_path
-    end
+  before do
+    visit root_path
+  end
 
-    context 'リンク' do
-      it 'Pharma Talkについてをクリックすると、正しいページに移動できること' do
-        click_on 'Pharma Talkについて'
-        expect(current_path).to eq concepts_path
+  describe 'リンク' do
+    it 'Pharma Talkについてをクリックすると、正しいページに移動できること' do
+      click_on 'Pharma Talkについて'
+      expect(current_path).to eq concepts_path
+    end
+  end
+
+  describe 'モーダルの表示' do
+    context 'ヘッダーのログインをクリックした時' do
+      it 'ログインモーダルが表示されること', js: true do
+        expect(page).to have_selector('#popup_log_in', visible: false)
+        find('.js_log_in').click
+        expect(page).to have_selector('#popup_log_in', visible: true)
       end
     end
 
-    context 'モーダルの表示' do
-      it '新規登録をクリックすると、モーダルが表示されること', js: true do
-        find('.sign_up').click
-        expect(page).to have_selector('.popup', visible: true)
+    context 'ヘッダーの新規登録をクリックした時' do
+      it '新規登録モーダルが表示されること', js: true do
+        expect(page).to have_selector('#popup_sign_up', visible: false)
+        within '.header_content' do
+          find('.js_sign_up').click
+        end
+        expect(page).to have_selector('#popup_sign_up', visible: true)
+      end
+    end
+
+    context 'メインの新規登録をクリックした時' do
+      it '新規登録モーダルが表示されること', js: true do
+        expect(page).to have_selector('#popup_sign_up', visible: false)
+        within '.home_header_content' do
+          find('.js_sign_up').click
+        end
+        expect(page).to have_selector('#popup_sign_up', visible: true)
       end
     end
   end

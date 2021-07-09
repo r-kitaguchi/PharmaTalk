@@ -17,23 +17,40 @@ window.onload = document.addEventListener("turbolinks:load", function(){
                                           });
 
 function popupSetting(){
-  let popup = document.getElementById('popup');
-  if(!popup) return;
+  let popupSignUp = document.getElementById('popup_sign_up');
+  let popupLogIn = document.getElementById('popup_log_in');
+  if(!popupSignUp && !popupLogIn) return;
 
-  let bgBlack = document.getElementById('bg_black');
-  let closeBtn = document.getElementById('close_btn');
+  let logInBtn = document.querySelectorAll('.js_log_in');
+  let logInClose = document.getElementById('log_in_close');
+  let logInBlack = document.getElementById('log_in_black');
+
   let signUpBtn = document.querySelectorAll('.js_sign_up');
+  let signUpClose = document.getElementById('sign_up_close');
+  let signUpBlack = document.getElementById('sign_up_black');
 
-  popUp(bgBlack);
-  popUp(closeBtn);
-  popUp(signUpBtn[0]);
-  popUp(signUpBtn[1]);
+  logInPopUp(logInBlack);
+  logInPopUp(logInClose);
+  logInPopUp(logInBtn[0]);
 
-  function popUp(elem){
+  signInPopUp(signUpBlack);
+  signInPopUp(signUpClose);
+  signInPopUp(signUpBtn[0]);
+  signInPopUp(signUpBtn[1]);
+
+  function logInPopUp(elem) {
     if(!elem) return;
 
     elem.addEventListener('click', function(){
-      popup.classList.toggle('is_show');
+      popupLogIn.classList.toggle('is_show');
+    });
+  }
+
+  function signInPopUp(elem){
+    if(!elem) return;
+
+    elem.addEventListener('click', function(){
+      popupSignUp.classList.toggle('is_show');
     });
   }
 }
