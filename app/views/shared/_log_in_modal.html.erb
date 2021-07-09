@@ -1,0 +1,11 @@
+<div id="popup_log_in" class="popup">
+  <div class="popup_inner">
+    <div id="log_in_close" class="close_btn"><i class="fas fa-times" aria-hidden="true"></i></div>
+    <h2 class="title_border">ログイン</h2>
+    <p>あなたは薬剤師ですか？</p>
+    <p>学生ですか？</p>
+    <%= link_to "薬剤師", new_pharmacist_session_path, class:"btn" %>
+    <%= link_to "学生", new_student_session_path, class:"btn" %>
+  </div>
+  <div id="log_in_black" class="bg_black"></div>
+</div>
