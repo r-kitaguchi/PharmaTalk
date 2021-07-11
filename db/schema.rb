@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_07_123204) do
+ActiveRecord::Schema.define(version: 2021_07_10_081453) do
+
+  create_table "pharmacist_profiles", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.string "work_place", null: false
+    t.string "work_place_type", null: false
+    t.integer "work_location", default: 0, null: false
+    t.string "university", null: false
+    t.text "introduction", null: false
+    t.integer "pharmacist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pharmacist_id"], name: "index_pharmacist_profiles_on_pharmacist_id"
+  end
 
   create_table "pharmacists", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,4 +50,5 @@ ActiveRecord::Schema.define(version: 2021_07_07_123204) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "pharmacist_profiles", "pharmacists"
 end

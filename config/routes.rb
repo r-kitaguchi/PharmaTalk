@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'pages#index'
   get :concepts, to: 'concepts#index'
+  get :pharmacist_pages, to: 'pharmacist_pages#index'
+  resources :pharmacist_profiles, except: [:destroy]
 
   devise_for :pharmacists, controllers: {
                             sessions:      'pharmacists/sessions',

@@ -1,0 +1,37 @@
+<%= render "shared/error_messages", resource: @pharmacist_profile %>
+<div class="form_profile">
+  <h2>プロフィール</h2>
+  <div class="form_contents">
+    <%= form_with model: @pharmacist_profile do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ファーマ太郎" %>
+
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+
+      <%= f.label :work_place %>
+      <%= f.text_field :work_place, placeholder: "Pharma薬局" %>
+
+      <%= f.label :work_place_type %>
+      <div class="work_place_type">
+        <%= f.radio_button :work_place_type, "調剤薬局" %>
+        <%= f.label :work_place_type, "調剤薬局", value: "調剤薬局" %>
+        <%= f.radio_button :work_place_type,"ドラッグストア" %>
+        <%= f.label :work_place_type, "ドラッグストア", value: "ドラッグストア" %>
+        <%= f.radio_button :work_place_type, "病院" %>
+        <%= f.label :work_place_type, "病院", value: "病院" %>
+      </div>
+
+      <%= f.label :work_location %>
+      <%= f.select :work_location, PharmacistProfile.work_locations.keys, {} %>
+
+      <%= f.label :university %>
+      <%= f.text_field :university, placeholder: "Pharma大学" %>
+
+      <%= f.label :introduction %>
+      <%= f.text_area :introduction %>
+
+      <%= f.submit "登録", class: "btn" %>
+    <% end %>
+  </div>
+</div>

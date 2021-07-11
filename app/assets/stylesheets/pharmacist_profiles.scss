@@ -1,0 +1,56 @@
+@import "variables";
+
+.form_profile {
+  h2 {
+    @include page_title;
+  }
+  .form_contents {
+    max-width: 80rem;
+    margin: 0 auto;
+    form {
+      display: grid;
+      grid-template-columns: 20rem 1fr;
+      row-gap: 5rem;
+    }
+    label {
+      grid-column: 1 / 2;
+    }
+    input[type="text"], select {
+      border: 1px solid #000;
+      border-radius: 4.0rem;
+      font-size: 1.5rem;
+      height: 3rem;
+      letter-spacing: 2px;
+      padding-left: 1rem;
+      width: 50rem;
+      &:focus {
+        border-radius: 4.0rem;
+        border: 2px solid #7161EF;
+        outline: 0;
+      }
+    }
+    textarea {
+      font-size: 1.5rem;
+      height: 30rem;
+      letter-spacing: 2px;
+      width: 50rem;
+    }
+    .work_place_type {
+      display: flex;
+      align-items: center;
+      label {
+        margin: 0 5rem 0 0.5rem;
+      }
+    }
+    input, textarea, .work_place_type {
+      grid-column: 2 / 3;
+    }
+    .btn {
+      @include btn;
+      border-color: transparent;
+      height: 4rem;
+      width: 50rem;
+      margin-bottom: 5rem;
+    }
+  }
+}
