@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root to: 'pages#index'
   get :concepts, to: 'concepts#index'
-  get :pharmacist_pages, to: 'pharmacist_pages#index'
   resources :pharmacist_profiles, except: [:destroy]
 
   devise_for :pharmacists, controllers: {
@@ -18,5 +17,7 @@ Rails.application.routes.draw do
                         }, path_names: {
                           sign_in: 'login', sign_out: 'logout'
                         }
+
+  resources :pharmacists, only: [:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

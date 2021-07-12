@@ -1,4 +1,6 @@
 class PharmacistProfilesController < ApplicationController
+  before_action :authenticate_pharmacist!, except: :index
+
   def index
   end
 
@@ -7,11 +9,10 @@ class PharmacistProfilesController < ApplicationController
   end
 
   def create
-    @pharmacist_profile = PharmacistProfile.new(pharmacist_profile_params)
-    @pharmacist_profile.pharmacist_id = current_pharmacist.id
+    @pharmacist_profile = current_pharmacist.build_pharmacist_profile(pharmacist_profile_params)
     if @pharmacist_profile.save
       flash[:notice] = "プロフィールを登録しました。"
-      redirect_to pharmacist_pages_path
+      redirect_to pharmacist_path(current_pharmacist)
     else
       render "new"
     end
