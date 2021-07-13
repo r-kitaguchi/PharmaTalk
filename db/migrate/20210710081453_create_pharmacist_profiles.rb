@@ -1,7 +1,7 @@
 class CreatePharmacistProfiles < ActiveRecord::Migration[6.1]
   def change
     create_table :pharmacist_profiles do |t|
-      t.string :name
+      t.string :name, null: false
       t.string :image
       t.string :work_place, null: false
       t.string :work_place_type, null: false

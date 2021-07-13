@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_07_10_081453) do
 
   create_table "pharmacist_profiles", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "image"
     t.string "work_place", null: false
     t.string "work_place_type", null: false

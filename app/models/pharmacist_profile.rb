@@ -1,6 +1,7 @@
 class PharmacistProfile < ApplicationRecord
   belongs_to :pharmacist
 
+  validates :name, presence: true
   validates :work_place, presence: true
   validates :work_place_type, presence: true
   validates :university, presence: true
