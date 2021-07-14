@@ -5,8 +5,8 @@
     @include page_title;
   }
   .form_contents {
-    max-width: 80rem;
     margin: 0 auto;
+    max-width: 80rem;
     form {
       display: grid;
       grid-template-columns: 20rem 1fr;
@@ -17,17 +17,7 @@
     }
     input[type="text"], select {
       border: 1px solid #000;
-      border-radius: 4.0rem;
-      font-size: 1.5rem;
-      height: 3rem;
-      letter-spacing: 2px;
-      padding-left: 1rem;
-      width: 50rem;
-      &:focus {
-        border-radius: 4.0rem;
-        border: 2px solid #7161EF;
-        outline: 0;
-      }
+      @include form_input;
     }
     textarea {
       font-size: 1.5rem;
@@ -36,8 +26,8 @@
       width: 50rem;
     }
     .work_place_type {
-      display: flex;
       align-items: center;
+      display: flex;
       label {
         margin: 0 5rem 0 0.5rem;
       }
@@ -49,8 +39,8 @@
       @include btn;
       border-color: transparent;
       height: 4rem;
-      width: 50rem;
       margin-bottom: 5rem;
+      width: 50rem;
     }
   }
 }
