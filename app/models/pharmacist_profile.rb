@@ -1,6 +1,8 @@
 class PharmacistProfile < ApplicationRecord
   belongs_to :pharmacist
 
+  mount_uploader :image, PharmacistImageUploader
+
   validates :name, presence: true
   validates :work_place, presence: true
   validates :work_place_type, presence: true

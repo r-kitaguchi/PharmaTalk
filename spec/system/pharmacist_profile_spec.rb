@@ -12,6 +12,8 @@ RSpec.describe "薬剤師プロフィールページ", type: :system do
   context "正しい値を入力した時" do
     before do
       fill_in "pharmacist_profile_name", with: pharmacist_profile.name
+      image_path = Rails.root.join('spec/fixtures/test.jpg')
+      attach_file("pharmacist_profile_image", image_path)
       fill_in "pharmacist_profile_work_place", with: pharmacist_profile.work_place
       choose "pharmacist_profile_work_place_type_調剤薬局"
       fill_in "pharmacist_profile_university", with: pharmacist_profile.university
@@ -25,6 +27,12 @@ RSpec.describe "薬剤師プロフィールページ", type: :system do
 
     it "フラッシュが表示されること" do
       expect(page).to have_content "プロフィールを登録しました。"
+    end
+
+    it "プロフィール写真がヘッダーに表示されること" do
+      within '.header_content' do
+        expect(page).to have_selector("img[src$='test.jpg']")
+      end
     end
   end
 
