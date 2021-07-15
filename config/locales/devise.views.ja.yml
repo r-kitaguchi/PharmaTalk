@@ -7,6 +7,12 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+      student_profile:
+        name: "名前"
+        image: "プロフィール写真"
+        university: "大学名"
+        year: "学年"
+        introduction: "自己紹介"
       pharmacist:
         current_password: "現在のパスワード"
         email: "メールアドレス"
