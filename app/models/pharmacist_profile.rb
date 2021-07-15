@@ -3,11 +3,12 @@ class PharmacistProfile < ApplicationRecord
 
   mount_uploader :image, PharmacistImageUploader
 
-  validates :name, presence: true
-  validates :work_place, presence: true
+  validates :name, presence: true, length: { maximum: 255 }
+  validates :work_place, presence: true, length: { maximum: 255 }
   validates :work_place_type, presence: true
-  validates :university, presence: true
-  validates :introduction, presence: true
+  validates :university, presence: true, length: { maximum: 255 }
+  validates :introduction, presence: true, length: { maximum: 1000 }
+  validate :image_size
 
   enum work_location: {
     "--------------":0,
@@ -21,4 +22,12 @@ class PharmacistProfile < ApplicationRecord
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
     沖縄県:47
   }
+
+  private
+
+    def image_size
+      if image.size > 5.megabytes
+        errors.add(:image, "画像は5MB以下で登録してください。")
+      end
+    end
 end
