@@ -47,7 +47,9 @@ RSpec.describe "薬剤師プロフィールページ", type: :system do
     end
 
     it "プロフィール登録ページに留まること" do
-      expect(page).to have_content "プロフィール登録"
+      within '.form_profile' do
+        expect(page).to have_content "プロフィール登録"
+      end
     end
 
     it "エラーメッセージが表示されること" do

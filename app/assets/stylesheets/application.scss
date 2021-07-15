@@ -41,6 +41,7 @@ body {
   .header_content {
     margin: 0 auto;
     min-width: 96rem;
+    padding: 2.0rem;
     position: relative;
     width: 90%;
     a{
@@ -49,16 +50,15 @@ body {
     }
     h1{
       margin: 0;
-      padding: 2.0rem;
     }
     ul {
-      align-items: center;
       display: flex;
       list-style: none;
+      margin: 0;
       padding-left: 0;
       position: absolute;
       right: 0;
-      top: 0;
+      top: 1.5rem;
       li {
         cursor: pointer;
         margin: 0.8rem;
@@ -70,6 +70,7 @@ body {
     .user_icon {
       border-radius: 50%;
       height: 5.0rem;
+      margin-top: -1.2rem;
       object-fit: cover;
       width: 5.0rem;
     }

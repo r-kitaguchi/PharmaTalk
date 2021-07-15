@@ -6,7 +6,9 @@
     <p>先輩の声を聞いて</p>
     <p>薬局の雰囲気をつかもう</p>
     <%= image_tag 'Chat.png', class: 'top_image' %>
-    <div class="btn js_sign_up">新規登録</div>
+    <% if no_one_is_logged_in%>
+      <div class="btn js_sign_up">新規登録</div>
+    <% end %>
   </div>
 </div>
 <main>
