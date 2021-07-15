@@ -2,11 +2,15 @@
   <div class="header_content">
     <h1><%= link_to "Pharma Talk", root_path %></h1>
     <ul>
-      <% if controller.controller_name == "pages" %>
-        <li><i class="fas fa-comments"></i><%= link_to "Pharma Talkについて", concepts_path %></li>
+      <li><%= yield(:concept) %></li>
+      <% if no_one_is_logged_in %>
+        <li class="js_log_in"><i class="fas fa-sign-in-alt"></i>ログイン</li>
+        <li class="js_sign_up"><i class="fas fa-user-edit"></i>新規登録</li>
+      <% elsif pharmacist_signed_in? %>
+        <%= header_pharmacist_menu(current_pharmacist)%>
+      <% else %>
+        <%= header_student_menu(current_student)%>
       <% end %>
-      <li class="js_log_in"><i class="fas fa-sign-in-alt"></i>ログイン</li>
-      <li class="js_sign_up"><i class="fas fa-user-edit"></i>新規登録</li>
     </ul>
   </div>
 </div>

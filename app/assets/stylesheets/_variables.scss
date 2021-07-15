@@ -10,18 +10,17 @@ $main_color: #D7EBBA;
   }
 }
 
-
 @mixin title_border($color: #000) {
   .title_border {
-    display: flex;
     align-items: center;
+    display: flex;
   }
   .title_border:before,
   .title_border:after {
-    content: "";
-    height: 1px;
-    flex-grow: 1;
     background-color: $color;
+    content: "";
+    flex-grow: 1;
+    height: 1px;
   }
   .title_border:before {
     margin-right: 1.5rem;
@@ -33,6 +32,20 @@ $main_color: #D7EBBA;
 
 @mixin page_title {
   color:rgb(44, 44, 44);
-  font-size: 5rem;
+  font-size: 4rem;
   text-align: center;
+}
+
+@mixin form_input {
+  border-radius: 4.0rem;
+  font-size: 1.5rem;
+  height: 3rem;
+  letter-spacing: 2px;
+  padding-left: 1rem;
+  width: 50rem;
+  &:focus {
+    border: 2px solid #7161EF;
+    border-radius: 4.0rem;
+    outline: 0;
+  }
 }

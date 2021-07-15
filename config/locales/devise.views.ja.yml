@@ -13,6 +13,14 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+      pharmacist_profile:
+        name: "名前"
+        image: "プロフィール写真"
+        work_place: "勤務先"
+        work_place_type: "勤務先タイプ"
+        work_location: "勤務地"
+        university: "出身大学"
+        introduction: "自己紹介"
     models:
       student: "学生"
       pharmacist: "薬剤師"
