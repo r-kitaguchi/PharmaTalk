@@ -5,7 +5,8 @@
   .home_header_content {
     margin: 0 auto;
     min-width: 96rem;
-    padding-top: 7rem;
+    padding-top: 7.0rem;
+    padding-bottom: 17rem;
     position: relative;
     width: 80%;
   }
@@ -19,13 +20,12 @@
   .top_image {
     position: absolute;
     right: 10rem;
-    top: 3rem;
+    top: 1.0rem;
     width: 20em;
   }
   .btn {
     @include btn;
     font-size: 3.0rem;
-    margin: 7.0rem;
     padding: 1.0rem 6.0rem;
   }
 }
