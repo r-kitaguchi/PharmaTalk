@@ -1,0 +1,6 @@
+<ul>
+  <li><%= link_to "マイページ", pharmacist_path(current_pharmacist) %></li>
+  <li><%= link_to "プロフィール", pharmacist_profile_path(current_pharmacist.pharmacist_profile) %></li>
+  <li><%= link_to "アカウント編集", edit_pharmacist_registration_path %></li>
+  <li><%= link_to "ログアウト", destroy_pharmacist_session_path, method: :delete %></li>
+</ul>

@@ -51,17 +51,46 @@ body {
     h1{
       margin: 0;
     }
-    ul {
+    .header_menu {
       display: flex;
       list-style: none;
-      margin: 0;
+      margin-top: 0.5rem;
       padding-left: 0;
       position: absolute;
       right: 0;
-      top: 1.5rem;
-      li {
+      top: 2.0rem;
+      > li {
         cursor: pointer;
-        margin: 0.8rem;
+        margin-left: 1.5rem;
+      }
+      .drop_down {
+        // border: 1px solid gray;
+        display: inline-block;
+        position: relative;
+        text-align: center;
+        width: 13.5rem;
+        > ul {
+          display: none;
+        }
+        &:hover {
+          height: 20rem;
+        }
+        &:hover ul {
+          background-color: #fff;
+          border: 1px solid #000;
+          display: block;
+          position: absolute;
+          padding: 1.0rem;
+          margin: 0;
+          top: 4.0rem;
+          list-style-type: none;
+          li + li {
+            margin-top: 1.5rem;
+          }
+          li:hover a {
+            color: #4d9de7;
+          }
+        }
       }
     }
     i {

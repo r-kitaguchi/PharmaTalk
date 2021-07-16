@@ -1,0 +1,13 @@
+<% if !current_pharmacist.pharmacist_profile %>
+  <li><%= link_to "プロフィールを登録", new_pharmacist_profile_path(current_pharmacist) %></li>
+<% elsif current_pharmacist.pharmacist_profile.image? %>
+  <li class="drop_down">
+    <%= image_tag current_pharmacist.pharmacist_profile.image.url, class: "user_icon" %>
+    <%= render "layouts/pharmacist_drop_down"%>
+  </li>
+<% else %>
+  <li class="drop_down">
+    <%= image_tag "/assets/default.png", class: "user_icon default" %>
+    <%= render "layouts/pharmacist_drop_down"%>
+  </li>
+<% end %>
