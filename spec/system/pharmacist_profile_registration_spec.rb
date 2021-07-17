@@ -1,20 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe "学生プロフィールページ", type: :system do
-  let(:student_profile) { build(:student_profile) }
-  let(:student) { create(:student) }
+RSpec.describe "薬剤師プロフィール登録", type: :system do
+  let(:pharmacist) { create(:pharmacist) }
+  let(:pharmacist_profile) { build(:pharmacist_profile) }
 
   before do
-    sign_in student
+    sign_in pharmacist
   end
 
   context "正しい値を入力した時" do
     before do
-      student_profile_registration
+      pharmacist_profile_registration
     end
 
     it "マイページに移動すること" do
-      expect(current_path).to eq student_path(student)
+      expect(current_path).to eq pharmacist_path(pharmacist)
     end
 
     it "フラッシュが表示されること" do
@@ -28,18 +28,19 @@ RSpec.describe "学生プロフィールページ", type: :system do
     end
 
     it "再度プロフィール登録ページに行こうとするとホームに移動すること" do
-      visit new_student_profile_path
+      visit new_pharmacist_profile_path
       expect(current_path).to eq root_path
     end
   end
 
   context "バリデーションに引っかかった時" do
     before do
-      visit new_student_profile_path
-      fill_in "student_profile_name", with: " "
-      fill_in "student_profile_university", with: student_profile.university
-      choose "student_profile_year_５年"
-      fill_in "student_profile_introduction", with: student_profile.introduction
+      visit new_pharmacist_profile_path(pharmacist)
+      fill_in "pharmacist_profile_name", with: " "
+      fill_in "pharmacist_profile_work_place", with: pharmacist_profile.work_place
+      choose "pharmacist_profile_work_place_type_調剤薬局"
+      fill_in "pharmacist_profile_university", with: pharmacist_profile.university
+      fill_in "pharmacist_profile_introduction", with: pharmacist_profile.introduction
       click_on "登録"
     end
 
