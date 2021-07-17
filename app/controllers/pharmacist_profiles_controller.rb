@@ -1,5 +1,6 @@
 class PharmacistProfilesController < ApplicationController
   before_action :authenticate_pharmacist!, except: :index
+  before_action :profile_unregistered, only: [:new, :create]
 
   def index
   end
@@ -33,4 +34,11 @@ class PharmacistProfilesController < ApplicationController
       params.require(:pharmacist_profile).permit(:name, :image, :work_place, :work_place_type,
                                             :work_location, :university, :introduction)
     end
+
+    def profile_unregistered
+      if current_pharmacist.pharmacist_profile && current_pharmacist.pharmacist_profile.id
+        redirect_to root_path
+      end
+    end
+
 end
