@@ -8,7 +8,7 @@ class CreatePharmacistProfiles < ActiveRecord::Migration[6.1]
       t.integer :work_location, null: false, default: 0
       t.string :university, null: false
       t.text :introduction, null: false
-      t.references :pharmacist, null: false, foreign_key: true
+      t.references :pharmacist, null: false, index: { unique: true }, foreign_key: true
 
       t.timestamps
     end

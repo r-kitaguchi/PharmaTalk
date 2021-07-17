@@ -1,15 +1,15 @@
 <div class="header">
   <div class="header_content">
     <h1><%= link_to "Pharma Talk", root_path %></h1>
-    <ul>
+    <ul class="header_menu">
       <li><%= yield(:concept) %></li>
       <% if no_one_is_logged_in %>
         <li class="js_log_in"><i class="fas fa-sign-in-alt"></i>ログイン</li>
         <li class="js_sign_up"><i class="fas fa-user-edit"></i>新規登録</li>
       <% elsif pharmacist_signed_in? %>
-        <%= header_pharmacist_menu(current_pharmacist)%>
+        <%= render "layouts/pharmacist_header" %>
       <% else %>
-        <%= header_student_menu(current_student)%>
+        <%= render "layouts/student_header" %>
       <% end %>
     </ul>
   </div>

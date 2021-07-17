@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_083740) do
     t.integer "pharmacist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pharmacist_id"], name: "index_pharmacist_profiles_on_pharmacist_id"
+    t.index ["pharmacist_id"], name: "index_pharmacist_profiles_on_pharmacist_id", unique: true
   end
 
   create_table "pharmacists", force: :cascade do |t|
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_083740) do
     t.integer "student_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["student_id"], name: "index_student_profiles_on_student_id"
+    t.index ["student_id"], name: "index_student_profiles_on_student_id", unique: true
   end
 
   create_table "students", force: :cascade do |t|

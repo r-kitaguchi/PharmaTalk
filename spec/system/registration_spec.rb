@@ -18,13 +18,13 @@ RSpec.describe "新規登録", type: :system do
 
       it "プロフィールページに移動すること" do
         current_pharmacist = Pharmacist.find_by(email: pharmacist.email)
-        expect(current_path).to eq new_pharmacist_profile_path(current_pharmacist)
+        expect(current_path).to eq new_pharmacist_profile_path
       end
 
       it "ヘッダーにプロフィール登録ページへのリンクがあること" do
         within '.header_content' do
           current_pharmacist = Pharmacist.find_by(email: pharmacist.email)
-          expect(page).to have_link "プロフィールを登録", href: new_pharmacist_profile_path(current_pharmacist)
+          expect(page).to have_link "プロフィールを登録", href: new_pharmacist_profile_path
         end
       end
     end
@@ -58,16 +58,16 @@ RSpec.describe "新規登録", type: :system do
         click_on "メールアドレスで登録"
       end
 
-      # it "プロフィールページに移動すること" do
-      #     current_student = Student.find_by(email: student.email)
-      #   expect(current_path).to eq new_student_profile_path(student)
-      # end
+      it "プロフィールページに移動すること" do
+          current_student = Student.find_by(email: student.email)
+        expect(current_path).to eq new_student_profile_path
+      end
 
-      # it "ヘッダーにプロフィール登録ページへのリンクがあること" do
-      #   within '.header_content' do
-      #     expect(page).to have_link "プロフィールを登録", new_student_profile_path(current_student)
-      #   end
-      # end
+      it "ヘッダーにプロフィール登録ページへのリンクがあること" do
+        within '.header_content' do
+          expect(page).to have_link "プロフィールを登録", href: new_student_profile_path
+        end
+      end
     end
 
     context "間違った値を入力した時" do

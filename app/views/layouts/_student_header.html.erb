@@ -1,0 +1,13 @@
+<% if !current_student.student_profile || !current_student.student_profile.id %>
+  <li><%= link_to "プロフィールを登録", new_student_profile_path %></li>
+<% elsif current_student.student_profile.image? %>
+  <li class="drop_down">
+    <%= image_tag current_student.student_profile.image.url, class: "user_icon" %>
+    <%= render "layouts/student_drop_down" %>
+  </li>
+<% else %>
+  <li class="drop_down">
+    <%= image_tag "/assets/default.png", class: "user_icon default" %>
+    <%= render "layouts/student_drop_down"%>
+  </li>
+<% end %>
