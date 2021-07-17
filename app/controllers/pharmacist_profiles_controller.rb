@@ -20,6 +20,7 @@ class PharmacistProfilesController < ApplicationController
   end
 
   def show
+    @pharmacist_profile = PharmacistProfile.find_by(pharmacist_id: current_pharmacist.id)
   end
 
   def edit
