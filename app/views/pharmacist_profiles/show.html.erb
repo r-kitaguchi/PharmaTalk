@@ -18,7 +18,7 @@
     </div>
     <h2>プロフィール</h2>
     <div class="profile">
-      <small><%= simple_format(@pharmacist_profile.introduction) %></small>
+      <small><%= safe_join(@pharmacist_profile.introduction.split("\n"), tag(:br)) %></small>
     </div>
   </div>
   <%= link_to "編集する", edit_pharmacist_profile_path(@pharmacist_profile), class: "btn" %>
