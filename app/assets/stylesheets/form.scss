@@ -5,14 +5,14 @@
     @include page_title;
   }
   .form_contents {
-    margin: 5rem auto;
+    margin: 5.0rem auto;
     max-width: 92rem;
     text-align: center;
     .field {
-      margin-bottom: 5rem;
+      margin-bottom: 5.0rem;
       label {
       display: inline-block;
-      font-size: 2rem;
+      font-size: 2.0rem;
       margin-bottom: 1.5rem;
       }
       input {
@@ -20,21 +20,33 @@
       }
     }
     .check_box {
-      margin: 2rem 0;
+      margin: 2.0rem 0;
     }
     .btn {
       @include btn;
       border-color: transparent;
-      font-size: 2rem;
-      height: 4rem;
-      margin-bottom: 2rem;
+      font-size: 2.0rem;
+      height: 4.0rem;
+      margin-bottom: 2.0rem;
       width: 50rem;
     }
     a {
       color: #396e7a;
       display: inline-block;
-      margin-bottom: 2rem;
+      margin-bottom: 2.0rem;
       text-decoration: none;
+    }
+    .cancel_btn {
+      background-color: #f18a29;
+      border-color: transparent;
+      border-radius: 3.0rem;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 2.0rem;
+      width: 20rem;
+      &:hover {
+        background-color: #dd7e25;
+      }
     }
   }
 }
