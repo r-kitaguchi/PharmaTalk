@@ -6,18 +6,11 @@ RSpec.describe "学生プロフィールページ", type: :system do
 
   before do
     sign_in student
-    visit new_student_profile_path(student)
   end
 
   context "正しい値を入力した時" do
     before do
-      fill_in "student_profile_name", with: student_profile.name
-      image_path = Rails.root.join('spec/fixtures/test.jpg')
-      attach_file("student_profile_image", image_path)
-      fill_in "student_profile_university", with: student_profile.university
-      choose "student_profile_year_５年"
-      fill_in "student_profile_introduction", with: student_profile.introduction
-      click_on "登録"
+      student_profile_registration
     end
 
     it "マイページに移動すること" do
@@ -33,10 +26,16 @@ RSpec.describe "学生プロフィールページ", type: :system do
         expect(page).to have_selector("img[src$='test.jpg']")
       end
     end
+
+    it "再度プロフィール登録ページに行こうとするとホームに移動すること" do
+      visit new_student_profile_path
+      expect(current_path).to eq root_path
+    end
   end
 
   context "バリデーションに引っかかった時" do
     before do
+      visit new_student_profile_path
       fill_in "student_profile_name", with: " "
       fill_in "student_profile_university", with: student_profile.university
       choose "student_profile_year_５年"

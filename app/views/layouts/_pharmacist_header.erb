@@ -1,5 +1,5 @@
-<% if !current_pharmacist.pharmacist_profile %>
-  <li><%= link_to "プロフィールを登録", new_pharmacist_profile_path(current_pharmacist) %></li>
+<% if !current_pharmacist.pharmacist_profile || !current_pharmacist.pharmacist_profile.id %>
+  <li><%= link_to "プロフィールを登録", new_pharmacist_profile_path %></li>
 <% elsif current_pharmacist.pharmacist_profile.image? %>
   <li class="drop_down">
     <%= image_tag current_pharmacist.pharmacist_profile.image.url, class: "user_icon" %>

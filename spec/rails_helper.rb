@@ -63,6 +63,8 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  config.include ProfileRegistrationModule
+
   config.before(:each) do |example|
     if example.metadata[:type] == :system
       if example.metadata[:js]
