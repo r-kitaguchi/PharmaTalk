@@ -10,6 +10,14 @@ $main_color: #D7EBBA;
   }
 }
 
+@mixin icon($size) {
+  border-radius: 50%;
+  height: $size;
+  margin-top: -1.2rem;
+  object-fit: cover;
+  width: $size;
+}
+
 @mixin title_border($color: #000) {
   .title_border {
     align-items: center;

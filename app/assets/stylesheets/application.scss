@@ -96,11 +96,7 @@ body {
       margin-right: 0.5rem;
     }
     .user_icon {
-      border-radius: 50%;
-      height: 5.0rem;
-      margin-top: -1.2rem;
-      object-fit: cover;
-      width: 5.0rem;
+      @include icon(5.0rem);
     }
     .default {
       background-color: #fff;

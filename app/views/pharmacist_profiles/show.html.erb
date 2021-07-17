@@ -1,2 +1,25 @@
-<h1>PharmacistProfiles#show</h1>
-<p>Find me in app/views/pharmacist_profiles/show.html.erb</p>
+<div class="profile_show">
+  <div class="profile_show_content">
+    <h2>基本情報</h2>
+    <div class="information">
+      <%= image_tag @pharmacist_profile.image.url, class: "user_icon" %>
+      <div>
+        <p><strong><%= @pharmacist_profile.name %></strong></p>
+        <p><small><%= @pharmacist_profile.work_place_type %></small></p>
+        <p><small><i class="fas fa-map-marker-alt" aria-hidden="true"></i><%= @pharmacist_profile.work_location %></small></p>
+      </div>
+    </div>
+    <h2>勤務先・出身大学</h2>
+    <div class="information">
+      <p>
+        <span><%= @pharmacist_profile.work_place %></span>
+        <span><%= @pharmacist_profile.university %></span>
+      </p>
+    </div>
+    <h2>プロフィール</h2>
+    <div class="profile">
+      <small><%= safe_join(@pharmacist_profile.introduction.split("\n"), tag(:br)) %></small>
+    </div>
+  </div>
+  <%= link_to "編集する", edit_pharmacist_profile_path(@pharmacist_profile), class: "btn" %>
+</div>

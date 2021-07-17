@@ -20,6 +20,7 @@ class StudentProfilesController < ApplicationController
   end
 
   def show
+    @student_profile = StudentProfile.find_by(student_id: current_student.id)
   end
 
   def edit

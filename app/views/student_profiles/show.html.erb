@@ -1,0 +1,23 @@
+<div class="profile_show">
+  <div class="profile_show_content">
+    <h2>基本情報</h2>
+    <div class="information">
+      <%= image_tag @student_profile.image.url, class: "user_icon" %>
+      <div>
+        <p><strong><%= @student_profile.name %></strong></p>
+        <p><small>大学<%= @student_profile.year %></small></p>
+      </div>
+    </div>
+    <h2>大学名</h2>
+    <div class="information">
+      <p>
+        <span><%= @student_profile.university %></span>
+      </p>
+    </div>
+    <h2>プロフィール</h2>
+    <div class="profile">
+      <small><%= safe_join(@student_profile.introduction.split("\n"), tag(:br)) %></small>
+    </div>
+  </div>
+  <%= link_to "編集する", edit_student_profile_path(@student_profile), class: "btn" %>
+</div>
