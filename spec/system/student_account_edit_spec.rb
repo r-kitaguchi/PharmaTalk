@@ -70,6 +70,8 @@ RSpec.describe "学生アカウント編集", type: :system do
         click_on "更新"
       end
 
+      # メールアドレスのテストと同じように書くと、@student.password は nil　になるので、
+      # 回りくどいが、以下の方法でテストする。
       it "新しいパスワードを使ってメールアドレスを変更できること" do
         visit edit_student_registration_path
         fill_in "student_email", with: "student_mail@sample.com"

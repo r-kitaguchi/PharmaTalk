@@ -70,6 +70,8 @@ RSpec.describe "薬剤師アカウント編集", type: :system do
         click_on "更新"
       end
 
+      # メールアドレスのテストと同じように書くと、@pharmacist.password は nil　になるので、
+      # 回りくどいが、以下の方法でテストする。
       it "新しいパスワードを使ってメールアドレスを変更できること" do
         visit edit_pharmacist_registration_path
         fill_in "pharmacist_email", with: "pharmacist_mail@sample.com"
