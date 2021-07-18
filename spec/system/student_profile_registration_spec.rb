@@ -10,7 +10,7 @@ RSpec.describe "学生プロフィール登録", type: :system do
 
   context "正しい値を入力した時" do
     before do
-      student_profile_registration
+      student_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
     end
 
     it "マイページに移動すること" do
@@ -30,6 +30,18 @@ RSpec.describe "学生プロフィール登録", type: :system do
     it "再度プロフィール登録ページに行こうとするとホームに移動すること" do
       visit new_student_profile_path
       expect(current_path).to eq root_path
+    end
+  end
+
+  context "プロフィール写真を登録しない時" do
+    before do
+      student_profile_registration(nil)
+    end
+
+    it "デフォルト画像がヘッダーに表示されること" do
+      within '.header_content' do
+        expect(page).to have_selector("img[src$='/assets/default.png']")
+      end
     end
   end
 

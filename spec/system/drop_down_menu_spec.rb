@@ -9,7 +9,7 @@ RSpec.describe "ヘッダーのドロップダウンメニュー", type: :system
   describe "薬剤師ログイン中" do
     before do
       sign_in pharmacist
-      pharmacist_profile_registration
+      pharmacist_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
     end
 
     context "ヘッダーのプロフィール画像をマウスオーバーしている時" do
@@ -43,7 +43,7 @@ RSpec.describe "ヘッダーのドロップダウンメニュー", type: :system
   describe "学生ログイン中" do
     before do
       sign_in student
-      student_profile_registration
+      student_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
     end
 
     context "ヘッダーのプロフィール画像をマウスオーバーしている時" do
