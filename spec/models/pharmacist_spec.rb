@@ -18,8 +18,13 @@ RSpec.describe Pharmacist, type: :model do
     expect(pharmacist.errors[:password]).to include("を入力してください")
   end
 
-  it "パスワードが６文字以上でなければ無効な状態であること" do
-    pharmacist = build(:pharmacist, password: "paspa")
+  it "パスワードが6文字であれば有効な状態であること" do
+    pharmacist = build(:pharmacist, password: "#{'a'*6}", password_confirmation: "#{'a'*6}")
+    expect(pharmacist).to be_valid
+  end
+
+  it "パスワードが5文字であれば無効な状態であること" do
+    pharmacist = build(:pharmacist, password: "#{'a'*5}", password_confirmation: "#{'a'*5}")
     pharmacist.valid?
     expect(pharmacist.errors[:password]).to include("は6文字以上で入力してください")
   end

@@ -18,8 +18,13 @@ RSpec.describe Student, type: :model do
     expect(student.errors[:password]).to include("を入力してください")
   end
 
-  it "パスワードが６文字以上でなければ無効な状態であること" do
-    student = build(:student, password: "paspa")
+  it "パスワードが6文字であれば有効な状態であること" do
+    student = build(:student, password: "#{'a'*6}", password_confirmation: "#{'a'*6}")
+    expect(student).to be_valid
+  end
+
+  it "パスワードが5文字であれば無効な状態であること" do
+    student = build(:student, password: "#{'a'*5}")
     student.valid?
     expect(student.errors[:password]).to include("は6文字以上で入力してください")
   end
