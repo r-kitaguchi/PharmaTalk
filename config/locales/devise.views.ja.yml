@@ -9,7 +9,7 @@ ja:
         remember_me: "ログインを記憶"
       student_profile:
         name: "名前"
-        image: "プロフィール写真"
+        image: "プロフィール画像"
         university: "大学名"
         year: "学年"
         introduction: "自己紹介"
@@ -21,7 +21,7 @@ ja:
         remember_me: "ログインを記憶"
       pharmacist_profile:
         name: "名前"
-        image: "プロフィール写真"
+        image: "プロフィール画像"
         work_place: "勤務先"
         work_place_type: "勤務先タイプ"
         work_location: "勤務地"
