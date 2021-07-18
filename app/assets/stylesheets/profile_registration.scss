@@ -32,8 +32,15 @@
         margin: 0 5rem 0 0.5rem;
       }
     }
-    input, textarea, .work_place_type {
+    input, textarea, .edit_image, .work_place_type {
       grid-column: 2 / 3;
+    }
+    .edit_image {
+      align-items: center;
+      display: flex;
+    }
+    p {
+      margin-left: 5.0rem;
     }
     .btn {
       @include btn;
@@ -41,6 +48,9 @@
       height: 4rem;
       margin-bottom: 5rem;
       width: 50rem;
+    }
+    .user_icon {
+      @include icon(5.0rem);
     }
   }
 }

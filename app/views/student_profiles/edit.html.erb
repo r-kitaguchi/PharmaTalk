@@ -1,0 +1,35 @@
+<%= render "shared/error_messages", resource: @student_profile %>
+<div class="form_profile">
+  <h2>プロフィール編集</h2>
+  <div class="form_contents">
+    <%= form_with model: @student_profile do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ファーマ太郎" %>
+
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <% if current_student.student_profile.image? %>
+        <div class="edit_image">
+          <%= image_tag @student_profile.image.url, class: "user_icon" %>
+          <p><%= f.check_box :remove_image %>画像を削除する</p>
+        </div>
+      <% end %>
+
+      <%= f.label :university %>
+      <%= f.text_field :university, placeholder: "Pharma大学" %>
+
+      <%= f.label :year %>
+      <div class="year">
+        <%= f.radio_button :year, "５年" %>
+        <%= f.label :year, "５年", value: "５年" %>
+        <%= f.radio_button :year,"６年" %>
+        <%= f.label :year, "６年", value: "６年" %>
+      </div>
+
+      <%= f.label :introduction %>
+      <%= f.text_area :introduction %>
+
+      <%= f.submit "更新", class: "btn" %>
+    <% end %>
+  </div>
+</div>
