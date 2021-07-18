@@ -21,6 +21,14 @@ RSpec.describe "学生プロフィール編集ページ", type: :system do
       it "画像を削除するためのチェックボックスが表示されていること" do
         expect(page).to have_content("画像を削除する")
       end
+
+      it "画像削除のチェックボックスにチェックを入れると、ヘッダーのアイコンがデフォルト画像になること" do
+        check "student_profile_remove_image"
+        click_on "更新"
+        within '.header_content' do
+          expect(page).to have_selector("img[src$='/assets/default.png']")
+        end
+      end
     end
 
     context "プロフィール画像を登録していない時" do
