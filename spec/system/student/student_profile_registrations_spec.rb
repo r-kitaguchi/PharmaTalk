@@ -1,41 +1,41 @@
 require 'rails_helper'
 
-RSpec.describe "薬剤師プロフィール登録", type: :system do
-  let(:pharmacist) { create(:pharmacist) }
-  let(:pharmacist_profile) { build(:pharmacist_profile) }
+RSpec.describe "学生プロフィール登録", type: :system do
+  let(:student_profile) { build(:student_profile) }
+  let(:student) { create(:student) }
 
   before do
-    sign_in pharmacist
+    sign_in student
   end
 
   context "正しい値を入力した時" do
     before do
-      pharmacist_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
+      student_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
     end
 
     it "マイページに移動すること" do
-      expect(current_path).to eq pharmacist_path(pharmacist)
+      expect(current_path).to eq student_path(student)
     end
 
     it "フラッシュが表示されること" do
       expect(page).to have_content "プロフィールを登録しました。"
     end
 
-    it "プロフィール写真がヘッダーに表示されること" do
+    it "プロフィール画像がヘッダーに表示されること" do
       within '.header_content' do
         expect(page).to have_selector("img[src$='test.jpg']")
       end
     end
 
     it "再度プロフィール登録ページに行こうとするとホームに移動すること" do
-      visit new_pharmacist_profile_path
+      visit new_student_profile_path
       expect(current_path).to eq root_path
     end
   end
 
-  context "プロフィール写真を登録しない時" do
+  context "プロフィール画像を登録しない時" do
     before do
-      pharmacist_profile_registration(nil)
+      student_profile_registration(nil)
     end
 
     it "デフォルト画像がヘッダーに表示されること" do
@@ -47,12 +47,11 @@ RSpec.describe "薬剤師プロフィール登録", type: :system do
 
   context "バリデーションに引っかかった時" do
     before do
-      visit new_pharmacist_profile_path(pharmacist)
-      fill_in "pharmacist_profile_name", with: " "
-      fill_in "pharmacist_profile_work_place", with: pharmacist_profile.work_place
-      choose "pharmacist_profile_work_place_type_調剤薬局"
-      fill_in "pharmacist_profile_university", with: pharmacist_profile.university
-      fill_in "pharmacist_profile_introduction", with: pharmacist_profile.introduction
+      visit new_student_profile_path
+      fill_in "student_profile_name", with: " "
+      fill_in "student_profile_university", with: student_profile.university
+      choose "student_profile_year_５年"
+      fill_in "student_profile_introduction", with: student_profile.introduction
       click_on "登録"
     end
 

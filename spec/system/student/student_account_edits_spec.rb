@@ -15,9 +15,8 @@ RSpec.describe "学生アカウント編集", type: :system do
         click_on "更新"
       end
 
-      it "メールアドレスを変更できないこと" do
-        @student = Student.find(student.id)
-        expect(@student.email).not_to eq "student_mail@sample.com"
+      it "アカウント編集ページから移動しないこと" do
+        expect(page).to have_selector("h2", text: "アカウント編集")
       end
 
       it "エラーメッセージが表示されること" do
@@ -32,13 +31,12 @@ RSpec.describe "学生アカウント編集", type: :system do
         click_on "更新"
       end
 
-      it "メールアドレスが更新されること" do
-        @student = Student.find(student.id)
-        expect(@student.email).to eq "student_mail@sample.com"
-      end
-
       it "ホームに移動すること" do
         expect(current_path).to eq root_path
+      end
+
+      it "フラッシュが表示されること" do
+        expect(page).to have_content("アカウント情報を変更しました")
       end
     end
   end
@@ -51,10 +49,8 @@ RSpec.describe "学生アカウント編集", type: :system do
         click_on "更新"
       end
 
-      it "新しく入力したパスワードが有効でないこと" do
-        fill_in "student_current_password", with: "studentpas"
-        click_on "更新"
-        expect(page).to have_content("現在のパスワードは不正な値です")
+      it "アカウント編集ページから移動しないこと" do
+        expect(page).to have_selector("h2", text: "アカウント編集")
       end
 
       it "エラーメッセージが表示されること" do
@@ -70,19 +66,12 @@ RSpec.describe "学生アカウント編集", type: :system do
         click_on "更新"
       end
 
-      # メールアドレスのテストと同じように書くと、@student.password は nil　になるので、
-      # 回りくどいが、以下の方法でテストする。
-      it "新しいパスワードを使ってメールアドレスを変更できること" do
-        visit edit_student_registration_path
-        fill_in "student_email", with: "student_mail@sample.com"
-        fill_in "student_current_password", with: "studentpas"
-        click_on "更新"
-        @student = Student.find(student.id)
-        expect(@student.email).to eq "student_mail@sample.com"
-      end
-
       it "ホームに移動すること" do
         expect(current_path).to eq root_path
+      end
+
+      it "フラッシュが表示されること" do
+        expect(page).to have_content("アカウント情報を変更しました")
       end
     end
   end
