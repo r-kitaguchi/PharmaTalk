@@ -14,21 +14,36 @@
 <%= render "shared/flash" %>
 <main>
   <h2>先輩を探す</h2>
-  <div>
+  <%= search_form_for @q, url: search_pharmacist_profiles_path do |f| %>
     <p><i class="fas fa-pencil-alt" aria-hidden="true"></i>フリーワード</p>
-  </div>
-  <div>
+    <div class="search_field">
+      <%= f.search_field :name_or_work_place_or_university_cont %>
+    </div>
     <p><i class="fas fa-clinic-medical" aria-hidden="true"></i>勤務先タイプ</p>
-    <ul>
-      <li>調剤薬局</li>
-      <li>ドラッグストア</li>
-      <li>病院</li>
-    </ul>
-  </div>
-  <div>
+    <div class="search_checkbox">
+      <label>
+        <%= f.check_box :work_place_type_eq_any, { multiple: true }, "調剤薬局", "" %>
+        調剤薬局
+      </label>
+      <label>
+        <%= f.check_box :work_place_type_eq_any, { multiple: true }, "ドラッグストア", "" %>
+        ドラッグストア
+      </label>
+      <label>
+        <%= f.check_box :work_place_type_eq_any, { multiple: true }, "病院", "" %>
+        病院
+      </label>
+    </div>
     <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i>エリア</p>
-  </div>
-  <div class="btn">検索</div>
+    <div class="search_prefectures">
+      <%  PharmacistProfile.work_locations.keys.each_with_index do |key, i| %>
+        <% next if i.zero? %>
+        <%= f.check_box :work_place_type_eq_any,{ multiple: true }, key, "" %>
+        <%= f.label :work_location_eq_any, key %>
+      <% end %>
+    </div>
+      <%= f.submit "検索" %>
+  <% end %>
 </main>
 <%= render "shared/sign_up_modal" %>
 <%= render "shared/log_in_modal" %>

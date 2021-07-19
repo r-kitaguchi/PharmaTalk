@@ -1,5 +1,5 @@
 class PharmacistProfilesController < ApplicationController
-  before_action :authenticate_pharmacist!, except: :index
+  before_action :authenticate_pharmacist!, except: :search
   before_action :profile_unregistered, only: [:new, :create]
 
   def new
@@ -35,6 +35,8 @@ class PharmacistProfilesController < ApplicationController
   end
 
   def search
+    @q = PharmacistProfile.ransack(params[:q])
+    @results = @q.result
   end
 
 
@@ -50,5 +52,4 @@ class PharmacistProfilesController < ApplicationController
         redirect_to root_path
       end
     end
-
 end
