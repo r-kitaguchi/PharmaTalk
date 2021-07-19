@@ -2,9 +2,6 @@ class StudentProfilesController < ApplicationController
   before_action :authenticate_student!, except: :index
   before_action :profile_unregistered, only: [:new, :create]
 
-  def index
-  end
-
   def new
     @student_profile = StudentProfile.new
   end

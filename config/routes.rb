@@ -19,7 +19,11 @@ Rails.application.routes.draw do
 
   resources :pharmacists, only: :show
   resources :students, only: :show
-  resources :pharmacist_profiles, except: :destroy
-  resources :student_profiles, except: :destroy
+  resources :pharmacist_profiles, except: [:index, :destroy] do
+    collection do
+      get 'search'
+    end
+  end
+  resources :student_profiles, except: [:index, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

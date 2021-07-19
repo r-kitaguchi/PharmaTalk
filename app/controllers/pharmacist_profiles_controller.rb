@@ -2,9 +2,6 @@ class PharmacistProfilesController < ApplicationController
   before_action :authenticate_pharmacist!, except: :index
   before_action :profile_unregistered, only: [:new, :create]
 
-  def index
-  end
-
   def new
     @pharmacist_profile = PharmacistProfile.new
   end
@@ -36,6 +33,10 @@ class PharmacistProfilesController < ApplicationController
       render "edit"
     end
   end
+
+  def search
+  end
+
 
   private
 
