@@ -21,18 +21,12 @@
     </div>
     <p><i class="fas fa-clinic-medical" aria-hidden="true"></i>勤務先タイプ</p>
     <div class="search_checkbox">
-      <label>
-        <%= f.check_box :work_place_type_eq_any, { multiple: true }, "調剤薬局", nil %>
-        調剤薬局
-      </label>
-      <label>
-        <%= f.check_box :work_place_type_eq_any, { multiple: true }, "ドラッグストア", nil %>
-        ドラッグストア
-      </label>
-      <label>
-        <%= f.check_box :work_place_type_eq_any, { multiple: true }, "病院", nil %>
-        病院
-      </label>
+      <% PharmacistProfile.work_place_types.keys.each_with_index do |key, i| %>
+        <label>
+          <%= f.check_box :work_place_type_eq_any, { multiple: true }, i, nil %>
+          <%= key %>
+        </label>
+      <% end %>
     </div>
     <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i>エリア</p>
     <div class="search_prefectures">

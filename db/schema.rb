@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_083740) do
+ActiveRecord::Schema.define(version: 2021_07_20_061901) do
 
   create_table "pharmacist_profiles", force: :cascade do |t|
     t.string "name", null: false
     t.string "image"
     t.string "work_place", null: false
-    t.string "work_place_type", null: false
+    t.integer "work_place_type", null: false
     t.integer "work_location", default: 0, null: false
     t.string "university", null: false
     t.text "introduction", null: false
