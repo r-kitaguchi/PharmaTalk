@@ -1,5 +1,6 @@
 class PharmacistProfilesController < ApplicationController
-  before_action :authenticate_pharmacist!, except: :search
+  before_action :authenticate_pharmacist!, except: [:search, :show]
+  before_action :authenticate_user!, only: [:show]
   before_action :profile_unregistered, only: [:new, :create]
 
   def new
@@ -17,15 +18,15 @@ class PharmacistProfilesController < ApplicationController
   end
 
   def show
-    @pharmacist_profile = PharmacistProfile.find_by(pharmacist_id: current_pharmacist.id)
+    @pharmacist_profile = PharmacistProfile.find(params[:id])
   end
 
   def edit
-    @pharmacist_profile = PharmacistProfile.find_by(pharmacist_id: current_pharmacist.id)
+    @pharmacist_profile = PharmacistProfile.find(params[:id])
   end
 
   def update
-    @pharmacist_profile = PharmacistProfile.find_by(pharmacist_id: current_pharmacist.id)
+    @pharmacist_profile = PharmacistProfile.find(params[:id])
     if @pharmacist_profile.update(pharmacist_profile_params)
       flash[:notice] = "プロフィールを更新しました。"
       redirect_to pharmacist_path(current_pharmacist)
@@ -49,6 +50,13 @@ class PharmacistProfilesController < ApplicationController
 
     def profile_unregistered
       if current_pharmacist.pharmacist_profile && current_pharmacist.pharmacist_profile.id
+        redirect_to root_path
+      end
+    end
+
+    def authenticate_user!
+      if !pharmacist_signed_in? && !student_signed_in?
+        flash[:alert] = "ログインしてください。"
         redirect_to root_path
       end
     end

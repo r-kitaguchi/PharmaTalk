@@ -1,0 +1,56 @@
+@import "variables";
+
+.search_result {
+  min-width: 96rem;
+  margin: 0 auto;
+  h2 {
+    margin-left: 5rem;
+  }
+  .search_pharmacist_profile {
+    border: 1px solid #dcdcdd;
+    box-shadow: 5px 5px 5px #dcdcdd;
+    color: #000;
+    display: inline-block;
+    height: 40rem;
+    margin: 5.0rem;
+    padding: 2.0rem;
+    width: 30rem;
+    vertical-align: top;
+    .top_information {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 2.0rem;
+      i {
+        margin-right: 0.5rem;
+      }
+      p {
+        text-align: left;
+        margin: 0.7rem;
+      }
+    }
+    .user_icon {
+      @include icon(8rem);
+    }
+    .information {
+      margin-top: 5.0rem;
+      p {
+        text-align: center;
+      }
+      p:first-child {
+        margin-bottom: 3.0rem;
+      }
+      .blue_marker {
+        background:linear-gradient(transparent 60%, #79cef8 60%);
+      }
+      .orange_marker {
+        background:linear-gradient(transparent 60%, #EF946C 60%);
+      }
+    }
+    .introduction {
+      height: 27%;
+      margin-top: 5.0rem;
+      overflow: hidden;
+    }
+  }
+}

@@ -2,7 +2,7 @@
   <div class="profile_show_content">
     <h2>基本情報</h2>
     <div class="information">
-      <% if current_pharmacist.pharmacist_profile.image? %>
+      <% if @pharmacist_profile.image? %>
         <%= image_tag @pharmacist_profile.image.url, class: "user_icon" %>
       <% else %>
         <%= image_tag "/assets/default.png", class: "user_icon default" %>
@@ -25,5 +25,9 @@
       <small><%= safe_join(@pharmacist_profile.introduction.split("\n"), tag(:br)) %></small>
     </div>
   </div>
-  <%= link_to "編集する", edit_pharmacist_profile_path(@pharmacist_profile), class: "btn" %>
+  <% if current_pharmacist.present? %>
+    <% if @pharmacist_profile == current_pharmacist.pharmacist_profile %>
+      <%= link_to "編集する", edit_pharmacist_profile_path(@pharmacist_profile), class: "btn" %>
+    <% end %>
+  <% end %>
 </div>

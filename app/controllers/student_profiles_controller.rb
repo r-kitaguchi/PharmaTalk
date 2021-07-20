@@ -17,15 +17,15 @@ class StudentProfilesController < ApplicationController
   end
 
   def show
-    @student_profile = StudentProfile.find_by(student_id: current_student.id)
+    @student_profile = StudentProfile.find(params[:id])
   end
 
   def edit
-    @student_profile = StudentProfile.find_by(student_id: current_student.id)
+    @student_profile = StudentProfile.find(params[:id])
   end
 
   def update
-    @student_profile = StudentProfile.find_by(student_id: current_student.id)
+    @student_profile = StudentProfile.find(params[:id])
     if @student_profile.update(student_profile_params)
       flash[:notice] = "プロフィールを更新しました。"
       redirect_to student_path(current_student)
