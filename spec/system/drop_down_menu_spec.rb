@@ -1,41 +1,54 @@
 require 'rails_helper'
 
 RSpec.describe "ヘッダーのドロップダウンメニュー", type: :system do
-  let(:pharmacist) { create(:pharmacist) }
+  let(:pharmacist) { create(:pharmacist, pharmacist_profile: pharmacist_profile) }
   let(:pharmacist_profile) { build(:pharmacist_profile) }
-  let(:student){ create(:student) }
+  let(:student){ create(:student, student_profile: student_profile) }
   let(:student_profile) { build(:student_profile) }
 
   describe "薬剤師ログイン中" do
     before do
       sign_in pharmacist
-      pharmacist_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
+      visit root_path
     end
 
     context "ヘッダーのプロフィール画像をマウスオーバーしている時" do
       before do
-        @pharmacist_profile = PharmacistProfile.find_by(pharmacist_id: pharmacist.id)
         find(".drop_down").hover
       end
 
-      it "マイページのリンクをクリックすると、正しいページに移動できること", js: true do
-        click_on "マイページ"
-        expect(current_path).to eq pharmacist_path(pharmacist)
+      it "マイページへのリンクがあること", js: true do
+        expect(page).to have_link "マイページ", href: pharmacist_path(pharmacist)
       end
 
-      it "プロフィールのリンクをクリックすると、正しいページに移動できること", js: true do
-        click_on "プロフィール"
-        expect(current_path).to eq pharmacist_profile_path(@pharmacist_profile)
+      it "プロフィールへのリンクがあること", js: true do
+        expect(page).to have_link "プロフィール", href: pharmacist_profile_path(pharmacist_profile)
       end
 
-      it "アカウント編集のリンクをクリックすると、正しいページに移動できること", js: true do
-        click_on "アカウント編集"
-        expect(current_path).to eq edit_pharmacist_registration_path
+      it "アカウント編集へのリンクがあること", js: true do
+        expect(page).to have_link "アカウント編集", href: edit_pharmacist_registration_path
       end
 
-      it "ログアウトをクリックすると、ユーザーアイコンが表示されなくなること", js: true do
-        click_on "ログアウト"
-        expect(page).not_to have_selector(".drop_down")
+      it "ログアウトリンクがあること", js: true do
+        expect(page).to have_link "ログアウト", href: destroy_pharmacist_session_path
+      end
+    end
+
+    context "ヘッダーのプロフィール画像をマウスオーバーしていない時" do
+      it "マイページへのリンクがないこと", js: true do
+        expect(page).not_to have_link "マイページ", href: pharmacist_path(pharmacist)
+      end
+
+      it "プロフィールへのリンクがないこと", js: true do
+        expect(page).not_to have_link "プロフィール", href: pharmacist_profile_path(pharmacist_profile)
+      end
+
+      it "アカウント編集へのリンクがないこと", js: true do
+        expect(page).not_to have_link "アカウント編集", href: edit_pharmacist_registration_path
+      end
+
+      it "ログアウトリンクがないこと", js: true do
+        expect(page).not_to have_link "ログアウト", href: destroy_pharmacist_session_path
       end
     end
   end
@@ -43,33 +56,46 @@ RSpec.describe "ヘッダーのドロップダウンメニュー", type: :system
   describe "学生ログイン中" do
     before do
       sign_in student
-      student_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
+      visit root_path
     end
 
     context "ヘッダーのプロフィール画像をマウスオーバーしている時" do
       before do
-        @student_profile = StudentProfile.find_by(student_id: student.id)
         find(".drop_down").hover
       end
 
-      it "マイページのリンクをクリックすると、正しいページに移動できること", js: true do
-        click_on "マイページ"
-        expect(current_path).to eq student_path(student)
+      it "マイページへのリンクがあること", js: true do
+        expect(page).to have_link "マイページ", href: student_path(student)
       end
 
-      it "プロフィールのリンクをクリックすると、正しいページに移動できること", js: true do
-        click_on "プロフィール"
-        expect(current_path).to eq student_profile_path(@student_profile)
+      it "プロフィールへのリンクがあること", js: true do
+        expect(page).to have_link "プロフィール", href: student_profile_path(student_profile)
       end
 
-      it "アカウント編集のリンクをクリックすると、正しいページに移動できること", js: true do
-        click_on "アカウント編集"
-        expect(current_path).to eq edit_student_registration_path
+      it "アカウント編集へのリンクがあること", js: true do
+        expect(page).to have_link "アカウント編集", href: edit_student_registration_path
       end
 
-      it "ログアウトをクリックすると、ユーザーアイコンが表示されなくなること", js: true do
-        click_on "ログアウト"
-        expect(page).not_to have_selector(".drop_down")
+      it "ログアウトリンクがあること", js: true do
+        expect(page).to have_link "ログアウト", href: destroy_student_session_path
+      end
+    end
+
+    context "ヘッダーのプロフィール画像をマウスオーバーしていない時" do
+      it "マイページへのリンクがないこと", js: true do
+        expect(page).not_to have_link "マイページ", href: student_path(student)
+      end
+
+      it "プロフィールへのリンクがないこと", js: true do
+        expect(page).not_to have_link "プロフィール", href: student_profile_path(student_profile)
+      end
+
+      it "アカウント編集へのリンクがないこと", js: true do
+        expect(page).not_to have_link "アカウント編集", href: edit_student_registration_path
+      end
+
+      it "ログアウトリンクがないこと", js: true do
+        expect(page).not_to have_link "ログアウト", href: destroy_student_session_path
       end
     end
   end

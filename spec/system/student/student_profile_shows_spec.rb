@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "学生プロフィールページ", type: :system do
-  let(:student) { create(:student) }
+  let(:student) { create(:student, student_profile: student_profile) }
   let(:student_profile) { create(:student_profile) }
+  let(:no_image_student) { create(:student, student_profile: no_image_student_profile)}
+  let(:no_image_student_profile) { create(:student_profile, :no_image)}
 
   context "プロフィール画像を登録している時" do
     before do
       sign_in student
-      student_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
-      visit student_profile_path(student_profile.id)
+      visit student_profile_path(student_profile)
     end
 
     it "名前が表示されていること" do
@@ -36,9 +37,8 @@ RSpec.describe "学生プロフィールページ", type: :system do
 
   context "プロフィール画像を登録していない時" do
     before do
-      sign_in student
-      student_profile_registration(nil)
-      visit student_profile_path(student_profile.id)
+      sign_in no_image_student
+      visit student_profile_path(no_image_student_profile)
     end
 
     it "デフォルト画像が表示されていること" do
