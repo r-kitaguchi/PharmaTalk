@@ -7,4 +7,8 @@ class StudentProfile < ApplicationRecord
   validates :university, presence: true, length: { maximum: 255 }
   validates :year, presence: true
   validates :introduction, presence: true, length: { maximum: 1000 }
+
+  enum year: {
+    ５年: 0, ６年: 1
+  }
 end

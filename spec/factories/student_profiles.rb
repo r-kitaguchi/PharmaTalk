@@ -3,7 +3,7 @@ FactoryBot.define do
     name { "学生太郎" }
     image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg')) }
     university { "Pharma大学" }
-    year { "５年" }
+    year { 0 }
     introduction { "MyText" }
     association :student
 
