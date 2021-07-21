@@ -21,11 +21,11 @@
       <%= f.label :work_place_type %>
       <div class="work_place_type">
         <%= f.radio_button :work_place_type, :調剤薬局, checked: "checked" %>
-        <%= f.label :調剤薬局 %>
+        <%= f.label :work_place_type_調剤薬局, "調剤薬局" %>
         <%= f.radio_button :work_place_type, :ドラッグストア %>
-        <%= f.label :ドラッグストア %>
+        <%= f.label :work_place_type_ドラッグストア, "ドラッグストア" %>
         <%= f.radio_button :work_place_type, :病院 %>
-        <%= f.label :病院 %>
+        <%= f.label :work_place_type_病院, "病院" %>
       </div>
 
       <%= f.label :work_location %>
