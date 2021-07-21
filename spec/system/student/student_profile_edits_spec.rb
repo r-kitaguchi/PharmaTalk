@@ -5,6 +5,26 @@ RSpec.describe "学生プロフィール編集ページ", type: :system do
   let(:student_profile) { create(:student_profile) }
   let(:no_image_student) { create(:student, student_profile: no_image_student_profile)}
   let(:no_image_student_profile) { create(:student_profile, :no_image)}
+  let(:other_student) { create(:student, student_profile: other_student_profile)}
+  let(:other_student_profile) { create(:student_profile) }
+
+  describe "ログインユーザーの種類" do
+    context "自身のプロフィール編集ページにアクセスする時" do
+      it "プロフィール編集ページにアクセスできること" do
+        sign_in student
+        visit edit_student_profile_path(student_profile)
+        expect(current_path).to eq edit_student_profile_path(student_profile)
+      end
+    end
+
+    context "他人のプロフィール編集ページにアクセスする時" do
+      it "ホームにリダイレクトされること" do
+        sign_in student
+        visit edit_student_profile_path(other_student_profile)
+        expect(current_path).to eq root_path
+      end
+    end
+  end
 
   describe "プロフィール画像の表示" do
     context "プロフィール画像を登録している時" do

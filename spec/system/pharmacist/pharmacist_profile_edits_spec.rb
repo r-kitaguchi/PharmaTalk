@@ -5,6 +5,26 @@ RSpec.describe "薬剤師プロフィール編集ページ", type: :system do
   let(:pharmacist_profile) { create(:pharmacist_profile) }
   let(:no_image_pharmacist) { create(:pharmacist, pharmacist_profile: no_image_pharmacist_profile)}
   let(:no_image_pharmacist_profile) { create(:pharmacist_profile, :no_image)}
+  let(:other_pharmacist) { create(:pharmacist, pharmacist_profile: other_pharmacist_profile)}
+  let(:other_pharmacist_profile) { create(:pharmacist_profile) }
+
+  describe "ログインユーザーの種類" do
+    context "自身のプロフィール編集ページにアクセスする時" do
+      it "プロフィール編集ページにアクセスできること" do
+        sign_in pharmacist
+        visit edit_pharmacist_profile_path(pharmacist_profile)
+        expect(current_path).to eq edit_pharmacist_profile_path(pharmacist_profile)
+      end
+    end
+
+    context "他人のプロフィール編集ページにアクセスする時" do
+      it "ホームにリダイレクトされること" do
+        sign_in pharmacist
+        visit edit_pharmacist_profile_path(other_pharmacist_profile)
+        expect(current_path).to eq root_path
+      end
+    end
+  end
 
   describe "プロフィール画像の表示" do
     context "プロフィール画像を登録している時" do

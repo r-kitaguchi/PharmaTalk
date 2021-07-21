@@ -5,53 +5,112 @@ RSpec.describe "薬剤師プロフィールページ", type: :system do
   let(:pharmacist_profile) { create(:pharmacist_profile) }
   let(:no_image_pharmacist) { create(:pharmacist, pharmacist_profile: no_image_pharmacist_profile)}
   let(:no_image_pharmacist_profile) { create(:pharmacist_profile, :no_image)}
+  let(:other_pharmacist) { create(:pharmacist, pharmacist_profile: other_pharmacist_profile)}
+  let(:other_pharmacist_profile) { create(:pharmacist_profile) }
+  let(:student) { create(:student) }
 
-  context "プロフィール画像を登録している時" do
-    before do
-      sign_in pharmacist
-      visit pharmacist_profile_path(pharmacist_profile)
+  describe "ログインの有無" do
+    context "薬剤師がログインしている時" do
+      before do
+        sign_in pharmacist
+      end
+
+      it "プロフィール画面に移動できること" do
+        visit pharmacist_profile_path(pharmacist_profile)
+        expect(current_path).to eq pharmacist_profile_path(pharmacist_profile)
+      end
+
+      context "自身のプロフィールページを表示している時" do
+        before do
+          visit pharmacist_profile_path(pharmacist_profile)
+        end
+        it "プロフィール編集へのリンクが表示されていること" do
+          expect(page).to have_link("編集する", href: edit_pharmacist_profile_path(pharmacist_profile))
+        end
+      end
+
+      context "他人のプロフィールページを表示している時" do
+        before do
+          visit pharmacist_profile_path(other_pharmacist_profile)
+        end
+
+        it "プロフィール編集へのリンクが表示されていないこと" do
+          expect(page).not_to have_link("編集する", href: edit_pharmacist_profile_path(other_pharmacist_profile))
+        end
+      end
     end
 
-    it "名前が表示されていること" do
-      expect(page).to have_content(pharmacist_profile.name)
+    context "学生がログインしている時" do
+      before do
+        sign_in student
+        visit pharmacist_profile_path(pharmacist_profile)
+      end
+
+      it "プロフィール画面に移動できること" do
+        expect(current_path).to eq pharmacist_profile_path(pharmacist_profile)
+      end
+
+      it "プロフィール編集へのリンクが表示されていないこと" do
+        expect(page).not_to have_link("編集する", href: edit_pharmacist_profile_path(pharmacist_profile))
+      end
     end
 
-    it "勤務先タイプが表示されていること" do
-      expect(page).to have_content(pharmacist_profile.work_place_type)
-    end
-
-    it "勤務地が表示されていること" do
-      expect(page).to have_content(pharmacist_profile.work_location)
-    end
-
-    it "勤務先が表示されていること" do
-      expect(page).to have_content(pharmacist_profile.work_place)
-    end
-
-    it "出身大学が表示されていること" do
-      expect(page).to have_content(pharmacist_profile.university)
-    end
-
-    it "自己紹介文が表示されていること" do
-      expect(page).to have_content(pharmacist_profile.introduction)
-    end
-
-    it "プロフィール画像が表示されていること" do
-      within ".profile_show_content" do
-        expect(page).to have_selector("img[src$='test.jpg']")
+    context "誰もログインしていない時" do
+      it "プロフィール画面に移動しようとするとホームにリダイレクトされること" do
+        visit pharmacist_profile_path(pharmacist_profile)
+        expect(current_path).to eq root_path
       end
     end
   end
 
-  context "プロフィール画像を登録していない時" do
-    before do
-      sign_in no_image_pharmacist
-      visit pharmacist_profile_path(no_image_pharmacist_profile)
+  describe "プロフィール画像の有無" do
+    context "プロフィール画像を登録している時" do
+      before do
+        sign_in pharmacist
+        visit pharmacist_profile_path(pharmacist_profile)
+      end
+
+      it "名前が表示されていること" do
+        expect(page).to have_content(pharmacist_profile.name)
+      end
+
+      it "勤務先タイプが表示されていること" do
+        expect(page).to have_content(pharmacist_profile.work_place_type)
+      end
+
+      it "勤務地が表示されていること" do
+        expect(page).to have_content(pharmacist_profile.work_location)
+      end
+
+      it "勤務先が表示されていること" do
+        expect(page).to have_content(pharmacist_profile.work_place)
+      end
+
+      it "出身大学が表示されていること" do
+        expect(page).to have_content(pharmacist_profile.university)
+      end
+
+      it "自己紹介文が表示されていること" do
+        expect(page).to have_content(pharmacist_profile.introduction)
+      end
+
+      it "プロフィール画像が表示されていること" do
+        within ".profile_show_content" do
+          expect(page).to have_selector("img[src$='test.jpg']")
+        end
+      end
     end
 
-    it "デフォルト画像が表示されていること" do
-      within '.profile_show_content' do
-        expect(page).to have_selector("img[src$='/assets/default.png']")
+    context "プロフィール画像を登録していない時" do
+      before do
+        sign_in no_image_pharmacist
+        visit pharmacist_profile_path(no_image_pharmacist_profile)
+      end
+
+      it "デフォルト画像が表示されていること" do
+        within '.profile_show_content' do
+          expect(page).to have_selector("img[src$='/assets/default.png']")
+        end
       end
     end
   end
