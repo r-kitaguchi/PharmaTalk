@@ -36,6 +36,7 @@ class PharmacistProfilesController < ApplicationController
 
   def search
     @q = PharmacistProfile.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
     @results = @q.result.page(params[:page]).per(10)
   end
 
