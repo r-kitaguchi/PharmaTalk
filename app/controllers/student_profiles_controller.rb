@@ -1,6 +1,7 @@
 class StudentProfilesController < ApplicationController
   before_action :authenticate_student!
   before_action :profile_unregistered, only: [:new, :create]
+  before_action :correct_student, only: [:edit, :update]
 
   def new
     @student_profile = StudentProfile.new
@@ -21,11 +22,9 @@ class StudentProfilesController < ApplicationController
   end
 
   def edit
-    @student_profile = StudentProfile.find(params[:id])
   end
 
   def update
-    @student_profile = StudentProfile.find(params[:id])
     if @student_profile.update(student_profile_params)
       flash[:notice] = "プロフィールを更新しました。"
       redirect_to student_path(current_student)
@@ -42,6 +41,13 @@ class StudentProfilesController < ApplicationController
 
     def profile_unregistered
       if current_student.student_profile && current_student.student_profile.id
+        redirect_to root_path
+      end
+    end
+
+    def correct_student
+      @student_profile = StudentProfile.find(params[:id])
+      unless @student_profile == current_student.student_profile
         redirect_to root_path
       end
     end
