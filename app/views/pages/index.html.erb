@@ -17,7 +17,7 @@
   <%= search_form_for @q, url: search_pharmacist_profiles_path do |f| %>
     <p><i class="fas fa-pencil-alt" aria-hidden="true"></i>フリーワード</p>
     <div class="search_field">
-      <%= f.search_field :name_or_work_place_or_university_cont %>
+      <%= f.search_field :name_or_work_place_or_university_cont, placeholder: "会社名・大学名" %>
     </div>
     <p><i class="fas fa-clinic-medical" aria-hidden="true"></i>勤務先タイプ</p>
     <div class="search_checkbox">
