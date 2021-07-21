@@ -1,14 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe "学生プロフィール編集ページ", type: :system do
-  let(:student) { create(:student) }
+  let(:student) { create(:student, student_profile: student_profile) }
   let(:student_profile) { create(:student_profile) }
+  let(:no_image_student) { create(:student, student_profile: no_image_student_profile)}
+  let(:no_image_student_profile) { create(:student_profile, :no_image)}
+  let(:other_student) { create(:student, student_profile: other_student_profile)}
+  let(:other_student_profile) { create(:student_profile) }
+
+  describe "ログインユーザーの種類" do
+    context "自身のプロフィール編集ページにアクセスする時" do
+      it "プロフィール編集ページにアクセスできること" do
+        sign_in student
+        visit edit_student_profile_path(student_profile)
+        expect(current_path).to eq edit_student_profile_path(student_profile)
+      end
+    end
+
+    context "他人のプロフィール編集ページにアクセスする時" do
+      it "ホームにリダイレクトされること" do
+        sign_in student
+        visit edit_student_profile_path(other_student_profile)
+        expect(current_path).to eq root_path
+      end
+    end
+  end
 
   describe "プロフィール画像の表示" do
     context "プロフィール画像を登録している時" do
       before do
         sign_in student
-        student_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
         visit edit_student_profile_path(student_profile)
       end
 
@@ -33,9 +54,8 @@ RSpec.describe "学生プロフィール編集ページ", type: :system do
 
     context "プロフィール画像を登録していない時" do
       before do
-        sign_in student
-        student_profile_registration(nil)
-        visit edit_student_profile_path(student_profile)
+        sign_in no_image_student
+        visit edit_student_profile_path(no_image_student_profile)
       end
 
       it "プロフィール画像の表示、画像を削除する項目の表示がないこと" do
@@ -47,17 +67,18 @@ RSpec.describe "学生プロフィール編集ページ", type: :system do
   describe "プロフィールの更新" do
     before do
       sign_in student
-      student_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
       visit edit_student_profile_path(student_profile)
     end
 
     context "正しい値を入力した時" do
       before do
         fill_in "student_profile_name", with: "山田太郎"
-        fill_in "student_profile_university", with: student_profile.university
-        choose "student_profile_year_５年"
-        fill_in "student_profile_introduction", with: student_profile.introduction
+        fill_in "student_profile_university", with: "大学名"
         click_on "更新"
+      end
+
+      it "データが更新されること" do
+        expect(student_profile.reload.name).to eq "山田太郎"
       end
 
       it "マイページに移動すること" do
@@ -71,11 +92,13 @@ RSpec.describe "学生プロフィール編集ページ", type: :system do
 
     context "誤った値を入力した時" do
       before do
-        fill_in "student_profile_name", with: ""
-        fill_in "student_profile_university", with: student_profile.university
-        choose "student_profile_year_５年"
-        fill_in "student_profile_introduction", with: student_profile.introduction
+        fill_in "student_profile_name", with: "山田太郎"
+        fill_in "student_profile_university", with: ""
         click_on "更新"
+      end
+
+      it "データが更新されないこと" do
+        expect(student_profile.reload.name).not_to eq "山田太郎"
       end
 
       it "プロフィール編集ページから移動しないこと" do

@@ -10,6 +10,10 @@ class PharmacistProfile < ApplicationRecord
   validates :introduction, presence: true, length: { maximum: 1000 }
   validate :image_size
 
+  enum work_place_type: {
+    調剤薬局: 0, ドラッグストア: 1, 病院: 2
+  }
+
   enum work_location: {
     "--------------":0,
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,

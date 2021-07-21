@@ -1,9 +1,8 @@
 class PharmacistProfilesController < ApplicationController
-  before_action :authenticate_pharmacist!, except: :index
+  before_action :authenticate_pharmacist!, except: [:search, :show]
+  before_action :authenticate_user!, only: [:show]
   before_action :profile_unregistered, only: [:new, :create]
-
-  def index
-  end
+  before_action :correct_pharmacist, only: [:edit, :update]
 
   def new
     @pharmacist_profile = PharmacistProfile.new
@@ -20,15 +19,13 @@ class PharmacistProfilesController < ApplicationController
   end
 
   def show
-    @pharmacist_profile = PharmacistProfile.find_by(pharmacist_id: current_pharmacist.id)
+    @pharmacist_profile = PharmacistProfile.find(params[:id])
   end
 
   def edit
-    @pharmacist_profile = PharmacistProfile.find_by(pharmacist_id: current_pharmacist.id)
   end
 
   def update
-    @pharmacist_profile = PharmacistProfile.find_by(pharmacist_id: current_pharmacist.id)
     if @pharmacist_profile.update(pharmacist_profile_params)
       flash[:notice] = "プロフィールを更新しました。"
       redirect_to pharmacist_path(current_pharmacist)
@@ -36,6 +33,13 @@ class PharmacistProfilesController < ApplicationController
       render "edit"
     end
   end
+
+  def search
+    @q = PharmacistProfile.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @results = @q.result.page(params[:page]).per(10)
+  end
+
 
   private
 
@@ -50,4 +54,17 @@ class PharmacistProfilesController < ApplicationController
       end
     end
 
+    def authenticate_user!
+      if !pharmacist_signed_in? && !student_signed_in?
+        flash[:alert] = "ログインしてください。"
+        redirect_to root_path
+      end
+    end
+
+    def correct_pharmacist
+      @pharmacist_profile = PharmacistProfile.find(params[:id])
+      unless @pharmacist_profile == current_pharmacist.pharmacist_profile
+        redirect_to root_path
+      end
+    end
 end

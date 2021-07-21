@@ -1,14 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe "薬剤師プロフィール編集ページ", type: :system do
-  let(:pharmacist) { create(:pharmacist) }
+  let(:pharmacist) { create(:pharmacist, pharmacist_profile: pharmacist_profile) }
   let(:pharmacist_profile) { create(:pharmacist_profile) }
+  let(:no_image_pharmacist) { create(:pharmacist, pharmacist_profile: no_image_pharmacist_profile)}
+  let(:no_image_pharmacist_profile) { create(:pharmacist_profile, :no_image)}
+  let(:other_pharmacist) { create(:pharmacist, pharmacist_profile: other_pharmacist_profile)}
+  let(:other_pharmacist_profile) { create(:pharmacist_profile) }
+
+  describe "ログインユーザーの種類" do
+    context "自身のプロフィール編集ページにアクセスする時" do
+      it "プロフィール編集ページにアクセスできること" do
+        sign_in pharmacist
+        visit edit_pharmacist_profile_path(pharmacist_profile)
+        expect(current_path).to eq edit_pharmacist_profile_path(pharmacist_profile)
+      end
+    end
+
+    context "他人のプロフィール編集ページにアクセスする時" do
+      it "ホームにリダイレクトされること" do
+        sign_in pharmacist
+        visit edit_pharmacist_profile_path(other_pharmacist_profile)
+        expect(current_path).to eq root_path
+      end
+    end
+  end
 
   describe "プロフィール画像の表示" do
     context "プロフィール画像を登録している時" do
       before do
         sign_in pharmacist
-        pharmacist_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
         visit edit_pharmacist_profile_path(pharmacist_profile)
       end
 
@@ -33,9 +54,8 @@ RSpec.describe "薬剤師プロフィール編集ページ", type: :system do
 
     context "プロフィール画像を登録していない時" do
       before do
-        sign_in pharmacist
-        pharmacist_profile_registration(nil)
-        visit edit_pharmacist_profile_path(pharmacist_profile)
+        sign_in no_image_pharmacist
+        visit edit_pharmacist_profile_path(no_image_pharmacist_profile)
       end
 
       it "プロフィール画像の表示、画像を削除する項目の表示がないこと" do
@@ -47,7 +67,6 @@ RSpec.describe "薬剤師プロフィール編集ページ", type: :system do
   describe "プロフィールの更新" do
     before do
       sign_in pharmacist
-      pharmacist_profile_registration(Rails.root.join('spec/fixtures/test.jpg'))
       visit edit_pharmacist_profile_path(pharmacist_profile)
     end
 
@@ -55,10 +74,11 @@ RSpec.describe "薬剤師プロフィール編集ページ", type: :system do
       before do
         fill_in "pharmacist_profile_name", with: "山田太郎"
         fill_in "pharmacist_profile_work_place", with: "薬局名"
-        choose "pharmacist_profile_work_place_type_調剤薬局"
-        fill_in "pharmacist_profile_university", with: pharmacist_profile.university
-        fill_in "pharmacist_profile_introduction", with: pharmacist_profile.introduction
         click_on "更新"
+      end
+
+      it "データが更新されること" do
+        expect(pharmacist_profile.reload.name).to eq "山田太郎"
       end
 
       it "マイページに移動すること" do
@@ -72,12 +92,13 @@ RSpec.describe "薬剤師プロフィール編集ページ", type: :system do
 
     context "誤った値を入力した時" do
       before do
-        fill_in "pharmacist_profile_name", with: ""
-        fill_in "pharmacist_profile_work_place", with: "薬局名"
-        choose "pharmacist_profile_work_place_type_調剤薬局"
-        fill_in "pharmacist_profile_university", with: pharmacist_profile.university
-        fill_in "pharmacist_profile_introduction", with: pharmacist_profile.introduction
+        fill_in "pharmacist_profile_name", with: "山田太郎"
+        fill_in "pharmacist_profile_work_place", with: ""
         click_on "更新"
+      end
+
+      it "データが更新されないこと" do
+        expect(pharmacist_profile.reload.name).not_to eq "山田太郎"
       end
 
       it "プロフィール編集ページから移動しないこと" do
