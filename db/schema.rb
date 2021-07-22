@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_20_095106) do
+ActiveRecord::Schema.define(version: 2021_07_15_083740) do
 
   create_table "pharmacist_profiles", force: :cascade do |t|
     t.string "name", null: false

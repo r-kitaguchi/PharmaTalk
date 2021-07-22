@@ -4,7 +4,7 @@ class CreateStudentProfiles < ActiveRecord::Migration[6.1]
       t.string :name, null:false
       t.string :image
       t.string :university, null:false
-      t.string :year, null:false
+      t.integer :year, null:false
       t.text :introduction, null:false
       t.references :student, null: false, index: { unique: true }, foreign_key: true
 
