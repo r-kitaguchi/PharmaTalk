@@ -16,7 +16,7 @@ pharmacist = Pharmacist.create!(
 
 pharmacist.create_pharmacist_profile!(
   name: "田中太郎",
-  image:File.open("./public/images/sample1.png"),
+  image:File.open("./db/fixtures/sample1.png"),
   work_place: "田中薬局",
   work_place_type: 1,
   work_location: 1,
@@ -32,7 +32,7 @@ student = Student.create!(
 
 student.create_student_profile!(
   name: "佐藤次郎",
-  image:File.open("./public/images/sample2.png"),
+  image:File.open("./db/fixtures/sample2.png"),
   university: "大阪大学",
   year: 1,
   introduction: "佐藤です。よろしくお願いします。"
