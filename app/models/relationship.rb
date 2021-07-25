@@ -8,13 +8,13 @@ class Relationship < ApplicationRecord
   validate :check_number_of_student
 
   def check_number_of_pharmacist
-    if pharmacist.relationships.where(allow: true).count >= MAX_FOLLOW_COUNT
+    if pharmacist && pharmacist.relationships.where(allow: true).count >= MAX_FOLLOW_COUNT
       errors.add(:base, "トークできるのは３人までです。")
     end
   end
 
   def check_number_of_student
-    if student.relationships.count >= MAX_FOLLOW_COUNT
+    if student && student.relationships.count >= MAX_FOLLOW_COUNT
       errors.add(:base, "申請できるのは３人までです。")
     end
   end

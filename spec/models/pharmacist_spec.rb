@@ -21,4 +21,12 @@ RSpec.describe Pharmacist, type: :model do
   it "重複したメールアドレスなら無効な状態であること" do
     is_expected.to validate_uniqueness_of(:email).case_insensitive
   end
+
+  it "Relationshipモデルと1対多の関係であること" do
+    is_expected.to have_many(:relationships).dependent(:destroy)
+  end
+
+  it "PharmacistProfileモデルと1対1の関係であること" do
+    is_expected.to have_one(:pharmacist_profile).dependent(:destroy)
+  end
 end
