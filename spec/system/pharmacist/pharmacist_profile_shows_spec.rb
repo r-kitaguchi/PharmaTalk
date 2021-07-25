@@ -24,6 +24,7 @@ RSpec.describe "薬剤師プロフィールページ", type: :system do
         before do
           visit pharmacist_profile_path(pharmacist_profile)
         end
+
         it "プロフィール編集へのリンクが表示されていること" do
           expect(page).to have_link("編集する", href: edit_pharmacist_profile_path(pharmacist_profile))
         end
@@ -63,35 +64,24 @@ RSpec.describe "薬剤師プロフィールページ", type: :system do
     end
   end
 
-  describe "プロフィール画像の有無" do
+  describe "プロフィール情報の表示" do
+    it "名前、勤務先タイプ、勤務地、勤務先、出身大学、自己紹介文が表示されていること" do
+      sign_in pharmacist
+      visit pharmacist_profile_path(pharmacist_profile)
+      aggregate_failures do
+        expect(page).to have_content(pharmacist_profile.name)
+        expect(page).to have_content(pharmacist_profile.work_place_type)
+        expect(page).to have_content(pharmacist_profile.work_location)
+        expect(page).to have_content(pharmacist_profile.work_place)
+        expect(page).to have_content(pharmacist_profile.university)
+        expect(page).to have_content(pharmacist_profile.introduction)
+      end
+    end
+
     context "プロフィール画像を登録している時" do
       before do
         sign_in pharmacist
         visit pharmacist_profile_path(pharmacist_profile)
-      end
-
-      it "名前が表示されていること" do
-        expect(page).to have_content(pharmacist_profile.name)
-      end
-
-      it "勤務先タイプが表示されていること" do
-        expect(page).to have_content(pharmacist_profile.work_place_type)
-      end
-
-      it "勤務地が表示されていること" do
-        expect(page).to have_content(pharmacist_profile.work_location)
-      end
-
-      it "勤務先が表示されていること" do
-        expect(page).to have_content(pharmacist_profile.work_place)
-      end
-
-      it "出身大学が表示されていること" do
-        expect(page).to have_content(pharmacist_profile.university)
-      end
-
-      it "自己紹介文が表示されていること" do
-        expect(page).to have_content(pharmacist_profile.introduction)
       end
 
       it "プロフィール画像が表示されていること" do

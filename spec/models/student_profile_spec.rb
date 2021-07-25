@@ -7,59 +7,32 @@ RSpec.describe StudentProfile, type: :model do
   end
 
   it "名前がなければ無効な状態であること" do
-    student_profile = build(:student_profile, name: nil)
-    student_profile.valid?
-    expect(student_profile.errors[:name]).to include("を入力してください")
+    is_expected.to validate_presence_of :name
   end
 
-  it "名前が255文字であれば有効であること" do
-    student_profile = build(:student_profile, name: "#{'a' * 255}")
-    expect(student_profile).to be_valid
-  end
-
-  it "名前が256文字であれば無効な状態であること" do
-    student_profile = build(:student_profile, name: "#{'a' * 256}")
-    student_profile.valid?
-    expect(student_profile.errors[:name]).to include("は255文字以内で入力してください")
+  it "名前の文字数は255文字以内であること" do
+    is_expected.to validate_length_of(:name).is_at_most(255)
   end
 
   it "大学名がなければ無効な状態であること" do
-    student_profile = build(:student_profile, university: nil)
-    student_profile.valid?
-    expect(student_profile.errors[:university]).to include("を入力してください")
+    is_expected.to validate_presence_of :university
   end
 
-  it "大学名が255文字であれば有効であること" do
-    student_profile = build(:student_profile, university: "#{'a' * 255}")
-    expect(student_profile).to be_valid
+  it "大学名の文字数は255文字以内であること" do
+    is_expected.to validate_length_of(:university).is_at_most(255)
   end
 
-  it "大学名が256文字であれば無効な状態であること" do
-    student_profile = build(:student_profile, university: "#{'a' * 256}")
-    student_profile.valid?
-    expect(student_profile.errors[:university]).to include("は255文字以内で入力してください")
-  end
 
   it "学年がなければ無効な状態であること" do
-    student_profile = build(:student_profile, year: nil)
-    student_profile.valid?
-    expect(student_profile.errors[:year]).to include("を入力してください")
+    is_expected.to validate_presence_of :year
   end
+
 
   it "自己紹介がなければ無効な状態であること" do
-    student_profile = build(:student_profile, introduction: nil)
-    student_profile.valid?
-    expect(student_profile.errors[:introduction]).to include("を入力してください")
+    is_expected.to validate_presence_of :introduction
   end
 
-  it "自己紹介が1000文字であれば有効であること" do
-    student_profile = build(:student_profile, introduction: "#{'a' * 1000}")
-    expect(student_profile).to be_valid
-  end
-
-  it "自己紹介が1001文字であれば無効な状態であること" do
-    student_profile = build(:student_profile, introduction: "#{'a' * 1001}")
-    student_profile.valid?
-    expect(student_profile.errors[:introduction]).to include("は1000文字以内で入力してください")
+  it "自己紹介の文字数は1000文字以内であること" do
+    is_expected.to validate_length_of(:introduction).is_at_most(1000)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_083740) do
+ActiveRecord::Schema.define(version: 2021_07_23_020757) do
 
   create_table "pharmacist_profiles", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 2021_07_15_083740) do
     t.index ["reset_password_token"], name: "index_pharmacists_on_reset_password_token", unique: true
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer "pharmacist_id", null: false
+    t.integer "student_id", null: false
+    t.boolean "allow", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pharmacist_id", "student_id"], name: "index_relationships_on_pharmacist_id_and_student_id", unique: true
+    t.index ["pharmacist_id"], name: "index_relationships_on_pharmacist_id"
+    t.index ["student_id"], name: "index_relationships_on_student_id"
+  end
+
   create_table "student_profiles", force: :cascade do |t|
     t.string "name", null: false
     t.string "image"
@@ -63,5 +74,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_083740) do
   end
 
   add_foreign_key "pharmacist_profiles", "pharmacists"
+  add_foreign_key "relationships", "pharmacists"
+  add_foreign_key "relationships", "students"
   add_foreign_key "student_profiles", "students"
 end

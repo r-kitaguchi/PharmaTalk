@@ -20,32 +20,16 @@ RSpec.describe "薬剤師検索ページ", type: :system do
       expect(current_path).to eq search_pharmacist_profiles_path
     end
 
-    it "名前が表示されていること" do
-      expect(page).to have_content(pharmacist_profile.name)
-    end
-
-    it "プロフィール画像が表示されていること" do
-      expect(page).to have_selector("img[src$='sample1.png']")
-    end
-
-    it "勤務先タイプが表示されていること" do
-      expect(page).to have_content(pharmacist_profile.work_place_type)
-    end
-
-    it "勤務地が表示されていること" do
-      expect(page).to have_content(pharmacist_profile.work_location)
-    end
-
-    it "勤務先が表示されていること" do
-      expect(page).to have_content(pharmacist_profile.work_place)
-    end
-
-    it "出身大学が表示されていること" do
-      expect(page).to have_content(pharmacist_profile.university)
-    end
-
-    it "自己紹介文が表示されていること" do
-      expect(page).to have_content(pharmacist_profile.introduction)
+    it "名前、プロフィール画像、勤務先タイプ、勤務地、勤務先、出身大学、自己紹介文が表示されていること" do
+      aggregate_failures do
+        expect(page).to have_content(pharmacist_profile.name)
+        expect(page).to have_selector("img[src$='sample1.png']")
+        expect(page).to have_content(pharmacist_profile.work_place_type)
+        expect(page).to have_content(pharmacist_profile.work_location)
+        expect(page).to have_content(pharmacist_profile.work_place)
+        expect(page).to have_content(pharmacist_profile.university)
+        expect(page).to have_content(pharmacist_profile.introduction)
+      end
     end
 
     it "プロフィールページへのリンクがあること" do

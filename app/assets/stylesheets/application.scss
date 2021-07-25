@@ -117,9 +117,13 @@ body {
   text-align: center;
 }
 
-.alert {
+.alert, .error {
   background-color: #faa2a2;
   text-align: center;
+}
+
+.error {
+  list-style: none;
 }
 
 // sign_up modal

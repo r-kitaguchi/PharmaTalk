@@ -17,38 +17,24 @@ RSpec.describe "ヘッダーのドロップダウンメニュー", type: :system
         find(".drop_down").hover
       end
 
-      it "マイページへのリンクがあること", js: true do
-        expect(page).to have_link "マイページ", href: pharmacist_path(pharmacist)
-      end
-
-      it "プロフィールへのリンクがあること", js: true do
-        expect(page).to have_link "プロフィール", href: pharmacist_profile_path(pharmacist_profile)
-      end
-
-      it "アカウント編集へのリンクがあること", js: true do
-        expect(page).to have_link "アカウント編集", href: edit_pharmacist_registration_path
-      end
-
-      it "ログアウトリンクがあること", js: true do
-        expect(page).to have_link "ログアウト", href: destroy_pharmacist_session_path
+      it "マイページ、プロフィール、アカウント編集、ログアウトのリンクがあること", js: true do
+        aggregate_failures do
+          expect(page).to have_link "マイページ", href: pharmacist_path(pharmacist)
+          expect(page).to have_link "プロフィール", href: pharmacist_profile_path(pharmacist_profile)
+          expect(page).to have_link "アカウント編集", href: edit_pharmacist_registration_path
+          expect(page).to have_link "ログアウト", href: destroy_pharmacist_session_path
+        end
       end
     end
 
     context "ヘッダーのプロフィール画像をマウスオーバーしていない時" do
-      it "マイページへのリンクがないこと", js: true do
-        expect(page).not_to have_link "マイページ", href: pharmacist_path(pharmacist)
-      end
-
-      it "プロフィールへのリンクがないこと", js: true do
-        expect(page).not_to have_link "プロフィール", href: pharmacist_profile_path(pharmacist_profile)
-      end
-
-      it "アカウント編集へのリンクがないこと", js: true do
-        expect(page).not_to have_link "アカウント編集", href: edit_pharmacist_registration_path
-      end
-
-      it "ログアウトリンクがないこと", js: true do
-        expect(page).not_to have_link "ログアウト", href: destroy_pharmacist_session_path
+      it "マイページ、プロフィール、アカウント編集、ログアウトのリンクがないこと", js: true do
+        aggregate_failures do
+          expect(page).not_to have_link "マイページ", href: pharmacist_path(pharmacist)
+          expect(page).not_to have_link "プロフィール", href: pharmacist_profile_path(pharmacist_profile)
+          expect(page).not_to have_link "アカウント編集", href: edit_pharmacist_registration_path
+          expect(page).not_to have_link "ログアウト", href: destroy_pharmacist_session_path
+        end
       end
     end
   end
@@ -64,38 +50,24 @@ RSpec.describe "ヘッダーのドロップダウンメニュー", type: :system
         find(".drop_down").hover
       end
 
-      it "マイページへのリンクがあること", js: true do
-        expect(page).to have_link "マイページ", href: student_path(student)
-      end
-
-      it "プロフィールへのリンクがあること", js: true do
-        expect(page).to have_link "プロフィール", href: student_profile_path(student_profile)
-      end
-
-      it "アカウント編集へのリンクがあること", js: true do
-        expect(page).to have_link "アカウント編集", href: edit_student_registration_path
-      end
-
-      it "ログアウトリンクがあること", js: true do
-        expect(page).to have_link "ログアウト", href: destroy_student_session_path
+      it "マイページ、プロフィール、アカウント編集、ログアウトのリンクがあること", js: true do
+        aggregate_failures do
+          expect(page).to have_link "マイページ", href: student_path(student)
+          expect(page).to have_link "プロフィール", href: student_profile_path(student_profile)
+          expect(page).to have_link "アカウント編集", href: edit_student_registration_path
+          expect(page).to have_link "ログアウト", href: destroy_student_session_path
+        end
       end
     end
 
     context "ヘッダーのプロフィール画像をマウスオーバーしていない時" do
-      it "マイページへのリンクがないこと", js: true do
-        expect(page).not_to have_link "マイページ", href: student_path(student)
-      end
-
-      it "プロフィールへのリンクがないこと", js: true do
-        expect(page).not_to have_link "プロフィール", href: student_profile_path(student_profile)
-      end
-
-      it "アカウント編集へのリンクがないこと", js: true do
-        expect(page).not_to have_link "アカウント編集", href: edit_student_registration_path
-      end
-
-      it "ログアウトリンクがないこと", js: true do
-        expect(page).not_to have_link "ログアウト", href: destroy_student_session_path
+      it "マイページ、プロフィール、アカウント編集、ログアウトのリンクがないこと", js: true do
+        aggregate_failures do
+          expect(page).not_to have_link "マイページ", href: student_path(student)
+          expect(page).not_to have_link "プロフィール", href: student_profile_path(student_profile)
+          expect(page).not_to have_link "アカウント編集", href: edit_student_registration_path
+          expect(page).not_to have_link "ログアウト", href: destroy_student_session_path
+        end
       end
     end
   end

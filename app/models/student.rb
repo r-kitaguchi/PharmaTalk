@@ -5,4 +5,7 @@ class Student < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :student_profile, dependent: :destroy
+
+  has_many :relationships, dependent: :destroy
+  has_many :pharmacists, through: :relationships
 end
