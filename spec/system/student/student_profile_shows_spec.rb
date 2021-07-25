@@ -23,33 +23,28 @@ RSpec.describe "学生プロフィールページ", type: :system do
     end
   end
 
-  describe "プロフィール画像の有無" do
+  describe "プロフィール情報の表示" do
+    it "名前、学年、大学名、自己紹介文が表示されていること" do
+      sign_in student
+      visit student_profile_path(student_profile)
+      aggregate_failures do
+        expect(page).to have_content(student_profile.name)
+        expect(page).to have_content(student_profile.year)
+        expect(page).to have_content(student_profile.university)
+        expect(page).to have_content(student_profile.introduction)
+      end
+    end
+
     context "プロフィール画像を登録している時" do
       before do
         sign_in student
         visit student_profile_path(student_profile)
       end
 
-      it "名前が表示されていること" do
-        expect(page).to have_content(student_profile.name)
-      end
-
-      it "学年が表示されていること" do
-        expect(page).to have_content(student_profile.year)
-      end
-
       it "プロフィール画像が表示されていること" do
         within ".profile_show_content" do
           expect(page).to have_selector("img[src$='test.jpg']")
         end
-      end
-
-      it "大学名が表示されていること" do
-        expect(page).to have_content(student_profile.university)
-      end
-
-      it "自己紹介文が表示されていること" do
-        expect(page).to have_content(student_profile.introduction)
       end
     end
 
