@@ -1,3 +1,4 @@
+<%= render "shared/flash" %>
 <div class="profile_show">
   <div class="profile_show_content">
     <h2>基本情報</h2>
@@ -28,6 +29,12 @@
   <% if current_pharmacist.present? %>
     <% if @pharmacist_profile == current_pharmacist.pharmacist_profile %>
       <%= link_to "編集する", edit_pharmacist_profile_path(@pharmacist_profile), class: "btn" %>
+    <% end %>
+  <% elsif current_student.present? %>
+    <% if current_student.pharmacists.present? && current_student.pharmacists.include?(@pharmacist_profile.pharmacist) %>
+      <%= render "shared/unfollow", pharmacist_profile: @pharmacist_profile, pharmacist: @pharmacist_profile.pharmacist %>
+    <% else %>
+      <%= render "shared/follow", pharmacist_profile: @pharmacist_profile %>
     <% end %>
   <% end %>
 </div>
