@@ -97,6 +97,7 @@ body {
     }
     .user_icon {
       @include icon(5.0rem);
+      margin-top: -1.2rem;
     }
     .default {
       background-color: #fff;

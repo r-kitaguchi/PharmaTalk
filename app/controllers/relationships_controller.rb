@@ -11,7 +11,15 @@ class RelationshipsController < ApplicationController
     end
   end
 
-  def edit
+  def update
+    student = Student.find(params[:student_id])
+    @relationship = Relationship.find_by(pharmacist_id: current_pharmacist.id, student_id: student.id)
+    if @relationship.update(params.permit(:allow))
+      flash[:notice] = "トークを承認しました"
+    else
+      flash[:error] = @relationship.errors.full_messages
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def destroy
