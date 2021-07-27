@@ -75,6 +75,12 @@ RSpec.configure do |config|
       end
     end
   end
+
+  config.after(:all) do
+    if Rails.env.test?
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads_#{Rails.env}/"])
+    end
+  end
 end
 
 module SystemHelper

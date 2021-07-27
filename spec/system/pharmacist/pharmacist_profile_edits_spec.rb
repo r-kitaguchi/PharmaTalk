@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "薬剤師プロフィール編集ページ", type: :system do
   let(:pharmacist) { create(:pharmacist, pharmacist_profile: pharmacist_profile) }
   let(:pharmacist_profile) { create(:pharmacist_profile) }
-  let(:no_image_pharmacist) { create(:pharmacist, pharmacist_profile: no_image_pharmacist_profile)}
-  let(:no_image_pharmacist_profile) { create(:pharmacist_profile, :no_image)}
+  let(:image_pharmacist) { create(:pharmacist, pharmacist_profile: image_pharmacist_profile)}
+  let(:image_pharmacist_profile) { create(:pharmacist_profile, :image)}
   let(:other_pharmacist) { create(:pharmacist, pharmacist_profile: other_pharmacist_profile)}
   let(:other_pharmacist_profile) { create(:pharmacist_profile) }
 
@@ -27,10 +27,21 @@ RSpec.describe "薬剤師プロフィール編集ページ", type: :system do
   end
 
   describe "プロフィール画像の表示" do
-    context "プロフィール画像を登録している時" do
+    context "プロフィール画像を登録していない時" do
       before do
         sign_in pharmacist
         visit edit_pharmacist_profile_path(pharmacist_profile)
+      end
+
+      it "プロフィール画像の表示、画像を削除する項目の表示がないこと" do
+        expect(page).not_to have_selector(".edit_image")
+      end
+    end
+
+    context "プロフィール画像を登録している時" do
+      before do
+        sign_in image_pharmacist
+        visit edit_pharmacist_profile_path(image_pharmacist_profile)
       end
 
       it "プロフィール画像が表示されていること" do
@@ -49,17 +60,6 @@ RSpec.describe "薬剤師プロフィール編集ページ", type: :system do
         within '.header_content' do
           expect(page).to have_selector("img[src$='/assets/default.png']")
         end
-      end
-    end
-
-    context "プロフィール画像を登録していない時" do
-      before do
-        sign_in no_image_pharmacist
-        visit edit_pharmacist_profile_path(no_image_pharmacist_profile)
-      end
-
-      it "プロフィール画像の表示、画像を削除する項目の表示がないこと" do
-        expect(page).not_to have_selector(".edit_image")
       end
     end
   end
