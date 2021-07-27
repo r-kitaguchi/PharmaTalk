@@ -3,10 +3,12 @@
   <h2>マイページ</h2>
   <div class="pharmacist_profile">
     <div class="top_information">
-      <% if @pharmacist_profile.image? %>
-        <%= image_tag @pharmacist_profile.image.url, class: "user_icon" %>
-      <% else %>
-        <%= image_tag "/assets/default.png", class: "user_icon default" %>
+      <%= link_to pharmacist_profile_path(current_pharmacist) do %>
+        <% if @pharmacist_profile.image? %>
+          <%= image_tag @pharmacist_profile.image.url, class: "user_icon" %>
+        <% else %>
+          <%= image_tag "/assets/default.png", class: "user_icon default" %>
+        <% end %>
       <% end %>
       <div>
         <h4><%= @pharmacist_profile.name %></h4>

@@ -1,3 +1,30 @@
 <%= render "shared/flash" %>
-<h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
+<div class="mypage">
+  <h2>マイページ</h2>
+  <div class="student_profile">
+    <div class="top_information">
+      <%= link_to student_profile_path(current_student) do %>
+        <% if @student_profile.image? %>
+          <%= image_tag @student_profile.image.url, class: "user_icon" %>
+        <% else %>
+          <%= image_tag "/assets/default.png", class: "user_icon default" %>
+        <% end %>
+      <% end %>
+      <div>
+        <h4><%= @student_profile.name %></h4>
+        <p><small><%= @student_profile.year %></small></p>
+      </div>
+    </div>
+    <div class="information">
+      <p><span class="orange_marker">大学</span>　<%= @student_profile.university %></p>
+    </div>
+  </div>
+  <h3>通知</h3>
+  <% if @not_approved_pharmacists %>
+    <%= render "shared/not_approved_pharmacists", not_approved_pharmacists: @not_approved_pharmacists %>
+  <% end %>
+  <h3>トーク中</h3>
+  <% if @approved_pharmacists %>
+    <%= render "shared/approved_pharmacists", approved_pharmacists: @approved_pharmacists %>
+  <% end %>
+</div>
