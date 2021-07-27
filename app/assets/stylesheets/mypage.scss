@@ -61,8 +61,14 @@
     }
   }
   h3 {
-    margin: 5.0rem auto 0 auto;
+    margin: 0 auto;
     width: 50rem;
+  }
+  .notification_column {
+    margin: 10rem 0;
+  }
+  .talking_column {
+    margin-bottom: 5.0rem;
   }
   .notification, .talking {
     align-items: center;

@@ -19,12 +19,16 @@
       <p><span class="orange_marker">大学</span>　<%= @student_profile.university %></p>
     </div>
   </div>
-  <h3>通知</h3>
-  <% if @not_approved_pharmacists %>
-    <%= render "shared/not_approved_pharmacists", not_approved_pharmacists: @not_approved_pharmacists %>
-  <% end %>
-  <h3>トーク中</h3>
-  <% if @approved_pharmacists %>
-    <%= render "shared/approved_pharmacists", approved_pharmacists: @approved_pharmacists %>
-  <% end %>
+  <div class="notification_column">
+    <h3>通知</h3>
+    <% if @not_approved_pharmacists %>
+      <%= render "shared/not_approved_pharmacists", not_approved_pharmacists: @not_approved_pharmacists %>
+    <% end %>
+  </div>
+  <div class="talking_column">
+    <h3>トーク中</h3>
+    <% if @approved_pharmacists %>
+      <%= render "shared/approved_pharmacists", approved_pharmacists: @approved_pharmacists %>
+    <% end %>
+  </div>
 </div>

@@ -91,6 +91,15 @@ RSpec.describe "薬剤師マイページ", type: :system do
         visit pharmacist_path(pharmacist)
       end
 
+      it "学生のプロフィール写真、名前が表示されていないこと" do
+        aggregate_failures do
+          within '.notification_column' do
+            expect(page).not_to have_content(student_profile.name)
+            expect(page).not_to have_selector("img[src$='test.jpg']")
+          end
+        end
+      end
+
       it "承認するボタンが表示されていないこと" do
         expect(page).not_to have_button("承認する")
       end
@@ -116,6 +125,23 @@ RSpec.describe "薬剤師マイページ", type: :system do
     before do
       sign_in pharmacist
     end
+
+    context "トークを承認された学生がいない時" do
+      before do
+        create(:relationship, pharmacist: pharmacist, student: student)
+        visit pharmacist_path(pharmacist)
+      end
+
+      it "トーク中の欄に学生のプロフィール写真、名前が表示されていないこと" do
+        aggregate_failures do
+          within ".talking_column" do
+            expect(page).not_to have_content(student_profile.name)
+            expect(page).not_to have_selector("img[src$='test.jpg']")
+          end
+        end
+      end
+    end
+
 
     context "トークが承認された学生がいる時" do
       before do
