@@ -1,5 +1,5 @@
 <% approved_students.each do |student| %>
-  <div class="notification">
+  <div class="talking">
     <% if student.student_profile.image? %>
       <%= image_tag student.student_profile.image.url, class: "user_icon" %>
     <% else %>

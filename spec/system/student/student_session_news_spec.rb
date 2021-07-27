@@ -14,8 +14,8 @@ RSpec.describe "学生ログインページ", type: :system do
       click_on "ログイン"
     end
 
-    it "マイページに移動すること" do
-      expect(current_path).to eq student_path(student)
+    it "ホームに移動すること" do
+      expect(current_path).to eq root_path
     end
   end
 

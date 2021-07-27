@@ -14,8 +14,8 @@ RSpec.describe "薬剤師ログインページ", type: :system do
       click_on "ログイン"
     end
 
-    it "マイページに移動すること" do
-      expect(current_path).to eq pharmacist_path(pharmacist)
+    it "ホームに移動すること" do
+      expect(current_path).to eq root_path
     end
   end
 
