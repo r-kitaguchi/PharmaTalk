@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "学生プロフィール編集ページ", type: :system do
   let(:student) { create(:student, student_profile: student_profile) }
   let(:student_profile) { create(:student_profile) }
-  let(:no_image_student) { create(:student, student_profile: no_image_student_profile)}
-  let(:no_image_student_profile) { create(:student_profile, :no_image)}
+  let(:image_student) { create(:student, student_profile: image_student_profile)}
+  let(:image_student_profile) { create(:student_profile, :image)}
   let(:other_student) { create(:student, student_profile: other_student_profile)}
   let(:other_student_profile) { create(:student_profile) }
 
@@ -27,10 +27,21 @@ RSpec.describe "学生プロフィール編集ページ", type: :system do
   end
 
   describe "プロフィール画像の表示" do
-    context "プロフィール画像を登録している時" do
+    context "プロフィール画像を登録していない時" do
       before do
         sign_in student
         visit edit_student_profile_path(student_profile)
+      end
+
+      it "プロフィール画像の表示、画像を削除する項目の表示がないこと" do
+        expect(page).not_to have_selector(".edit_image")
+      end
+    end
+
+    context "プロフィール画像を登録している時" do
+      before do
+        sign_in image_student
+        visit edit_student_profile_path(image_student_profile)
       end
 
       it "プロフィール画像が表示されていること" do
@@ -49,17 +60,6 @@ RSpec.describe "学生プロフィール編集ページ", type: :system do
         within '.header_content' do
           expect(page).to have_selector("img[src$='/assets/default.png']")
         end
-      end
-    end
-
-    context "プロフィール画像を登録していない時" do
-      before do
-        sign_in no_image_student
-        visit edit_student_profile_path(no_image_student_profile)
-      end
-
-      it "プロフィール画像の表示、画像を削除する項目の表示がないこと" do
-        expect(page).not_to have_selector(".edit_image")
       end
     end
   end

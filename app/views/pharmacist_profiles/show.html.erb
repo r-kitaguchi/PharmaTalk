@@ -33,6 +33,8 @@
   <% elsif student_signed_in? %>
     <% if current_student.pharmacists && current_student.pharmacists.include?(@pharmacist_profile.pharmacist) %>
       <%= render "shared/unfollow", pharmacist_profile: @pharmacist_profile, pharmacist: @pharmacist_profile.pharmacist %>
+    <% elsif @pharmacist_profile.pharmacist_relationship_limit %>
+      <p class="gray_color"><%= @pharmacist_profile.name %>さんのトーク相手の数が上限に達しました</p>
     <% else %>
       <%= render "shared/follow", pharmacist_profile: @pharmacist_profile %>
     <% end %>

@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "学生プロフィールページ", type: :system do
   let(:student) { create(:student, student_profile: student_profile) }
   let(:student_profile) { create(:student_profile) }
-  let(:no_image_student) { create(:student, student_profile: no_image_student_profile)}
-  let(:no_image_student_profile) { create(:student_profile, :no_image)}
+  let(:image_student) { create(:student, student_profile: image_student_profile)}
+  let(:image_student_profile) { create(:student_profile, :image)}
 
   describe "ログインの有無" do
     context "ログインしている時" do
@@ -16,9 +16,9 @@ RSpec.describe "学生プロフィールページ", type: :system do
     end
 
     context "ログインしていない時" do
-      it "プロフィール画面に移動しようとするとログインページにリダイレクトされること" do
+      it "プロフィール画面に移動しようとするとホームにリダイレクトされること" do
         visit student_profile_path(student_profile)
-        expect(current_path).to eq new_student_session_path
+        expect(current_path).to eq root_path
       end
     end
   end
@@ -35,28 +35,28 @@ RSpec.describe "学生プロフィールページ", type: :system do
       end
     end
 
-    context "プロフィール画像を登録している時" do
+    context "プロフィール画像を登録していない時" do
       before do
         sign_in student
         visit student_profile_path(student_profile)
       end
 
-      it "プロフィール画像が表示されていること" do
-        within ".profile_show_content" do
-          expect(page).to have_selector("img[src$='test.jpg']")
+      it "デフォルト画像が表示されていること" do
+        within '.profile_show_content' do
+          expect(page).to have_selector("img[src$='/assets/default.png']")
         end
       end
     end
 
     context "プロフィール画像を登録していない時" do
       before do
-        sign_in no_image_student
-        visit student_profile_path(no_image_student_profile)
+        sign_in image_student
+        visit student_profile_path(image_student_profile)
       end
 
-      it "デフォルト画像が表示されていること" do
-        within '.profile_show_content' do
-          expect(page).to have_selector("img[src$='/assets/default.png']")
+      it "プロフィール画像が表示されていること" do
+        within ".profile_show_content" do
+          expect(page).to have_selector("img[src$='test.jpg']")
         end
       end
     end

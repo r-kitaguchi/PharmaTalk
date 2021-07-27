@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :pharmacist_profile do
     name { "田中太郎" }
-    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg'))}
+    image { nil }
     work_place { "田中薬局" }
     work_place_type { 0 }
     work_location { 0 }
@@ -9,8 +9,8 @@ FactoryBot.define do
     introduction { "MyText" }
     association :pharmacist
 
-    trait :no_image do
-      image { nil }
+    trait :image do
+      image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg')) }
     end
   end
 

@@ -1,0 +1,16 @@
+<% approved_students.each do |student| %>
+  <div class="talking">
+    <%= link_to student_profile_path(student) do %>
+      <% if student.student_profile.image? %>
+        <%= image_tag student.student_profile.image.url, class: "user_icon" %>
+      <% else %>
+        <%= image_tag "/assets/default.png", class: "user_icon default" %>
+      <% end %>
+    <% end %>
+    <%= student.student_profile.name %>
+    <div class="btn_list">
+      <%= link_to "トーク画面に移る", "#", class: "btn" %>
+      <%= link_to "トークを終了する", "#", class: "cancel_btn" %>
+    </div>
+  </div>
+<% end %>

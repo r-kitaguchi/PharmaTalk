@@ -1,0 +1,6 @@
+<%= form_with model: student.relationships.find_by(pharmacist_id: current_pharmacist.id),
+                url: { controller: 'relationships', action: 'update' } do |f| %>
+  <div><%= hidden_field_tag :allow, true %></div>
+  <div><%= hidden_field_tag :student_id, student.id %></div>
+  <%= f.submit "承認する", class: "btn" %>
+<% end %>

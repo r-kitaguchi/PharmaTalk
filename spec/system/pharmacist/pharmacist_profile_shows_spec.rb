@@ -3,11 +3,13 @@ require 'rails_helper'
 RSpec.describe "薬剤師プロフィールページ", type: :system do
   let(:pharmacist) { create(:pharmacist, pharmacist_profile: pharmacist_profile) }
   let(:pharmacist_profile) { create(:pharmacist_profile) }
-  let(:no_image_pharmacist) { create(:pharmacist, pharmacist_profile: no_image_pharmacist_profile)}
-  let(:no_image_pharmacist_profile) { create(:pharmacist_profile, :no_image)}
+  let(:image_pharmacist) { create(:pharmacist, pharmacist_profile: image_pharmacist_profile)}
+  let(:image_pharmacist_profile) { create(:pharmacist_profile, :image)}
   let(:other_pharmacist) { create(:pharmacist, pharmacist_profile: other_pharmacist_profile)}
   let(:other_pharmacist_profile) { create(:pharmacist_profile) }
-  let(:student) { create(:student) }
+  let(:student) { create(:student, student_profile: student_profile) }
+  let(:student_profile) { create(:student_profile) }
+  let(:no_profile_student) { create(:student) }
 
   describe "ログインの有無" do
     context "薬剤師がログインしている時" do
@@ -41,7 +43,7 @@ RSpec.describe "薬剤師プロフィールページ", type: :system do
       end
     end
 
-    context "学生がログインしている時" do
+    context "プロフィールを登録した学生がログインしている時" do
       before do
         sign_in student
         visit pharmacist_profile_path(pharmacist_profile)
@@ -53,6 +55,21 @@ RSpec.describe "薬剤師プロフィールページ", type: :system do
 
       it "プロフィール編集へのリンクが表示されていないこと" do
         expect(page).not_to have_link("編集する", href: edit_pharmacist_profile_path(pharmacist_profile))
+      end
+    end
+
+    context "プロフィールを登録していない学生がログインしている時" do
+      before do
+        sign_in no_profile_student
+        visit pharmacist_profile_path(pharmacist_profile)
+      end
+
+      it "プロフィール画面に移動しようとすると学生プロフィール登録ページにリダイレクトされること" do
+        expect(current_path).to eq new_student_profile_path
+      end
+
+      it "フラッシュが表示されていること" do
+        expect(page).to have_content("プロフィールを登録してください")
       end
     end
 
@@ -78,28 +95,28 @@ RSpec.describe "薬剤師プロフィールページ", type: :system do
       end
     end
 
-    context "プロフィール画像を登録している時" do
+    context "プロフィール画像を登録していない時" do
       before do
         sign_in pharmacist
         visit pharmacist_profile_path(pharmacist_profile)
       end
 
-      it "プロフィール画像が表示されていること" do
-        within ".profile_show_content" do
-          expect(page).to have_selector("img[src$='test.jpg']")
+      it "デフォルト画像が表示されていること" do
+        within '.profile_show_content' do
+          expect(page).to have_selector("img[src$='/assets/default.png']")
         end
       end
     end
 
     context "プロフィール画像を登録していない時" do
       before do
-        sign_in no_image_pharmacist
-        visit pharmacist_profile_path(no_image_pharmacist_profile)
+        sign_in image_pharmacist
+        visit pharmacist_profile_path(image_pharmacist_profile)
       end
 
-      it "デフォルト画像が表示されていること" do
-        within '.profile_show_content' do
-          expect(page).to have_selector("img[src$='/assets/default.png']")
+      it "プロフィール画像が表示されていること" do
+        within ".profile_show_content" do
+          expect(page).to have_selector("img[src$='test.jpg']")
         end
       end
     end

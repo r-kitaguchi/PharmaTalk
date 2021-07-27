@@ -1,0 +1,12 @@
+<% not_approved_pharmacists.each do |pharmacist| %>
+  <div class="notification">
+    <%= link_to pharmacist_profile_path(pharmacist) do %>
+      <% if pharmacist.pharmacist_profile.image? %>
+        <%= image_tag pharmacist.pharmacist_profile.image.url, class: "user_icon" %>
+      <% else %>
+        <%= image_tag "/assets/default.png", class: "user_icon default" %>
+      <% end %>
+    <% end %>
+    <p><%= pharmacist.pharmacist_profile.name %>さんにトーク申請中です。</p>
+  </div>
+<% end %>

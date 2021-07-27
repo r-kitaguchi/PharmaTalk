@@ -1,5 +1,4 @@
 class Relationship < ApplicationRecord
-  MAX_FOLLOW_COUNT = 3
   belongs_to :pharmacist
   belongs_to :student
 

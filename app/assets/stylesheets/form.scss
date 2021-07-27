@@ -37,16 +37,10 @@
       text-decoration: none;
     }
     .cancel_btn {
-      background-color: #f18a29;
+      @include btn($btn_sub_color, $btn_hover_sub_color);
       border-color: transparent;
-      border-radius: 3.0rem;
-      cursor: pointer;
-      display: inline-block;
       font-size: 2.0rem;
       width: 20rem;
-      &:hover {
-        background-color: #dd7e25;
-      }
     }
   }
 }

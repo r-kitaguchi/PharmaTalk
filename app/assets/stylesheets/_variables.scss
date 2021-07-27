@@ -1,19 +1,20 @@
 $main_color: #D7EBBA;
+$btn_sub_color: #f09a4a;
+$btn_hover_sub_color: #fd9839;
 
-@mixin btn {
-  background-color: #63BED2;
+@mixin btn($color: #63BED2, $hover: #6bd1e7) {
+  background-color: $color;
   border-radius: 4.0rem;
   cursor: pointer;
   display: inline-block;
   &:hover {
-    background-color: #6bd1e7;
+    background-color: $hover;
   }
 }
 
 @mixin icon($size) {
   border-radius: 50%;
   height: $size;
-  margin-top: -1.2rem;
   object-fit: cover;
   width: $size;
 }

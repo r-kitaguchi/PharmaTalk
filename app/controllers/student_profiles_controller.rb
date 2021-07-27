@@ -1,5 +1,6 @@
 class StudentProfilesController < ApplicationController
-  before_action :authenticate_student!
+  before_action :authenticate_student!, except: :show
+  before_action :authenticate_user!, only: [:show]
   before_action :profile_unregistered, only: [:new, :create]
   before_action :correct_student, only: [:edit, :update]
 
