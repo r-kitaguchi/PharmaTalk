@@ -54,16 +54,6 @@ class PharmacistProfilesController < ApplicationController
       end
     end
 
-    def authenticate_user!
-      if !pharmacist_signed_in? && !student_signed_in?
-        flash[:alert] = "ログインしてください。"
-        redirect_to root_path
-      elsif current_student && !current_student.student_profile
-        flash[:alert] = "プロフィールを登録してください"
-        redirect_to new_student_profile_path
-      end
-    end
-
     def correct_pharmacist
       @pharmacist_profile = PharmacistProfile.find(params[:id])
       unless @pharmacist_profile == current_pharmacist.pharmacist_profile

@@ -16,9 +16,9 @@ RSpec.describe "学生プロフィールページ", type: :system do
     end
 
     context "ログインしていない時" do
-      it "プロフィール画面に移動しようとするとログインページにリダイレクトされること" do
+      it "プロフィール画面に移動しようとするとホームにリダイレクトされること" do
         visit student_profile_path(student_profile)
-        expect(current_path).to eq new_student_session_path
+        expect(current_path).to eq root_path
       end
     end
   end

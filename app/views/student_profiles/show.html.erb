@@ -2,7 +2,7 @@
   <div class="profile_show_content">
     <h2>基本情報</h2>
     <div class="information">
-      <% if current_student.student_profile.image? %>
+      <% if @student_profile.image? %>
         <%= image_tag @student_profile.image.url, class: "user_icon" %>
       <% else %>
         <%= image_tag "/assets/default.png", class: "user_icon default" %>
@@ -23,5 +23,9 @@
       <small><%= safe_join(@student_profile.introduction.split("\n"), tag(:br)) %></small>
     </div>
   </div>
-  <%= link_to "編集する", edit_student_profile_path(@student_profile), class: "btn" %>
+  <% if student_signed_in? %>
+    <% if @student_profile == current_student.student_profile %>
+      <%= link_to "編集する", edit_student_profile_path(@student_profile), class: "btn" %>
+    <% end %>
+  <% end %>
 </div>
