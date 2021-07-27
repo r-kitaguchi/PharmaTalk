@@ -8,4 +8,5 @@ class Student < ApplicationRecord
 
   has_many :relationships, dependent: :destroy
   has_many :pharmacists, through: :relationships
+  has_many :rooms, dependent: :destroy
 end

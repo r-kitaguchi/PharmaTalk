@@ -1,5 +1,4 @@
 class RelationshipsController < ApplicationController
-
   def create
     pharmacist = Pharmacist.find(params[:pharmacist_id])
     @relationship = current_student.relationships.new(pharmacist_id: pharmacist.id, student_id: current_student.id)
@@ -28,5 +27,4 @@ class RelationshipsController < ApplicationController
     relationship.destroy
     redirect_back(fallback_location: root_path)
   end
-
 end
