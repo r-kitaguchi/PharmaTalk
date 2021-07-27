@@ -18,8 +18,8 @@ class RelationshipsController < ApplicationController
       flash[:notice] = "トークを承認しました"
     else
       flash[:error] = @relationship.errors.full_messages
-      redirect_back(fallback_location: root_path)
     end
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy

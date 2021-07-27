@@ -27,6 +27,10 @@ class PharmacistProfile < ApplicationRecord
     沖縄県:47
   }
 
+  def pharmacist_relationship_limit
+    pharmacist.relationships.where(allow: true).count >= MAX_FOLLOW_COUNT
+  end
+
   private
 
     def image_size

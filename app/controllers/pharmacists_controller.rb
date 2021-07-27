@@ -5,7 +5,8 @@ class PharmacistsController < ApplicationController
       @students = current_pharmacist.students
       if current_pharmacist.relationships.find_by(allow: true)
         @approved_students = @students.joins(:relationships).where(relationships: { allow: true })
-      else
+      end
+      if current_pharmacist.relationships.find_by(allow: false)
         @not_approved_students = @students.joins(:relationships).where(relationships: { allow: false })
       end
     end
