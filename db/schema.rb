@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 2021_07_27_094251) do
 
   create_table "messages", force: :cascade do |t|
     t.integer "room_id", null: false
-    t.boolean "is_pharmacist"
-    t.text "content"
+    t.boolean "is_pharmacist", default: false, null: false
+    t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_messages_on_room_id"

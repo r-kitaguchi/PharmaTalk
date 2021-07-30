@@ -1,2 +1,29 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<% content_for :head_js do %>
+  <%= javascript_pack_tag 'rooms/show', 'data-turbolinks-track': 'reload' %>
+<% end %>
+<% if pharmacist_signed_in? %>
+  <%= link_to pharmacist_path(current_pharmacist), class: "back_link" do %>
+    <p><i class="fas fa-angle-left"></i><%= @student_profile.name %></p>
+  <% end %>
+<% elsif student_signed_in? %>
+  <%= link_to student_path(current_student), class: "back_link" do %>
+    <p><i class="fas fa-angle-left"></i><%= @pharmacist_profile.name %></p>
+  <% end %>
+<% end %>
+<div class="talk_room">
+  <div class="talk_room_content" id="talk_room_content">
+    <% if pharmacist_signed_in? %>
+      <%= render partial: "messages/message_ph",  collection: @messages, as: "message",
+                locals: { student_profile: @student_profile } %>
+    <% elsif student_signed_in? %>
+      <%= render partial: "messages/message_st", collection: @messages, as: "message",
+                locals: { pharmacist_profile: @pharmacist_profile } %>
+    <% end %>
+  </div>
+</div>
+<%= form_with model: [@room, @message], local: false do |f| %>
+  <div class="text_area">
+    <%= f.text_area :content, autofocus: true, placeholder: "メッセージを入力" %>
+    <%= f.submit "送信", class: "submit" %>
+  </div>
+<% end %>

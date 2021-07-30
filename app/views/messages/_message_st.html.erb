@@ -1,0 +1,14 @@
+<% if message.is_pharmacist %>
+  <div class="left_side">
+    <% if pharmacist_profile.image? %>
+      <%= image_tag pharmacist_profile.image.url, class: "user_icon" %>
+    <% else %>
+      <%= image_tag "/assets/default.png", class: "user_icon default" %>
+    <% end %>
+    <p><%= safe_join(message.content.split("\n"), tag(:br)) %></p>
+  </div>
+<% else %>
+  <div class="right_side">
+    <p><%= safe_join(message.content.split("\n"), tag(:br)) %></p>
+  </div>
+<% end %>
