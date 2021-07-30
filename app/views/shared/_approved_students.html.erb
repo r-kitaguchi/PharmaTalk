@@ -1,16 +1,30 @@
-<% approved_students.each do |student| %>
-  <div class="talking">
+<div class="talking">
+  <div class="profile">
     <%= link_to student_profile_path(student) do %>
       <% if student.student_profile.image? %>
         <%= image_tag student.student_profile.image.url, class: "user_icon" %>
       <% else %>
         <%= image_tag "/assets/default.png", class: "user_icon default" %>
       <% end %>
+      <p><%= student.student_profile.name %></p>
     <% end %>
-    <%= student.student_profile.name %>
-    <div class="btn_list">
-      <%= link_to "トーク画面に移る", "#", class: "btn" %>
-      <%= link_to "トークを終了する", "#", class: "cancel_btn" %>
-    </div>
   </div>
-<% end %>
+  <% if room = Room.find_by(pharmacist_id: current_pharmacist.id, student_id: student.id) %>
+    <div class="display_message">
+      <%= safe_join(room.messages.last.content.split("\n"), tag(:br)) if room.messages %>
+    </div>
+    <div class="btn_list">
+      <%= link_to "トーク画面に移る", room_path(room), class: "btn" %>
+      <%= link_to "トークを終了する", room_path(room), method: :delete,
+                  data: { confirm: "トークを終了すると、トーク内容は全て消去されます。\n終了しますか？" },
+                  class: "cancel_btn" %>
+    </div>
+  <% else %>
+    <div class="btn_list">
+      <%= form_with model: Room.new do |f| %>
+        <%= hidden_field_tag :student_id, student.id %>
+        <%= f.submit "トーク画面に移る", class: "btn" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

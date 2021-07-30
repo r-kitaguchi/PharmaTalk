@@ -22,15 +22,19 @@
     </div>
   </div>
   <div class="notification_column">
-    <h3>通知</h3>
+    <h3>承認待ち</h3>
     <% if @not_approved_students %>
-      <%= render "shared/not_approved_students", not_approved_students: @not_approved_students %>
+      <%= render partial: "shared/not_approved_students", collection: @not_approved_students, as: "student" %>
+    <% else %>
+      <p class="nobody">承認待ちの学生はいません。</p>
     <% end %>
   </div>
   <div class="talking_column">
     <h3>トーク中</h3>
     <% if @approved_students %>
-      <%= render "shared/approved_students", approved_students: @approved_students %>
+      <%= render partial: "shared/approved_students", collection: @approved_students, as: "student" %>
+    <% else %>
+      <p class="nobody">トーク中の学生はいません。</p>
     <% end %>
   </div>
 </div>

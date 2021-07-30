@@ -20,15 +20,19 @@
     </div>
   </div>
   <div class="notification_column">
-    <h3>通知</h3>
+    <h3>承認待ち</h3>
     <% if @not_approved_pharmacists %>
-      <%= render "shared/not_approved_pharmacists", not_approved_pharmacists: @not_approved_pharmacists %>
+      <%= render partial: "shared/not_approved_pharmacists", collection: @not_approved_pharmacists, as: "pharmacist" %>
+    <% else %>
+      <p class="nobody">承認待ちの薬剤師はいません。</p>
     <% end %>
   </div>
   <div class="talking_column">
     <h3>トーク中</h3>
     <% if @approved_pharmacists %>
-      <%= render "shared/approved_pharmacists", approved_pharmacists: @approved_pharmacists %>
+      <%= render partial: "shared/approved_pharmacists", collection: @approved_pharmacists, as: "pharmacist" %>
+    <% else %>
+      <p class="nobody">トーク中の薬剤師はいません。</p>
     <% end %>
   </div>
 </div>

@@ -1,13 +1,11 @@
-<% not_approved_students.each do |student| %>
-  <div class="notification">
-    <%= link_to student_profile_path(student) do %>
-      <% if student.student_profile.image? %>
-        <%= image_tag student.student_profile.image.url, class: "user_icon" %>
-      <% else %>
-        <%= image_tag "/assets/default.png", class: "user_icon default" %>
-      <% end %>
+<div class="notification">
+  <%= link_to student_profile_path(student) do %>
+    <% if student.student_profile.image? %>
+      <%= image_tag student.student_profile.image.url, class: "user_icon" %>
+    <% else %>
+      <%= image_tag "/assets/default.png", class: "user_icon default" %>
     <% end %>
-    <p><%= student.student_profile.name %>さんからトーク申請がきています。</p>
-    <%= render "shared/talk_permission", student: student %>
-  </div>
-<% end %>
+  <% end %>
+  <p><%= student.student_profile.name %>さんからトーク申請がきています。</p>
+  <%= render "shared/talk_permission", student: student %>
+</div>
