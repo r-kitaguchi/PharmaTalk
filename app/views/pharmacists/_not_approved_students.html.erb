@@ -3,5 +3,5 @@
     <%= render "shared/profile_image", profile: student.student_profile %>
   <% end %>
   <p><%= student.student_profile.name %>さんからトーク申請がきています。</p>
-  <%= render "shared/talk_permission", student: student %>
+  <%= render "pharmacists/talk_permission", student: student %>
 </div>

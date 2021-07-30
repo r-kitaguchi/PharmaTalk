@@ -20,7 +20,7 @@
   <div class="notification_column">
     <h3>承認待ち</h3>
     <% if @not_approved_students %>
-      <%= render partial: "shared/not_approved_students", collection: @not_approved_students, as: "student" %>
+      <%= render partial: "pharmacists/not_approved_students", collection: @not_approved_students, as: "student" %>
     <% else %>
       <p class="nobody">承認待ちの学生はいません。</p>
     <% end %>
@@ -28,7 +28,7 @@
   <div class="talking_column">
     <h3>トーク中</h3>
     <% if @approved_students %>
-      <%= render partial: "shared/approved_students", collection: @approved_students, as: "student" %>
+      <%= render partial: "pharmacists/approved_students", collection: @approved_students, as: "student" %>
     <% else %>
       <p class="nobody">トーク中の学生はいません。</p>
     <% end %>
