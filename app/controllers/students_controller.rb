@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+  before_action :authenticate_student!
+
   def show
     @student_profile = current_student.student_profile
     if current_student.pharmacists

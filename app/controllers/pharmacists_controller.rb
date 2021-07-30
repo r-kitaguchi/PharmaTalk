@@ -1,4 +1,6 @@
 class PharmacistsController < ApplicationController
+  before_action :authenticate_pharmacist!
+
   def show
     @pharmacist_profile = current_pharmacist.pharmacist_profile
     if current_pharmacist.students

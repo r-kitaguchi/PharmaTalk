@@ -1,4 +1,8 @@
 class RelationshipsController < ApplicationController
+  before_action :authenticate_student!, only: :create
+  before_action :authenticate_pharmacist!, only: :update
+  before_action :authenticate_user!, only: :destroy
+
   def create
     pharmacist = Pharmacist.find(params[:pharmacist_id])
     @relationship = current_student.relationships.new(pharmacist_id: pharmacist.id, student_id: current_student.id)
