@@ -31,6 +31,7 @@ body {
 }
 
 .container {
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -40,7 +41,7 @@ body {
   background-color: $main_color;
   .header_content {
     margin: 0 auto;
-    min-width: 96rem;
+    max-width: 96rem;
     padding: 2.0rem;
     position: relative;
     width: 90%;
@@ -83,6 +84,7 @@ body {
           margin: 0;
           top: 4.0rem;
           list-style: none;
+          z-index: 10;
           li + li {
             margin-top: 1.5rem;
           }
@@ -194,4 +196,5 @@ footer {
   background-color: $main_color;
   margin-top: auto;
   text-align: center;
+  z-index: 20;
 }

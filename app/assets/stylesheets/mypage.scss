@@ -5,7 +5,7 @@
     @include page_title;
   }
   .user_icon {
-    @include icon(8rem);
+    @include icon(7rem);
   }
   .pharmacist_profile {
     i {
@@ -64,6 +64,9 @@
     margin: 0 auto;
     width: 50rem;
   }
+  .nobody {
+    text-align: center;
+  }
   .notification_column {
     margin: 10rem 0;
   }
@@ -75,13 +78,10 @@
     border: 1px solid #dcdcdd;
     display: flex;
     justify-content: space-between;
-    height: 8rem;
+    height: 9rem;
     margin: 1.0rem auto;
     padding: 1.0rem;
     width: 50rem;
-    p {
-      width: 50%;
-    }
     .btn_list {
       text-align: center;
       width: 40%;
@@ -98,6 +98,30 @@
     }
     .cancel_btn {
       @include btn($btn_sub_color, $btn_hover_sub_color);
+    }
+  }
+  .notification {
+    p {
+      width: 55%;
+    }
+  }
+  .talking {
+    .profile {
+      a {
+        color: #000;
+        height: 90%;
+        max-width: 25%;
+        text-decoration: none;
+      }
+      p {
+        margin: 0;
+        overflow: hidden;
+      }
+    }
+    .display_message {
+      height: 90%;
+      overflow: hidden;
+      width: 30%;
     }
   }
 }
