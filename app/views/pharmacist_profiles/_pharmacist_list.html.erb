@@ -1,11 +1,7 @@
 <% results.each do |pharmacist_profile| %>
   <div class="search_pharmacist_profile">
     <div class="top_information">
-      <% if pharmacist_profile.image? %>
-        <%= image_tag pharmacist_profile.image.url, class: "user_icon" %>
-      <% else %>
-        <%= image_tag "/assets/default.png", class: "user_icon default" %>
-      <% end %>
+      <%= render "shared/profile_image", profile: pharmacist_profile %>
       <div>
         <h3><%= pharmacist_profile.name %></h3>
         <p><small><%= pharmacist_profile.work_place_type %></small></p>

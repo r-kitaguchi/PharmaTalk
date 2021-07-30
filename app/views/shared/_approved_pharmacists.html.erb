@@ -1,11 +1,7 @@
 <div class="talking">
   <div class="profile">
     <%= link_to pharmacist_profile_path(pharmacist) do %>
-      <% if pharmacist.pharmacist_profile.image? %>
-        <%= image_tag pharmacist.pharmacist_profile.image.url, class: "user_icon" %>
-      <% else %>
-        <%= image_tag "/assets/default.png", class: "user_icon default" %>
-      <% end %>
+      <%= render "shared/profile_image", profile: pharmacist.pharmacist_profile %>
       <p><%= pharmacist.pharmacist_profile.name %></p>
     <% end %>
   </div>

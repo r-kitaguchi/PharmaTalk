@@ -3,11 +3,7 @@
   <div class="profile_show_content">
     <h2>基本情報</h2>
     <div class="information">
-      <% if @pharmacist_profile.image? %>
-        <%= image_tag @pharmacist_profile.image.url, class: "user_icon" %>
-      <% else %>
-        <%= image_tag "/assets/default.png", class: "user_icon default" %>
-      <% end %>
+      <%= render "shared/profile_image", profile: @pharmacist_profile %>
       <div>
         <p><strong><%= @pharmacist_profile.name %></strong></p>
         <p><small><%= @pharmacist_profile.work_place_type %></small></p>

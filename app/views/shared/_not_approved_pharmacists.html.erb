@@ -1,10 +1,6 @@
 <div class="notification">
   <%= link_to pharmacist_profile_path(pharmacist) do %>
-    <% if pharmacist.pharmacist_profile.image? %>
-      <%= image_tag pharmacist.pharmacist_profile.image.url, class: "user_icon" %>
-    <% else %>
-      <%= image_tag "/assets/default.png", class: "user_icon default" %>
-    <% end %>
+    <%= render "shared/profile_image", profile: pharmacist.pharmacist_profile %>
   <% end %>
   <p><%= pharmacist.pharmacist_profile.name %>さんにトーク申請中です。</p>
 </div>

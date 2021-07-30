@@ -2,11 +2,7 @@
   <div class="profile_show_content">
     <h2>基本情報</h2>
     <div class="information">
-      <% if @student_profile.image? %>
-        <%= image_tag @student_profile.image.url, class: "user_icon" %>
-      <% else %>
-        <%= image_tag "/assets/default.png", class: "user_icon default" %>
-      <% end %>
+      <%= render "shared/profile_image", profile: @student_profile %>
       <div>
         <p><strong><%= @student_profile.name %></strong></p>
         <p><small>大学<%= @student_profile.year %></small></p>
