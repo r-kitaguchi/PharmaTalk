@@ -1,24 +1,13 @@
 <% content_for :head_js do %>
   <%= javascript_pack_tag 'rooms/show', 'data-turbolinks-track': 'reload' %>
 <% end %>
-<% if pharmacist_signed_in? %>
-  <%= link_to pharmacist_path(current_pharmacist), class: "back_link" do %>
-    <p><i class="fas fa-angle-left"></i><%= @student_profile.name %></p>
-  <% end %>
-<% elsif student_signed_in? %>
-  <%= link_to student_path(current_student), class: "back_link" do %>
-    <p><i class="fas fa-angle-left"></i><%= @pharmacist_profile.name %></p>
-  <% end %>
+<%= link_to @mypage_path, class: "back_link" do %>
+  <p><i class="fas fa-angle-left"></i><%= @partner_profile.name %></p>
 <% end %>
 <div class="talk_room">
   <div class="talk_room_content" id="talk_room_content">
-    <% if pharmacist_signed_in? %>
-      <%= render partial: "messages/message_ph",  collection: @messages, as: "message",
-                locals: { student_profile: @student_profile } %>
-    <% elsif student_signed_in? %>
-      <%= render partial: "messages/message_st", collection: @messages, as: "message",
-                locals: { pharmacist_profile: @pharmacist_profile } %>
-    <% end %>
+    <%= render partial: "messages/message",  collection: @messages, as: "message",
+              locals: { partner_profile: @partner_profile } %>
   </div>
 </div>
 <%= form_with model: [@room, @message], local: false do |f| %>

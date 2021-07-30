@@ -20,9 +20,11 @@ class RoomsController < ApplicationController
     @message = Message.new
     @messages = @room.messages
     if pharmacist_signed_in?
-      @student_profile = @room.student.student_profile
+      @partner_profile = @room.student.student_profile
+      @mypage_path = pharmacist_path(current_pharmacist)
     elsif student_signed_in?
-      @pharmacist_profile = @room.pharmacist.pharmacist_profile
+      @partner_profile = @room.pharmacist.pharmacist_profile
+      @mypage_path = student_path(current_student)
     end
   end
 

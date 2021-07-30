@@ -1,0 +1,13 @@
+<% if pharmacist_signed_in? %>
+  <% if message.is_pharmacist == false %>
+    <%= render "messages/message_left", message: message, partner_profile: partner_profile %>
+  <% else %>
+    <%= render "messages/message_right", message: message %>
+  <% end %>
+<% elsif student_signed_in? %>
+  <% if message.is_pharmacist == true %>
+    <%= render "messages/message_left", message: message, partner_profile: partner_profile %>
+  <% else %>
+    <%= render "messages/message_right", message: message %>
+  <% end %>
+<% end %>

@@ -1,0 +1,4 @@
+<div class="left_side">
+  <%= render "shared/profile_image", profile: partner_profile %>
+  <p><%= safe_join(message.content.split("\n"), tag(:br)) %></p>
+</div>
