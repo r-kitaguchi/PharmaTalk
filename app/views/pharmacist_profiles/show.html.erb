@@ -24,18 +24,10 @@
     </div>
   </div>
   <% if pharmacist_signed_in? %>
-    <% if @pharmacist_profile == current_pharmacist.pharmacist_profile %>
+    <% if @pharmacist == current_pharmacist %>
       <%= link_to "編集する", edit_pharmacist_profile_path(@pharmacist_profile), class: "btn" %>
     <% end %>
   <% elsif student_signed_in? %>
-    <% if Relationship.find_by(pharmacist_id: @pharmacist.id, student_id: current_student.id, allow: false) %>
-      <%= render "pharmacist_profiles/unfollow", pharmacist_profile: @pharmacist_profile, pharmacist: @pharmacist %>
-    <% elsif Relationship.find_by(pharmacist_id: @pharmacist.id, student_id: current_student.id, allow: true) %>
-      <p class="gray_color">トーク中</p>
-    <% elsif @pharmacist_profile.pharmacist_relationship_limit %>
-      <p class="gray_color"><%= @pharmacist_profile.name %>さんのトーク相手の数が上限に達しました</p>
-    <% else %>
-      <%= render "pharmacist_profiles/follow", pharmacist_profile: @pharmacist_profile %>
-    <% end %>
+    <%= render "pharmacist_profiles/follow_request" %>
   <% end %>
 </div>

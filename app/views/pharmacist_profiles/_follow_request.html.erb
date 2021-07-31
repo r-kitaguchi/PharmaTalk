@@ -1,0 +1,10 @@
+<% relationship = Relationship.find_by(pharmacist_id: @pharmacist.id, student_id: current_student.id) %>
+<% if relationship && !relationship.allow %>
+  <%= render "pharmacist_profiles/unfollow", pharmacist_profile: @pharmacist_profile, pharmacist: @pharmacist %>
+<% elsif relationship && relationship.allow %>
+  <p class="gray_color">トーク中</p>
+<% elsif @pharmacist.pharmacist_relationship_limit %>
+  <p class="gray_color"><%= @pharmacist_profile.name %>さんのトーク相手の数が上限に達しました</p>
+<% else %>
+  <%= render "pharmacist_profiles/follow", pharmacist_profile: @pharmacist_profile %>
+<% end %>

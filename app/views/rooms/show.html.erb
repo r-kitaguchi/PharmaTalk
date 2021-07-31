@@ -1,5 +1,5 @@
 <% provide(:title, "トークルーム") %>
-<% content_for :head_js do %>
+<% content_for :js do %>
   <%= javascript_pack_tag 'rooms/show', 'data-turbolinks-track': 'reload' %>
 <% end %>
 <%= link_to @mypage_path, class: "back_link" do %>

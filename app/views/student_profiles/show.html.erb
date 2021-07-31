@@ -21,7 +21,7 @@
     </div>
   </div>
   <% if student_signed_in? %>
-    <% if @student_profile == current_student.student_profile %>
+    <% if @student == current_student %>
       <%= link_to "編集する", edit_student_profile_path(@student_profile), class: "btn" %>
     <% end %>
   <% end %>

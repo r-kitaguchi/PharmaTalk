@@ -9,7 +9,7 @@
 
       <%= f.label :image %>
       <%= f.file_field :image %>
-      <% if current_pharmacist.pharmacist_profile.image? %>
+      <% if @pharmacist_profile.image? %>
         <div class="edit_image">
           <%= image_tag @pharmacist_profile.image.url, class: "user_icon" %>
           <p><%= f.check_box :remove_image %>画像を削除する</p>
