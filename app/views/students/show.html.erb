@@ -15,7 +15,7 @@
       <p><span class="orange_marker">大学</span>　<%= @student_profile.university %></p>
     </div>
   </div>
-  <div class="notification_column">
+  <div class="waiting_column">
     <h3>承認待ち</h3>
     <% if @not_approved_pharmacists %>
       <%= render partial: "students/not_approved_pharmacists", collection: @not_approved_pharmacists, as: "pharmacist" %>

@@ -67,20 +67,20 @@
   .nobody {
     text-align: center;
   }
-  .notification_column {
+  .waiting_column {
     margin: 10rem 0;
   }
   .talking_column {
     margin-bottom: 5.0rem;
   }
-  .notification, .talking {
+  .waiting, .talking {
     align-items: center;
     border: 1px solid #dcdcdd;
     display: flex;
     justify-content: space-between;
     height: 9rem;
     margin: 1.0rem auto;
-    padding: 1.0rem;
+    padding: 1.5rem;
     width: 50rem;
     .btn_list {
       text-align: center;
@@ -100,12 +100,20 @@
       @include btn($btn_sub_color, $btn_hover_sub_color);
     }
   }
-  .notification {
+  .waiting {
     p {
       width: 55%;
     }
   }
   .talking {
+    .notification {
+      background-color: #f35b5b;
+      border: 1px solid #f35b5b;
+      border-radius: 50%;
+      height: 2.0rem;
+      margin-left: -5.5rem;
+      width: 2.0rem;
+    }
     .profile {
       a {
         color: #000;

@@ -20,12 +20,17 @@ class RoomsController < ApplicationController
     @message = Message.new
     @messages = @room.messages
     if pharmacist_signed_in?
+      @notifications = Notification.where(pharmacist_id: @room.pharmacist_id,
+                                      student_id: @room.student_id, is_pharmacist: false)
       @partner_profile = @room.student.student_profile
       @mypage_path = pharmacist_path(current_pharmacist)
     elsif student_signed_in?
+      @notifications = Notification.where(pharmacist_id: @room.pharmacist_id,
+                                      student_id: @room.student_id, is_pharmacist: true)
       @partner_profile = @room.pharmacist.pharmacist_profile
       @mypage_path = student_path(current_student)
     end
+    @notifications.destroy_all
   end
 
   def destroy

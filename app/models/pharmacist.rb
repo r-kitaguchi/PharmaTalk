@@ -9,4 +9,5 @@ class Pharmacist < ApplicationRecord
   has_many :relationships, dependent: :destroy
   has_many :students, through: :relationships
   has_many :rooms, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 end

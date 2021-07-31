@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_094251) do
+ActiveRecord::Schema.define(version: 2021_07_30_122124) do
 
   create_table "messages", force: :cascade do |t|
     t.integer "room_id", null: false
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(version: 2021_07_27_094251) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "message_id", null: false
+    t.integer "pharmacist_id", null: false
+    t.integer "student_id", null: false
+    t.boolean "is_pharmacist", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_id"], name: "index_notifications_on_message_id"
+    t.index ["pharmacist_id"], name: "index_notifications_on_pharmacist_id"
+    t.index ["student_id"], name: "index_notifications_on_student_id"
   end
 
   create_table "pharmacist_profiles", force: :cascade do |t|
@@ -93,6 +105,9 @@ ActiveRecord::Schema.define(version: 2021_07_27_094251) do
   end
 
   add_foreign_key "messages", "rooms"
+  add_foreign_key "notifications", "messages"
+  add_foreign_key "notifications", "pharmacists"
+  add_foreign_key "notifications", "students"
   add_foreign_key "pharmacist_profiles", "pharmacists"
   add_foreign_key "relationships", "pharmacists"
   add_foreign_key "relationships", "students"
