@@ -59,7 +59,7 @@ RSpec.describe "学生マイページ", type: :system do
 
       it "薬剤師のプロフィール写真、名前が表示されていること" do
         aggregate_failures do
-          within '.notification' do
+          within '.waiting' do
             expect(page).to have_content(pharmacist_profile.name)
             expect(page).to have_selector("img[src$='test.jpg']")
           end
@@ -75,7 +75,7 @@ RSpec.describe "学生マイページ", type: :system do
 
       it "薬剤師のプロフィール写真、名前が表示されていないこと" do
         aggregate_failures do
-          within '.notification_column' do
+          within '.waiting_column' do
             expect(page).not_to have_content(pharmacist_profile.name)
             expect(page).not_to have_selector("img[src$='test.jpg']")
           end
