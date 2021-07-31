@@ -38,6 +38,20 @@ student.create_student_profile!(
   introduction: "佐藤です。よろしくお願いします。"
 )
 
+second_student = Student.create!(
+  email: "second_student@sample.com",
+  password: "password",
+  password_confirmation: "password"
+)
+
+second_student.create_student_profile!(
+  name: "小林健一郎",
+  image:File.open("./db/fixtures/sample3.png"),
+  university: "京都大学",
+  year: 0,
+  introduction: "小林です。よろしくお願いします。"
+)
+
 20.times do |n|
   email = Faker::Internet.email
 
@@ -62,3 +76,13 @@ Pharmacist.where(id: 2..21).each do |pharmacist|
     introduction: "よろしくお願いします！"
   )
 end
+
+student.relationships.create!(
+  pharmacist_id: 1,
+  allow: true
+)
+
+second_student.relationships.create!(
+  pharmacist_id: 1,
+  allow: true
+)
