@@ -1,4 +1,7 @@
 <% provide(:title, "マイページ") %>
+<% content_for :js do %>
+  <%= javascript_pack_tag 'mypages/modal', 'data-turbolinks-track': 'reload' %>
+<% end %>
 <%= render "shared/flash" %>
 <div class="mypage">
   <h2>マイページ</h2>

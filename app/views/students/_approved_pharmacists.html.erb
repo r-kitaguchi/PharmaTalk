@@ -15,9 +15,8 @@
     </div>
     <div class="btn_list">
       <%= link_to "トーク画面に移る", room_path(room), class: "btn" %>
-      <%= link_to "トークを終了する", room_path(room), method: :delete,
-                  data: { confirm: "トークを終了すると、トーク内容は全て消去されます。\n終了しますか？" },
-                  class: "cancel_btn" %>
+      <a class="cancel_btn js_end_talk">トークを終了する</a>
+      <%= render "shared/end_talk_modal", room: room %>
     </div>
   <% elsif !room %>
     <div class="display_message">

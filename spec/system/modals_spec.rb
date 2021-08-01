@@ -7,7 +7,7 @@ RSpec.describe "モーダル", type: :system do
 
   describe "閉じる" do
     context "新規登録モーダルを表示させた時" do
-      before do
+      before(js: true) do
         within '.header_content' do
           find('.js_sign_up').click
         end
@@ -32,7 +32,7 @@ RSpec.describe "モーダル", type: :system do
   end
 
   describe "新規登録" do
-    before do
+    before(js: true) do
       within '.header_content' do
         find('.js_sign_up').click
       end
@@ -58,7 +58,7 @@ RSpec.describe "モーダル", type: :system do
   end
 
   describe "ログイン" do
-    before do
+    before(js: true) do
       find('.js_log_in').click
     end
 

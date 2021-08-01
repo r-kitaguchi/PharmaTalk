@@ -86,18 +86,25 @@
       text-align: center;
       width: 40%;
     }
-    .btn, .cancel_btn {
+    .btn, .cancel_btn, .back_btn {
       border-color: transparent;
       color: #000;
       text-decoration: none;
       padding: 0.5rem 3.0rem;
     }
-    .btn {
+    .btn, .back_btn {
       @include btn;
       margin-bottom: 1.0rem;
     }
     .cancel_btn {
       @include btn($btn_sub_color, $btn_hover_sub_color);
+    }
+    .end_or_back {
+      .back_btn, .cancel_btn {
+        margin: 1.0rem 0;
+        padding: 1.0rem 0;
+        width: 80%;
+      }
     }
   }
   .waiting {

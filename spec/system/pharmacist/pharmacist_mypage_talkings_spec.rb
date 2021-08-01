@@ -81,16 +81,10 @@ RSpec.describe "薬剤師マイページ(トーク中の表示)", type: :system 
         expect(current_path).to eq room_path(room)
       end
 
-      it "トークを終了するリンクをクリックすると、Room.countが１減ること" do
-        expect do
-          click_on "トークを終了する"
-        end.to change(Room, :count).by(-1)
-      end
-
-      it "トークを終了するリンクをクリックすると、Relationship.countが１減ること" do
-        expect do
-          click_on "トークを終了する"
-        end.to change(Relationship, :count).by(-1)
+      it "トークを終了するボタンをクリックすると、モーダルが表示されること", js: true do
+        expect(page).to have_selector('#popup_end_talk', visible: false)
+        find('.js_end_talk').click
+        expect(page).to have_selector('#popup_end_talk', visible: true)
       end
     end
 
