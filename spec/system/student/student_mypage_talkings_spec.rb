@@ -80,8 +80,11 @@ RSpec.describe "学生マイページ(トーク中の表示)", type: :system do
         expect(current_path).to eq room_path(room)
       end
 
-      it "トークを終了するボタンをクリックすると、モーダルが表示されること", js: true do
+      it "トークを終了するボタンをクリックしないと、モーダルが表示されないこと" do
         expect(page).to have_selector('#popup_end_talk', visible: false)
+      end
+
+      it "トークを終了するボタンをクリックすると、モーダルが表示されること", js: true do
         find('.js_end_talk').click
         expect(page).to have_selector('#popup_end_talk', visible: true)
       end

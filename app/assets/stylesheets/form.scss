@@ -22,25 +22,40 @@
     .check_box {
       margin: 2.0rem 0;
     }
-    .btn {
-      @include btn;
-      border-color: transparent;
-      font-size: 2.0rem;
-      height: 4.0rem;
-      margin-bottom: 2.0rem;
-      width: 50rem;
-    }
     a {
       color: #396e7a;
       display: inline-block;
       margin-bottom: 2.0rem;
       text-decoration: none;
     }
+    .btn, .cancel_btn, .back_btn {
+      border-color: transparent;
+      color: #000;
+      font-size: 2.0rem;
+    }
+    .btn {
+      @include btn;
+      height: 4.0rem;
+      margin-bottom: 2.0rem;
+      width: 50rem;
+    }
     .cancel_btn {
       @include btn($btn_sub_color, $btn_hover_sub_color);
-      border-color: transparent;
-      font-size: 2.0rem;
+      margin-top: 0;
+      padding: 1.0rem 0;
       width: 20rem;
+    }
+    .popup {
+      .cancel_btn {
+        margin: 1.0rem 0;
+        width: 80%;
+      }
+      .back_btn {
+        @include btn;
+        margin: 1.0rem 0;
+        padding: 1.0rem 0;
+        width: 80%;
+      }
     }
   }
 }

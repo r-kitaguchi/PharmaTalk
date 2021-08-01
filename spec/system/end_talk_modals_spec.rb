@@ -20,6 +20,11 @@ RSpec.describe "マイページのトーク終了モーダル", type: :system do
       find('.js_end_talk').click
     end
 
+    it "戻るボタンを押すと、モーダルが閉じること", js: true do
+      find('.back_btn').click
+      expect(page).to have_selector('#popup_end_talk', visible: false)
+    end
+
     context "トークを終了するリンクをクリックした時" do
       it "Room.countが１減ること" do
         expect do
@@ -37,12 +42,6 @@ RSpec.describe "マイページのトーク終了モーダル", type: :system do
         click_on "トークを終了する"
         expect(page).to have_content("トークルームを削除しました")
       end
-    end
-
-    it "戻るボタンを押すと、モーダルが閉じること", js: true do
-      expect(page).to have_selector('#popup_end_talk', visible: true)
-      find('.back_btn').click
-      expect(page).to have_selector('#popup_end_talk', visible: false)
     end
   end
 end
