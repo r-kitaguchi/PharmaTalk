@@ -12,8 +12,11 @@
   </div>
 </div>
 <%= form_with model: [@room, @message] do |f| %>
-  <div class="text_area">
-    <%= f.text_area :content, autofocus: true, placeholder: "メッセージを入力" %>
+  <div class="message_flex">
+    <div class="message_area">
+      <div class="dummy_message" aria-hidden="true"></div>
+      <%= f.text_area :content, autofocus: true, placeholder: "メッセージを入力" %>
+    </div>
     <%= f.submit "送信", class: "submit" %>
   </div>
 <% end %>

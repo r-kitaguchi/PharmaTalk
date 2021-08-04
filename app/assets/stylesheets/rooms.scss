@@ -71,20 +71,45 @@
     }
   }
 }
-.text_area {
+.message_flex {
   align-items: center;
   background-color: #fff;
   bottom: 0rem;
   display: flex;
-  height: 8rem;
   justify-content: center;
+  padding: 2.0rem 0;
   position: fixed;
   width: 100vw;
-  textarea {
-    height: 4rem;
-    width: 50rem;
+  .message_area {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    position: relative;
+    width: 60rem;
     @include mobile {
       width: 60%;
+    }
+    .dummy_message {
+      border: 1px solid;
+      box-sizing: border-box;
+      min-height: 3.8rem;
+      max-height: 15rem;
+      overflow-wrap: break-word;
+      padding: 0.5rem 1.5rem;
+      visibility: hidden;
+      white-space: pre-wrap;
+    }
+    textarea {
+      border: 1px solid #b6c3c6;
+      box-sizing: border-box;
+      font: inherit;
+      height: 100%;
+      letter-spacing: inherit;
+      padding: 0.5rem 1.5rem;
+      position: absolute;
+      resize: none;
+      right: 0;
+      top: 0;
+      width: 100%;
     }
   }
   .submit {
