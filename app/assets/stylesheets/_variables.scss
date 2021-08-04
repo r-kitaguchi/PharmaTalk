@@ -1,6 +1,19 @@
+$mb: 76.7rem;
 $main_color: #D7EBBA;
 $btn_sub_color: #f09a4a;
 $btn_hover_sub_color: #fd9839;
+
+@mixin mobile {
+  @media screen and (max-width: $mb) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media screen and (min-width: $mb) {
+    @content;
+  }
+}
 
 @mixin btn($color: #63BED2, $hover: #6bd1e7) {
   background-color: $color;
@@ -51,7 +64,7 @@ $btn_hover_sub_color: #fd9839;
   height: 3rem;
   letter-spacing: 2px;
   padding-left: 1rem;
-  width: 50rem;
+  width: 100%;
   &:focus {
     border: 2px solid #7161EF;
     border-radius: 4.0rem;

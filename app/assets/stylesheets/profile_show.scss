@@ -2,10 +2,11 @@
 
 .profile_show {
   margin: 4.0rem auto;
+  max-width: 70rem;
+  width: 80%;
   .profile_show_content {
     border: 1px solid rgba(220, 220, 221, 0.5);
     min-height: 80vh;
-    width: 70rem;
     h2 {
       background-color: rgba(220, 220, 221, 0.5);
       font-size: 1.6rem;
@@ -47,8 +48,8 @@
     padding: 1.0rem;
     text-align: center;
     text-decoration: none;
-    margin: 3.0rem 5.5rem 0;
-    width: 80%;
+    margin-top: 2.0rem;
+    width: 100%;
   }
   .btn {
     @include btn;
@@ -59,8 +60,8 @@
     display: inline-block;
     padding: 1.0rem;
     text-align: center;
-    margin: 3.0rem 5.5rem 0;
-    width: 80%;
+    margin: 2.0rem;
+    width: 100%;
   }
   .unfollow {
     @include btn($btn_sub_color, $btn_hover_sub_color)

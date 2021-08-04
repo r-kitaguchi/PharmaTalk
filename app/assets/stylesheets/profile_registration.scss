@@ -7,13 +7,23 @@
   .form_contents {
     margin: 0 auto;
     max-width: 80rem;
+    width: 80%;
+    @include mobile {
+      max-width: 50rem;
+    }
     form {
       display: grid;
       grid-template-columns: 20rem 1fr;
       row-gap: 5rem;
+      @include mobile {
+        grid-template-columns: 1fr;
+      }
     }
     label {
       grid-column: 1 / 2;
+      @include mobile {
+        grid-column: auto;
+      }
     }
     input[type="text"], select {
       border: 1px solid #000;
@@ -23,7 +33,6 @@
       font-size: 1.5rem;
       height: 30rem;
       letter-spacing: 2px;
-      width: 50rem;
     }
     .work_place_type, .year {
       align-items: center;
@@ -34,6 +43,9 @@
     }
     input, textarea, .edit_image, .work_place_type {
       grid-column: 2 / 3;
+      @include mobile {
+        grid-column: auto;
+      }
     }
     .edit_image {
       align-items: center;
@@ -47,7 +59,6 @@
       border-color: transparent;
       height: 4rem;
       margin-bottom: 5rem;
-      width: 50rem;
     }
     .user_icon {
       @include icon(5.0rem);

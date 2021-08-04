@@ -21,10 +21,12 @@
 * {
   font-family: 'Roboto', sans-serif;
 }
+
 html {
   box-sizing: border-box;
   font-size: 62.5%;
 }
+
 body {
   font-size: 1.6em;
   margin: 0;
@@ -39,12 +41,11 @@ body {
 
 .header {
   background-color: $main_color;
+  border-bottom: 1px solid $main_color;
   .header_content {
     margin: 0 auto;
-    max-width: 96rem;
-    padding: 2.0rem;
+    padding: 2.0rem 5.0rem;
     position: relative;
-    width: 90%;
     a{
       color: #000;
       text-decoration: none;
@@ -58,38 +59,126 @@ body {
       margin-top: 0.5rem;
       padding-left: 0;
       position: absolute;
-      right: 0;
+      right: 1.0rem;
       top: 2.0rem;
       > li {
         cursor: pointer;
         margin-left: 1.5rem;
       }
+      // humberger menu for mobile
+      .hamburger_menu {
+        #menu_btn_check {
+          display: none;
+        }
+        @include mobile {
+          #menu_btn_check:checked ~ .menu_btn {
+            span {
+              background-color: rgba(255, 255, 255, 0);
+              &:before {
+                bottom: 0;
+                transform: rotate(45deg);
+              }
+              &:after {
+                top: 0;
+                transform: rotate(-45deg);
+              }
+            }
+          }
+          #menu_btn_check:checked ~ .drop_down {
+            top: 0;
+          }
+        }
+        .menu_btn {
+          display: none;
+          @include mobile {
+            align-items: center;
+            display: flex;
+            height: 6.0rem;
+            justify-content: center;
+            position: absolute;
+            right: 0rem;
+            top: -2.0rem;
+            width: 6.0rem;
+            z-index: 90;
+            span, span:before, span:after {
+              background-color: #000;
+              border-radius: 0.3rem;
+              content: "";
+              display: block;
+              height: 0.3rem;
+              position: absolute;
+              width: 2.5rem;
+            }
+            span:before {
+              bottom: 0.8rem;
+            }
+            span:after {
+              top: 0.8rem;
+            }
+          }
+        }
+      }
+      // drop down menu for pc
       .drop_down {
         display: inline-block;
         position: relative;
         text-align: center;
-        width: 13.5rem;
+        width: 20rem;
+        @include mobile {
+          background-color: $main_color;
+          position: fixed;
+          right: 0;
+          top: -40rem;
+          transition: all 0.5s;
+          z-index: 80;
+        }
         > ul {
           display: none;
-        }
-        &:hover {
-          height: 20rem;
-        }
-        &:hover ul {
-          background-color: #fff;
-          border: 1px solid #000;
-          display: block;
-          position: absolute;
-          padding: 1.0rem;
-          margin: 0;
-          top: 4.0rem;
-          list-style: none;
-          z-index: 10;
+          padding: 7rem 1.0rem 2rem;
+          position: relative;
+          z-index: 80;
+          @include mobile {
+            display: block;
+          }
           li + li {
             margin-top: 1.5rem;
           }
-          li:hover a {
-            color: #4d9de7;
+          li {
+            border-bottom: solid 1px #000;
+            list-style: none;
+            &:hover a {
+              color: #4d9de7;
+            }
+            a {
+              box-sizing: border-box;
+              color: #000;
+              display: block;
+              padding: 0.9rem 1.5rem 1.0rem 0;
+              position: relative;
+              width: 100%;
+              &:before {
+                border-top: solid 2px #000;
+                border-right: solid 2px #000;
+                content: "";
+                height: 0.7rem;
+                position: absolute;
+                right: 1.1rem;
+                top: 1.6rem;
+                transform: rotate(45deg);
+                width: 0.7rem;
+              }
+            }
+          }
+        }
+        @include pc {
+          &:hover {
+            height: 20rem;
+          }
+          &:hover ul {
+            background-color: $main_color;
+            display: block;
+            padding: 1.0rem;
+            z-index: 1;
           }
         }
       }
@@ -100,6 +189,9 @@ body {
     .user_icon {
       @include icon(5.0rem);
       margin-top: -1.2rem;
+      @include mobile {
+        display: none;
+      }
     }
     .default {
       background-color: #fff;
@@ -107,6 +199,7 @@ body {
   }
 }
 
+// error, flash
 #error_explanation {
   background-color: #faa2a2;
   text-align: center;
@@ -114,22 +207,19 @@ body {
     list-style: none;
   }
 }
-
 .notice {
   background-color: #6f6fe7;
   text-align: center;
 }
-
 .alert, .error {
   background-color: #faa2a2;
   text-align: center;
 }
-
 .error {
   list-style: none;
 }
 
-// sign_up modal
+// modal
 .popup {
   height: 100%;
   left: 0;
@@ -197,4 +287,15 @@ footer {
   margin-top: auto;
   text-align: center;
   z-index: 20;
+  a {
+    color: #000;
+    text-decoration: none;
+    p {
+      display: inline-block;
+      margin-bottom: 0;
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+  }
 }

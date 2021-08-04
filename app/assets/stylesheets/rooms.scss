@@ -3,6 +3,7 @@
 .back_link {
   background-color: rgba(229, 229, 229, 0.9);
   color: #000;
+  min-height: 7.0rem;
   padding-left: 6.0rem;
   position: fixed;
   text-decoration: none;
@@ -82,6 +83,9 @@
   textarea {
     height: 4rem;
     width: 50rem;
+    @include mobile {
+      width: 60%;
+    }
   }
   .submit {
     @include btn;

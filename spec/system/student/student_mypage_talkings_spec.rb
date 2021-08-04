@@ -45,15 +45,15 @@ RSpec.describe "学生マイページ(トーク中の表示)", type: :system do
     end
 
     context "誰もメッセージを送っていない時" do
-      context "トークルームに移るボタンをクリックした時" do
+      context "トーク画面へボタンをクリックした時" do
         it "Room.countが１変化すること" do
           expect do
-            click_button "トーク画面に移る"
+            click_button "トーク画面へ"
           end.to change(Room, :count).by(1)
         end
 
         it "トークルームに移動すること" do
-          click_on "トーク画面に移る"
+          click_on "トーク画面へ"
           expect(page).to have_title("トークルーム")
         end
       end
@@ -75,8 +75,8 @@ RSpec.describe "学生マイページ(トーク中の表示)", type: :system do
         expect(page).not_to have_selector(".notification")
       end
 
-      it "トーク画面に移るリンクをクリックすると、トークルームに移動すること" do
-        click_on "トーク画面に移る"
+      it "トーク画面へリンクをクリックすると、トークルームに移動すること" do
+        click_on "トーク画面へ"
         expect(current_path).to eq room_path(room)
       end
 
@@ -110,7 +110,7 @@ RSpec.describe "学生マイページ(トーク中の表示)", type: :system do
 
       context "トークルームに行き、メッセージを確認した時" do
         before do
-          click_on "トーク画面に移る"
+          click_on "トーク画面へ"
           visit student_path(student)
         end
 

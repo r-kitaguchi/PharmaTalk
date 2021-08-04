@@ -6,8 +6,9 @@
   }
   .form_contents {
     margin: 5.0rem auto;
-    max-width: 92rem;
+    max-width: 72rem;
     text-align: center;
+    width: 80%;
     .field {
       margin-bottom: 5.0rem;
       label {
@@ -37,7 +38,7 @@
       @include btn;
       height: 4.0rem;
       margin-bottom: 2.0rem;
-      width: 50rem;
+      width: 100%;
     }
     .cancel_btn {
       @include btn($btn_sub_color, $btn_hover_sub_color);

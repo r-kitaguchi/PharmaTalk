@@ -14,20 +14,20 @@
       <%= safe_join(room.messages.last.content.split("\n"), tag(:br)) if room.messages %>
     </div>
     <div class="btn_list">
-      <%= link_to "トーク画面に移る", room_path(room), class: "btn" %>
-      <a class="cancel_btn js_end_talk">トークを終了する</a>
+      <%= link_to "トーク画面へ", room_path(room), class: "btn" %>
+      <a class="cancel_btn js_end_talk">トークを終了</a>
       <%= render "shared/end_talk_modal", room: room %>
     </div>
   <% elsif !room %>
     <div class="btn_list">
       <%= form_with model: Room.new do |f| %>
         <%= hidden_field_tag :student_id, student.id %>
-        <%= f.submit "トーク画面に移る", class: "btn" %>
+        <%= f.submit "トーク画面へ", class: "btn" %>
       <% end %>
     </div>
   <% else %>
     <div class="btn_list">
-      <%= link_to "トーク画面に移る", room_path(room), class: "btn" %>
+      <%= link_to "トーク画面へ", room_path(room), class: "btn" %>
     </div>
   <% end %>
 </div>
