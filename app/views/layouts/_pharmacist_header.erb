@@ -1,13 +1,16 @@
 <% if !current_pharmacist.pharmacist_profile || !current_pharmacist.pharmacist_profile.id %>
   <li><%= link_to "プロフィールを登録", new_pharmacist_profile_path %></li>
-<% elsif current_pharmacist.pharmacist_profile.image? %>
-  <li class="drop_down">
-    <%= image_tag current_pharmacist.pharmacist_profile.image.url, class: "user_icon" %>
-    <%= render "layouts/pharmacist_drop_down"%>
-  </li>
 <% else %>
-  <li class="drop_down">
-    <%= image_tag "/assets/default.png", class: "user_icon default" %>
-    <%= render "layouts/pharmacist_drop_down"%>
-  </li>
+  <div class="hamburger_menu">
+    <input type="checkbox" id="menu_btn_check">
+    <label for="menu_btn_check" class="menu_btn"><span></span></label>
+    <li class="drop_down">
+      <% if current_pharmacist.pharmacist_profile.image? %>
+        <%= image_tag current_pharmacist.pharmacist_profile.image.url, class: "user_icon" %>
+      <% else %>
+        <%= image_tag "/assets/default.png", class: "user_icon default" %>
+      <% end %>
+        <%= render "layouts/pharmacist_drop_down"%>
+    </li>
+  </div>
 <% end %>

@@ -2,7 +2,6 @@
   <div class="header_content">
     <h1><%= link_to "Pharma Talk", root_path %></h1>
     <ul class="header_menu">
-      <li><%= yield(:concept) %></li>
       <% if no_one_is_logged_in %>
         <li class="js_log_in"><i class="fas fa-sign-in-alt"></i>ログイン</li>
         <li class="js_sign_up"><i class="fas fa-user-edit"></i>新規登録</li>

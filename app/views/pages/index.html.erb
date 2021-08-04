@@ -1,14 +1,13 @@
 <% provide(:title, "HOME") %>
-<% provide :concept do %>
-  <i class="fas fa-comments"></i><%= link_to "Pharma Talkについて", concepts_path %>
-<% end %>
 <div class="home_header">
   <div class="home_header_content">
-    <p>先輩の声を聞いて</p>
-    <p>薬局の雰囲気をつかもう</p>
+    <div class="catch_copy">
+      <p>先輩の声を聞いて</p>
+      <p>薬局の雰囲気をつかもう</p>
+    </div>
     <%= image_tag 'Chat.png', class: 'top_image' %>
     <% if no_one_is_logged_in %>
-      <div class="btn js_sign_up">新規登録</div>
+      <p class="btn js_sign_up">新規登録</p>
     <% end %>
   </div>
 </div>
