@@ -7,7 +7,7 @@
   <h2>マイページ</h2>
   <div class="student_profile">
     <div class="top_information">
-      <%= link_to student_profile_path(current_student) do %>
+      <%= link_to student_profile_path(@student_profile) do %>
         <%= render "shared/profile_image", profile: @student_profile %>
       <% end %>
       <div>

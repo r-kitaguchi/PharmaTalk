@@ -4,7 +4,7 @@
     <span class="notification"></span>
   <% end %>
   <div class="profile">
-    <%= link_to pharmacist_profile_path(pharmacist) do %>
+    <%= link_to pharmacist_profile_path(pharmacist.pharmacist_profile) do %>
       <%= render "shared/profile_image", profile: pharmacist.pharmacist_profile %>
       <p><%= pharmacist.pharmacist_profile.name %></p>
     <% end %>

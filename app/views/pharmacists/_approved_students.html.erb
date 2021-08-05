@@ -4,7 +4,7 @@
     <span class="notification"></span>
   <% end %>
   <div class="profile">
-    <%= link_to student_profile_path(student) do %>
+    <%= link_to student_profile_path(student.student_profile) do %>
       <%= render "shared/profile_image", profile: student.student_profile %>
       <p><%= student.student_profile.name %></p>
     <% end %>

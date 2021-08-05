@@ -7,7 +7,7 @@
   <h2>マイページ</h2>
   <div class="pharmacist_profile">
     <div class="top_information">
-      <%= link_to pharmacist_profile_path(current_pharmacist) do %>
+      <%= link_to pharmacist_profile_path(@pharmacist_profile) do %>
         <%= render "shared/profile_image", profile: @pharmacist_profile %>
       <% end %>
       <div>
