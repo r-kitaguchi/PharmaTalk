@@ -5,6 +5,7 @@ document.addEventListener("turbolinks:load", function(){
 
 function scrollSet(){
   let talkRoomContent = document.getElementById('talk_room_content');
+  if(!talkRoomContent) return;
   talkRoomContent.scrollIntoView(false);
 };
 

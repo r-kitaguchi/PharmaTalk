@@ -3,6 +3,16 @@
 class Students::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  def new_guest
+    student = Student.guest
+    sign_in student
+    if student.student_profile
+      redirect_to student_path(student)
+    else
+      redirect_to new_student_profile_path
+    end
+  end
+
   # GET /resource/sign_in
   # def new
   #   super

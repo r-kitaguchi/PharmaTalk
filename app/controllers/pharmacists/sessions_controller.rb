@@ -3,6 +3,16 @@
 class Pharmacists::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  def new_guest
+    pharmacist = Pharmacist.guest
+    sign_in pharmacist
+    if pharmacist.pharmacist_profile
+      redirect_to pharmacist_path(pharmacist)
+    else
+      redirect_to new_pharmacist_profile_path
+    end
+  end
+
   # GET /resource/sign_in
   # def new
   #   super

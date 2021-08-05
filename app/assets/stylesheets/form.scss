@@ -58,5 +58,17 @@
         width: 80%;
       }
     }
+    .test_user {
+      text-align: center;
+      a {
+        background-color: rgb(228, 120, 120);
+        color: #000;
+        margin: 0;
+        padding: 1rem;
+        &:hover {
+          background-color: rgb(247, 131, 131);
+        }
+      }
+    }
   }
 }

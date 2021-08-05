@@ -17,6 +17,14 @@ Rails.application.routes.draw do
                           sign_in: 'login', sign_out: 'logout'
                         }
 
+  devise_scope :pharmacist do
+    post 'pharmacists/guest_log_in', to: 'pharmacists/sessions#new_guest'
+  end
+
+  devise_scope :student do
+    post 'students/guest_log_in', to: 'students/sessions#new_guest'
+  end
+
   resources :pharmacists, only: :show
   resources :students, only: :show
   resources :pharmacist_profiles, except: [:index, :destroy] do

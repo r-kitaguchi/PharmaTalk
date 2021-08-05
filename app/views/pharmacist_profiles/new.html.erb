@@ -3,6 +3,15 @@
 <%= render "shared/flash" %>
 <div class="form_profile">
   <h2>プロフィール登録</h2>
+  <%= form_with model: @pharmacist_profile do |f| %>
+    <%= f.hidden_field :name, value: "テスト太郎" %>
+    <%= f.hidden_field :work_place, value: "テスト薬局" %>
+    <%= f.hidden_field :work_place_type, value: "調剤薬局" %>
+    <%= f.hidden_field :work_location, value: "北海道" %>
+    <%= f.hidden_field :university, value: "テスト大学" %>
+    <%= f.hidden_field :introduction, value: "テストテスト" %>
+    <%= f.submit "テストプロフィールで登録", class: "test_profile" %>
+  <% end %>
   <div class="form_contents">
     <%= form_with model: @pharmacist_profile do |f| %>
       <%= f.label :name %>

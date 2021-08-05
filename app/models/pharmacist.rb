@@ -14,4 +14,10 @@ class Pharmacist < ApplicationRecord
   def pharmacist_relationship_limit
     relationships.where(allow: true).count >= MAX_FOLLOW_COUNT
   end
+
+  def self.guest
+    find_or_create_by(email: "sample@sample.com") do |user|
+      user.password = "password"
+    end
+  end
 end

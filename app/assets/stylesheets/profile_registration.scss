@@ -4,6 +4,17 @@
   h2 {
     @include page_title;
   }
+  .test_profile {
+    background-color: rgb(228, 120, 120);
+    border-color: transparent;
+    cursor: pointer;
+    display: block;
+    margin: 5.0rem auto;
+    padding: 1rem;
+    &:hover {
+    background-color: rgb(247, 131, 131);
+    }
+  }
   .form_contents {
     margin: 0 auto;
     max-width: 80rem;

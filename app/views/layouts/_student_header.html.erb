@@ -1,5 +1,6 @@
 <% if !current_student.student_profile || !current_student.student_profile.id %>
   <li><%= link_to "プロフィールを登録", new_student_profile_path %></li>
+  <li><%= link_to "ログアウト", destroy_student_session_path, method: :delete %></li>
 <% else %>
   <div class="hamburger_menu">
     <input type="checkbox" id="menu_btn_check">
