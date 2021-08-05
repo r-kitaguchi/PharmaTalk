@@ -1,13 +1,10 @@
+<% provide(:title, @pharmacist_profile.name) %>
 <%= render "shared/flash" %>
 <div class="profile_show">
   <div class="profile_show_content">
     <h2>基本情報</h2>
     <div class="information">
-      <% if @pharmacist_profile.image? %>
-        <%= image_tag @pharmacist_profile.image.url, class: "user_icon" %>
-      <% else %>
-        <%= image_tag "/assets/default.png", class: "user_icon default" %>
-      <% end %>
+      <%= render "shared/profile_image", profile: @pharmacist_profile %>
       <div>
         <p><strong><%= @pharmacist_profile.name %></strong></p>
         <p><small><%= @pharmacist_profile.work_place_type %></small></p>
@@ -27,16 +24,10 @@
     </div>
   </div>
   <% if pharmacist_signed_in? %>
-    <% if @pharmacist_profile == current_pharmacist.pharmacist_profile %>
+    <% if @pharmacist == current_pharmacist %>
       <%= link_to "編集する", edit_pharmacist_profile_path(@pharmacist_profile), class: "btn" %>
     <% end %>
   <% elsif student_signed_in? %>
-    <% if current_student.pharmacists && current_student.pharmacists.include?(@pharmacist_profile.pharmacist) %>
-      <%= render "shared/unfollow", pharmacist_profile: @pharmacist_profile, pharmacist: @pharmacist_profile.pharmacist %>
-    <% elsif @pharmacist_profile.pharmacist_relationship_limit %>
-      <p class="gray_color"><%= @pharmacist_profile.name %>さんのトーク相手の数が上限に達しました</p>
-    <% else %>
-      <%= render "shared/follow", pharmacist_profile: @pharmacist_profile %>
-    <% end %>
+    <%= render "pharmacist_profiles/follow_request" %>
   <% end %>
 </div>

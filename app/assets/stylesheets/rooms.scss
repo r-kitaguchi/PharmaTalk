@@ -1,0 +1,123 @@
+@import "variables";
+
+.back_link {
+  background-color: rgba(229, 229, 229, 0.9);
+  color: #000;
+  min-height: 7.0rem;
+  padding-left: 6.0rem;
+  position: fixed;
+  text-decoration: none;
+  width: 100vw;
+  z-index: 20;
+  p {
+    font-size: 2.0rem;
+  }
+  i {
+    margin: 0 1.0rem;
+  }
+}
+.talk_room {
+  background-color: #E5E5E5;
+  margin: 7rem auto 0 auto;
+  min-height: 100vh;
+  width: 100%;
+  .talk_room_content {
+    padding: 2.0rem 3.0rem 8.0rem 3.0rem;
+  }
+  .right_side, .left_side {
+    p {
+      border-radius: 1.0rem;
+      display: inline-block;
+      max-width: 30%;
+      overflow-wrap: break-word;
+      padding: 1.0rem;
+      position: relative;
+    }
+    p::before {
+      border-top: solid 10px transparent;
+      border-bottom: 10px solid transparent;
+      content: "";
+      position: absolute;
+      top: -0.3rem;
+    }
+  }
+  .right_side {
+    text-align: right;
+    p {
+      background-color: powderblue;
+      text-align: left;
+    }
+    p::before {
+      border-left: solid  20px powderblue;
+      right: -0.3rem;
+      transform: rotate(70deg);
+    }
+  }
+  .left_side {
+    margin-bottom: 2.0rem;
+    text-align: left;
+    .user_icon {
+      @include icon(5.0rem);
+      margin-right: 1.0rem;
+      vertical-align: top;
+    }
+    p {
+      background-color: #fff;
+    }
+    p::before {
+      border-left: solid  20px #fff;
+      left: -0.3rem;
+      transform: rotate(110deg);
+    }
+  }
+}
+.message_flex {
+  align-items: center;
+  background-color: #fff;
+  bottom: 0rem;
+  display: flex;
+  justify-content: center;
+  padding: 2.0rem 0;
+  position: fixed;
+  width: 100vw;
+  .message_area {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    position: relative;
+    width: 60rem;
+    @include mobile {
+      width: 60%;
+    }
+    .dummy_message {
+      border: 1px solid;
+      box-sizing: border-box;
+      min-height: 3.8rem;
+      max-height: 15rem;
+      overflow-wrap: break-word;
+      padding: 0.5rem 1.5rem;
+      visibility: hidden;
+      white-space: pre-wrap;
+    }
+    textarea {
+      border: 1px solid #b6c3c6;
+      box-sizing: border-box;
+      font: inherit;
+      height: 100%;
+      letter-spacing: inherit;
+      padding: 0.5rem 1.5rem;
+      position: absolute;
+      resize: none;
+      right: 0;
+      top: 0;
+      width: 100%;
+    }
+  }
+  .submit {
+    @include btn;
+    border-color: transparent;
+    border-radius: 0.5rem;
+    height: 3.5rem;
+    margin-left: 1.0rem;
+    padding: 0 2.0rem;
+  }
+}

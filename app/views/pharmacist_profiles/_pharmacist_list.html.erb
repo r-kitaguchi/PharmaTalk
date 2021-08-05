@@ -1,24 +1,18 @@
-<% results.each do |pharmacist_profile| %>
-  <div class="search_pharmacist_profile">
-    <div class="top_information">
-      <% if pharmacist_profile.image? %>
-        <%= image_tag pharmacist_profile.image.url, class: "user_icon" %>
-      <% else %>
-        <%= image_tag "/assets/default.png", class: "user_icon default" %>
-      <% end %>
-      <div>
-        <h3><%= pharmacist_profile.name %></h3>
-        <p><small><%= pharmacist_profile.work_place_type %></small></p>
-        <p><small><i class="fas fa-map-marker-alt" aria-hidden="true"></i><%= pharmacist_profile.work_location %></small></p>
-      </div>
+<div class="search_pharmacist_profile">
+  <div class="top_information">
+    <%= render "shared/profile_image", profile: result %>
+    <div>
+      <h3><%= result.name %></h3>
+      <p><small><%= result.work_place_type %></small></p>
+      <p><small><i class="fas fa-map-marker-alt" aria-hidden="true"></i><%= result.work_location %></small></p>
     </div>
-    <div class="information">
-      <p><span class="blue_marker">勤務先</span>　<%= pharmacist_profile.work_place %></p>
-      <p><span class="orange_marker">出身大学</span>　<%= pharmacist_profile.university %></p>
-    </div>
-    <div class="introduction">
-      <small><%= safe_join(pharmacist_profile.introduction.split("\n"), tag(:br)) %></small>
-    </div>
-    <%= link_to "詳細", pharmacist_profile_path(pharmacist_profile), class: "btn" %>
   </div>
-<% end %>
+  <div class="information">
+    <p><span class="blue_marker">勤務先</span>　<%= result.work_place %></p>
+    <p><span class="orange_marker">出身大学</span>　<%= result.university %></p>
+  </div>
+  <div class="introduction">
+    <small><%= safe_join(result.introduction.split("\n"), tag(:br)) %></small>
+  </div>
+  <%= link_to "詳細", pharmacist_profile_path(result), class: "btn" %>
+</div>

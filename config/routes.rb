@@ -17,6 +17,14 @@ Rails.application.routes.draw do
                           sign_in: 'login', sign_out: 'logout'
                         }
 
+  devise_scope :pharmacist do
+    post 'pharmacists/guest_log_in', to: 'pharmacists/sessions#new_guest'
+  end
+
+  devise_scope :student do
+    post 'students/guest_log_in', to: 'students/sessions#new_guest'
+  end
+
   resources :pharmacists, only: :show
   resources :students, only: :show
   resources :pharmacist_profiles, except: [:index, :destroy] do
@@ -27,5 +35,9 @@ Rails.application.routes.draw do
   resources :student_profiles, except: [:index, :destroy]
 
   resources :relationships, only: [:create, :update, :destroy]
+
+  resources :rooms, only: [:create, :show, :destroy] do
+    resources :messages, only: :create
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

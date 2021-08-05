@@ -1,0 +1,11 @@
+<div id="popup_account_delete" class="popup">
+  <div class="popup_inner">
+    <div id="account_delete_close" class="close_btn"><i class="fas fa-times" aria-hidden="true"></i></div>
+    <h2>アカウントを削除しますか？</h2>
+    <p>アカウントを削除すると、</p>
+    <p>全てのデータが失われます。</p>
+    <%= link_to "アカウントを削除する", registration_path(resource_name), method: :delete, class: "cancel_btn" %>
+    <a id="account_delete_back" class="back_btn">戻る</a>
+  </div>
+  <div id="account_delete_black" class="bg_black"></div>
+</div>

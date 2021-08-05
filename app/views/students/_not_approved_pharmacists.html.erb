@@ -1,0 +1,6 @@
+<div class="waiting">
+  <%= link_to pharmacist_profile_path(pharmacist.pharmacist_profile) do %>
+    <%= render "shared/profile_image", profile: pharmacist.pharmacist_profile %>
+  <% end %>
+  <p><%= pharmacist.pharmacist_profile.name %>さんにトーク申請中です。</p>
+</div>

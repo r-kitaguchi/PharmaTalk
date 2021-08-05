@@ -1,7 +1,15 @@
+<% provide(:title, "プロフィール登録") %>
 <%= render "shared/error_messages", resource: @student_profile %>
 <%= render "shared/flash" %>
 <div class="form_profile">
   <h2>プロフィール登録</h2>
+  <%= form_with model: @student_profile do |f| %>
+    <%= f.hidden_field :name, value: "テスト太郎" %>
+    <%= f.hidden_field :university, value: "テスト大学" %>
+    <%= f.hidden_field :year, value: "５年" %>
+    <%= f.hidden_field :introduction, value: "テストテスト" %>
+    <%= f.submit "テストプロフィールで登録", class: "test_profile" %>
+  <% end %>
   <div class="form_contents">
     <%= form_with model: @student_profile do |f| %>
       <%= f.label :name %>

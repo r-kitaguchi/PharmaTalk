@@ -1,0 +1,13 @@
+<div id="popup_end_talk" class="popup">
+  <div class="popup_inner">
+    <div id="end_talk_close" class="close_btn"><i class="fas fa-times" aria-hidden="true"></i></div>
+    <h2>トークを終了しますか？</h2>
+    <p>トークを終了すると、</p>
+    <p>会話の内容は全て削除されます。</p>
+    <div class="end_or_back">
+      <%= link_to "トークを終了する", room_path(room), method: :delete, class: "cancel_btn" %>
+      <a id="end_talk_back" class="back_btn">戻る</a>
+    </div>
+  </div>
+  <div id="end_talk_black" class="bg_black"></div>
+</div>

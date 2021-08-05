@@ -1,14 +1,14 @@
+<% provide(:title, "マイページ") %>
+<% content_for :js do %>
+  <%= javascript_pack_tag 'mypages/modal', 'data-turbolinks-track': 'reload' %>
+<% end %>
 <%= render "shared/flash" %>
 <div class="mypage">
   <h2>マイページ</h2>
   <div class="pharmacist_profile">
     <div class="top_information">
-      <%= link_to pharmacist_profile_path(current_pharmacist) do %>
-        <% if @pharmacist_profile.image? %>
-          <%= image_tag @pharmacist_profile.image.url, class: "user_icon" %>
-        <% else %>
-          <%= image_tag "/assets/default.png", class: "user_icon default" %>
-        <% end %>
+      <%= link_to pharmacist_profile_path(@pharmacist_profile) do %>
+        <%= render "shared/profile_image", profile: @pharmacist_profile %>
       <% end %>
       <div>
         <h4><%= @pharmacist_profile.name %></h4>
@@ -21,16 +21,20 @@
       <p><span class="orange_marker">出身大学</span>　<%= @pharmacist_profile.university %></p>
     </div>
   </div>
-  <div class="notification_column">
-    <h3>通知</h3>
-    <% if @not_approved_students %>
-      <%= render "shared/not_approved_students", not_approved_students: @not_approved_students %>
+  <div class="waiting_column">
+    <h3>承認待ち</h3>
+    <% if @not_approved_students.present? %>
+      <%= render partial: "pharmacists/not_approved_students", collection: @not_approved_students, as: "student" %>
+    <% else %>
+      <p class="nobody">承認待ちの学生はいません。</p>
     <% end %>
   </div>
   <div class="talking_column">
     <h3>トーク中</h3>
-    <% if @approved_students %>
-      <%= render "shared/approved_students", approved_students: @approved_students %>
+    <% if @approved_students.present? %>
+      <%= render partial: "pharmacists/approved_students", collection: @approved_students, as: "student" %>
+    <% else %>
+      <p class="nobody">トーク中の学生はいません。</p>
     <% end %>
   </div>
 </div>

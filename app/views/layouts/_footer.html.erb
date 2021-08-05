@@ -1,3 +1,6 @@
 <footer>
-  Pharma Talk
+  <%= link_to concepts_path do %>
+    <p><i class="fas fa-chevron-circle-right"></i>Pharma Talkについて</p>
+  <% end %>
+  <p><small>&copy; <%= Date.current.strftime('%Y') %> Pharma Talk</small></p>
 </footer>

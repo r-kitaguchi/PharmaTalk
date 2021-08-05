@@ -1,3 +1,4 @@
+<% provide(:title, "ログイン") %>
 <%= render "shared/flash" %>
 <div class="form">
   <h2>ログイン(<%= user_type %>)</h2>
@@ -24,6 +25,9 @@
         <%= f.submit "ログイン", class: "btn" %>
       </div>
     <% end %>
+
+    <p class="test_user"><%= link_to "テストユーザーでログイン", guest_log_in_path, method: :post %></p>
+
 
     <%= render "shared/links" %>
   </div>

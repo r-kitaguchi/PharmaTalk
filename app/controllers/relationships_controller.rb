@@ -1,4 +1,7 @@
 class RelationshipsController < ApplicationController
+  before_action :authenticate_student!, only: :create
+  before_action :authenticate_pharmacist!, only: :update
+  before_action :authenticate_user!, only: :destroy
 
   def create
     pharmacist = Pharmacist.find(params[:pharmacist_id])
@@ -28,5 +31,4 @@ class RelationshipsController < ApplicationController
     relationship.destroy
     redirect_back(fallback_location: root_path)
   end
-
 end

@@ -1,3 +1,7 @@
+<% provide(:title, "アカウント編集") %>
+<% content_for :js do %>
+  <%= javascript_pack_tag 'accounts/delete', 'data-turbolinks-track': 'reload' %>
+<% end %>
 <div class="form">
   <h2>アカウント編集</h2>
 
@@ -36,6 +40,7 @@
 
     <p>アカウントを削除して退会する</p>
 
-    <p><%= button_to "退会", registration_path(resource_name), data: { confirm: "アカウントを削除すると全てのデータが失われます。退会しますか？" }, method: :delete, class: "cancel_btn" %></p>
+    <p class="cancel_btn js_account_delete">アカウント削除</p>
+      <%= render "shared/account_delete_modal", resource: resource %>
   </div>
 </div>

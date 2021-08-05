@@ -29,4 +29,12 @@ RSpec.describe Student, type: :model do
   it "StudentProfileモデルと1対1の関係であること" do
     is_expected.to have_one(:student_profile).dependent(:destroy)
   end
+
+  it "Roomモデルと１対多の関係であること" do
+    is_expected.to have_many(:rooms).dependent(:destroy)
+  end
+
+  it "Notificationモデルと１対多の関係であること" do
+    is_expected.to have_many(:notifications).dependent(:destroy)
+  end
 end

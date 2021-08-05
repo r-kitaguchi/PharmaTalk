@@ -8,4 +8,12 @@ class Student < ApplicationRecord
 
   has_many :relationships, dependent: :destroy
   has_many :pharmacists, through: :relationships
+  has_many :rooms, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
+  def self.guest
+    find_or_create_by(email: "student@sample.com") do |user|
+      user.password = "password"
+    end
+  end
 end

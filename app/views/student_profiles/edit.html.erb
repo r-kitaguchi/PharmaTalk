@@ -1,3 +1,4 @@
+<% provide(:title, "プロフィール編集") %>
 <%= render "shared/error_messages", resource: @student_profile %>
 <div class="form_profile">
   <h2>プロフィール編集</h2>
@@ -8,7 +9,7 @@
 
       <%= f.label :image %>
       <%= f.file_field :image %>
-      <% if current_student.student_profile.image? %>
+      <% if @student_profile.image? %>
         <div class="edit_image">
           <%= image_tag @student_profile.image.url, class: "user_icon" %>
           <p><%= f.check_box :remove_image %>画像を削除する</p>

@@ -2,31 +2,59 @@
 
 .home_header {
   background-color: $main_color;
+  border-top: 1px solid $main_color;
   .home_header_content {
     margin: 0 auto;
-    min-width: 96rem;
     padding-top: 7.0rem;
-    padding-bottom: 17rem;
+    padding-bottom: 15rem;
     position: relative;
-    width: 80%;
+    width: 70%;
+    @include mobile {
+      text-align: center;
+      padding-top: 0;
+      padding-bottom: 3.0rem;
+    }
+  }
+  .catch_copy {
+    @include mobile {
+      margin: 1.0rem 0 30rem;
+    }
   }
   p:first-child {
     margin-top: 0;
+    @include mobile {
+      margin-top: 1.0rem;
+    }
   }
   p {
     font-size: 4.0rem;
     margin-bottom: 4.0rem;
+    @include mobile {
+      font-size: 3.0rem;
+      margin: 1.0rem 0 0 0;
+      text-align: center;
+    }
   }
   .top_image {
     position: absolute;
-    right: 10rem;
-    top: 1.0rem;
-    width: 20em;
+    right: 0rem;
+    top: 3.0rem;
+    width: 30rem;
+    @include mobile {
+      top: 25rem;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20rem;
+    }
   }
   .btn {
     @include btn;
     font-size: 3.0rem;
+    margin-bottom: 0;
     padding: 1.0rem 6.0rem;
+    @include mobile {
+      margin-top: 0;
+    }
   }
 }
 
@@ -42,14 +70,17 @@ main {
   .search_field {
     input {
       @include form_input;
-      width: 70rem;
+      margin-left: 2.5rem;
+      width: 90%;
     }
   }
   .search_checkbox {
     display: flex;
     justify-content: space-around;
     list-style: none;
+    margin: 0 auto;
     padding-left: 0;
+    width: 90%;
     label, input {
       margin-right: 1rem;
     }
@@ -58,6 +89,8 @@ main {
     margin-bottom: 5.0rem;
   }
   .search_prefectures {
+    margin: 0 auto;
+    width: 90%;
     input, label {
       margin-bottom: 2.0rem;
     }

@@ -1,24 +1,37 @@
-# README
+# Pharma Talk
+薬剤師と薬学生を繋ぐチャットアプリです。
+薬学生は、現役薬剤師に就職に関する相談をすることができます。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## URL
 
-Things you may want to cover:
 
-* Ruby version
+## このアプリを作成した目的
+国家試験の勉強や卒業研究などで忙しい薬学生が、効率的に就活を進められるようなものが作りたいと思い、作成しました。
 
-* System dependencies
+## 利用方法
+### 薬剤師
+1. 新規登録、プロフィール登録を行います。
+1. 学生からのトーク申請を承認すると、トーク画面でメッセージを送れます。
 
-* Configuration
+### 学生
+1. 新規登録、プロフィール登録を行います。
+1. ホーム画面から薬剤師を検索し、薬剤師の詳細画面からトーク申請を行います。
+1. トークが承認されると、トーク画面でメッセージを送れます。
 
-* Database creation
+### テストユーザーについて
+薬剤師、学生ともにテストユーザーを用意しております。
+ログイン画面の "テストユーザーでログイン" をクリックすると、ログインできます。
 
-* Database initialization
+## 使用技術
+- HTML
+- SCSS
+- JavaScript
+- Ruby 3.0
+- Rails 6.1
+- Rspec
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 機能一覧
+- ユーザー登録/ログイン機能 (devise使用)
+- 薬剤師検索機能 (ransack, kaminari使用)
+- トーク申請、承認機能
+- メッセージ送信、通知機能

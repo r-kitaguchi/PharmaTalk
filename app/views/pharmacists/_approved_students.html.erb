@@ -1,0 +1,33 @@
+<% room = Room.find_by(pharmacist_id: current_pharmacist.id, student_id: student.id) %>
+<div class="talking">
+  <% if @notifications.where(student_id: student.id, is_pharmacist: false).present? %>
+    <span class="notification"></span>
+  <% end %>
+  <div class="profile">
+    <%= link_to student_profile_path(student.student_profile) do %>
+      <%= render "shared/profile_image", profile: student.student_profile %>
+      <p><%= student.student_profile.name %></p>
+    <% end %>
+  </div>
+  <% if room && room.messages.present? %>
+    <div class="display_message">
+      <%= safe_join(room.messages.last.content.split("\n"), tag(:br)) if room.messages %>
+    </div>
+    <div class="btn_list">
+      <%= link_to "トーク画面へ", room_path(room), class: "btn" %>
+      <a class="cancel_btn js_end_talk">トークを終了</a>
+      <%= render "shared/end_talk_modal", room: room %>
+    </div>
+  <% elsif !room %>
+    <div class="btn_list">
+      <%= form_with model: Room.new do |f| %>
+        <%= hidden_field_tag :student_id, student.id %>
+        <%= f.submit "トーク画面へ", class: "btn" %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="btn_list">
+      <%= link_to "トーク画面へ", room_path(room), class: "btn" %>
+    </div>
+  <% end %>
+</div>

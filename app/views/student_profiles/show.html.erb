@@ -1,12 +1,9 @@
+<% provide(:title, @student_profile.name) %>
 <div class="profile_show">
   <div class="profile_show_content">
     <h2>基本情報</h2>
     <div class="information">
-      <% if @student_profile.image? %>
-        <%= image_tag @student_profile.image.url, class: "user_icon" %>
-      <% else %>
-        <%= image_tag "/assets/default.png", class: "user_icon default" %>
-      <% end %>
+      <%= render "shared/profile_image", profile: @student_profile %>
       <div>
         <p><strong><%= @student_profile.name %></strong></p>
         <p><small>大学<%= @student_profile.year %></small></p>
@@ -24,7 +21,7 @@
     </div>
   </div>
   <% if student_signed_in? %>
-    <% if @student_profile == current_student.student_profile %>
+    <% if @student == current_student %>
       <%= link_to "編集する", edit_student_profile_path(@student_profile), class: "btn" %>
     <% end %>
   <% end %>

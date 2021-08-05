@@ -1,0 +1,22 @@
+<% provide(:title, "トークルーム") %>
+<% content_for :js do %>
+  <%= javascript_pack_tag 'rooms/show', 'data-turbolinks-track': 'reload' %>
+<% end %>
+<%= link_to @mypage_path, class: "back_link" do %>
+  <p><i class="fas fa-angle-left"></i><%= @partner_profile.name %></p>
+<% end %>
+<div class="talk_room">
+  <div class="talk_room_content" id="talk_room_content">
+    <%= render partial: "messages/message",  collection: @messages, as: "message",
+              locals: { partner_profile: @partner_profile } %>
+  </div>
+</div>
+<%= form_with model: [@room, @message] do |f| %>
+  <div class="message_flex">
+    <div class="message_area">
+      <div class="dummy_message" aria-hidden="true"></div>
+      <%= f.text_area :content, autofocus: true, placeholder: "メッセージを入力" %>
+    </div>
+    <%= f.submit "送信", class: "submit" %>
+  </div>
+<% end %>

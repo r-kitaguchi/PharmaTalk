@@ -49,7 +49,7 @@ RSpec.describe "薬剤師マイページ", type: :system do
     end
   end
 
-  describe "通知の表示" do
+  describe "承認待ちの表示" do
     before do
       sign_in pharmacist
     end
@@ -62,7 +62,7 @@ RSpec.describe "薬剤師マイページ", type: :system do
 
       it "学生のプロフィール写真、名前が表示されていること" do
         aggregate_failures do
-          within '.notification' do
+          within '.waiting' do
             expect(page).to have_content(student_profile.name)
             expect(page).to have_selector("img[src$='test.jpg']")
           end
@@ -93,7 +93,7 @@ RSpec.describe "薬剤師マイページ", type: :system do
 
       it "学生のプロフィール写真、名前が表示されていないこと" do
         aggregate_failures do
-          within '.notification_column' do
+          within '.waiting_column' do
             expect(page).not_to have_content(student_profile.name)
             expect(page).not_to have_selector("img[src$='test.jpg']")
           end
@@ -117,45 +117,6 @@ RSpec.describe "薬剤師マイページ", type: :system do
       it "承認するボタンを押すと、エラーメッセージが表示されること" do
         click_button "承認する"
         expect(page).to have_content("トークできるのは３人までです。")
-      end
-    end
-  end
-
-  describe "トーク中の表示" do
-    before do
-      sign_in pharmacist
-    end
-
-    context "トークを承認された学生がいない時" do
-      before do
-        create(:relationship, pharmacist: pharmacist, student: student)
-        visit pharmacist_path(pharmacist)
-      end
-
-      it "トーク中の欄に学生のプロフィール写真、名前が表示されていないこと" do
-        aggregate_failures do
-          within ".talking_column" do
-            expect(page).not_to have_content(student_profile.name)
-            expect(page).not_to have_selector("img[src$='test.jpg']")
-          end
-        end
-      end
-    end
-
-
-    context "トークが承認された学生がいる時" do
-      before do
-        create(:relationship, pharmacist: pharmacist, student: student, allow: true)
-        visit pharmacist_path(pharmacist)
-      end
-
-      it "トーク中の欄に学生のプロフィール写真、名前が表示されていること" do
-        aggregate_failures do
-          within ".talking" do
-            expect(page).to have_content(student_profile.name)
-            expect(page).to have_selector("img[src$='test.jpg']")
-          end
-        end
       end
     end
   end

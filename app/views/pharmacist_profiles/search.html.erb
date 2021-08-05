@@ -1,8 +1,9 @@
+<% provide(:title, "検索結果") %>
 <div class="search_result">
   <h2>検索結果 <%= @results.total_count %> 人中
   <%= @results.offset_value %> 〜 <%=@results.offset_value + @results.length %> 人</h2>
   <%= paginate @results %>
-  <%= render "pharmacist_list", results: @results %>
+  <%= render partial: "pharmacist_list", collection: @results, as: "result" %>
   <%= paginate @results %>
 </div>
 <%= render "shared/sign_up_modal" %>

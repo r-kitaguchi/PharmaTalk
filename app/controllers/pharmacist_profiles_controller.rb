@@ -20,6 +20,7 @@ class PharmacistProfilesController < ApplicationController
 
   def show
     @pharmacist_profile = PharmacistProfile.find(params[:id])
+    @pharmacist = @pharmacist_profile.pharmacist
   end
 
   def edit
