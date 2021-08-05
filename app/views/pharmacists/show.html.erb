@@ -23,7 +23,7 @@
   </div>
   <div class="waiting_column">
     <h3>承認待ち</h3>
-    <% if @not_approved_students %>
+    <% if @not_approved_students.present? %>
       <%= render partial: "pharmacists/not_approved_students", collection: @not_approved_students, as: "student" %>
     <% else %>
       <p class="nobody">承認待ちの学生はいません。</p>
@@ -31,7 +31,7 @@
   </div>
   <div class="talking_column">
     <h3>トーク中</h3>
-    <% if @approved_students %>
+    <% if @approved_students.present? %>
       <%= render partial: "pharmacists/approved_students", collection: @approved_students, as: "student" %>
     <% else %>
       <p class="nobody">トーク中の学生はいません。</p>
