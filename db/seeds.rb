@@ -65,7 +65,7 @@ end
 Pharmacist.where(id: 2..21).each do |pharmacist|
   name = Gimei.kanji
   work_place_type = Faker::Number.between(from:0, to:2)
-  work_location = Faker::Number.between(from:0, to:47)
+  work_location = Faker::Number.between(from:1, to:47)
 
   pharmacist.create_pharmacist_profile!(
     name: name,
