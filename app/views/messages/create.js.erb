@@ -1,0 +1,14 @@
+document.querySelector('#talk_room_content').insertAdjacentHTML('beforeend', '<%= j(render partial: "messages/message",
+              locals: { message: @message }) %>')
+
+scrollSet();
+
+document.getElementById('message_content').value = ""
+
+document.querySelector('.dummy_message').textContent = ""
+
+function scrollSet(){
+  let talkRoomContent = document.getElementById('talk_room_content');
+  if(!talkRoomContent) return;
+  talkRoomContent.scrollIntoView(false);
+};

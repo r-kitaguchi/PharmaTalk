@@ -11,7 +11,7 @@
               locals: { partner_profile: @partner_profile } %>
   </div>
 </div>
-<%= form_with model: [@room, @message] do |f| %>
+<%= form_with model: [@room, @message], local: false do |f| %>
   <div class="message_flex">
     <div class="message_area">
       <div class="dummy_message" aria-hidden="true"></div>
