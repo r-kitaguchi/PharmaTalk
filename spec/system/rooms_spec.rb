@@ -25,7 +25,7 @@ RSpec.describe "Rooms", type: :system do
       expect(current_path).to eq pharmacist_path(pharmacist)
     end
 
-    it "メッセージを送信すると、画面右側に送ったメッセージが表示されること" do
+    it "メッセージを送信すると、画面右側に送ったメッセージが表示されること", js: true do
       fill_in "message_content", with: "メッセージ"
       click_on "送信"
       within ".right_side" do
@@ -61,7 +61,7 @@ RSpec.describe "Rooms", type: :system do
       expect(current_path).to eq student_path(student)
     end
 
-    it "メッセージを送信すると、画面右側に送ったメッセージが表示されること" do
+    it "メッセージを送信すると、画面右側に送ったメッセージが表示されること", js: true do
       fill_in "message_content", with: "メッセージ"
       click_on "送信"
       within ".right_side" do

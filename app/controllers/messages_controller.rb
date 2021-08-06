@@ -8,7 +8,6 @@ class MessagesController < ApplicationController
     @message.save
     Notification.create(message_id: @message.id, pharmacist_id: @room.pharmacist_id,
                       student_id: @room.student_id, is_pharmacist: @message.is_pharmacist)
-    redirect_to room_path(@room)
   end
 
   private
