@@ -46,7 +46,6 @@ second_student = Student.create!(
 
 second_student.create_student_profile!(
   name: "小林健一郎",
-  image:File.open("./db/fixtures/sample3.png"),
   university: "京都大学",
   year: 0,
   introduction: "小林です。よろしくお願いします。"

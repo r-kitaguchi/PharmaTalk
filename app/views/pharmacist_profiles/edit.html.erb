@@ -11,7 +11,7 @@
       <%= f.file_field :image %>
       <% if @pharmacist_profile.image? %>
         <div class="edit_image">
-          <%= image_tag @pharmacist_profile.image.url, class: "user_icon" %>
+          <%= image_tag @pharmacist_profile.image.thumb.url, class: "user_icon" %>
           <p><%= f.check_box :remove_image %>画像を削除する</p>
         </div>
       <% end %>

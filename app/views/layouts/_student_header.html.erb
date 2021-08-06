@@ -7,7 +7,7 @@
     <label for="menu_btn_check" class="menu_btn"><span></span></label>
     <li class="drop_down">
       <% if current_student.student_profile.image? %>
-        <%= image_tag current_student.student_profile.image.url, class: "user_icon" %>
+        <%= image_tag current_student.student_profile.image.thumb.url, class: "user_icon" %>
       <% else %>
         <%= image_tag "/assets/default.png", class: "user_icon default" %>
       <% end %>
