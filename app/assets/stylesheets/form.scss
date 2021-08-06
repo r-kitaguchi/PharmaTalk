@@ -50,12 +50,18 @@
       .cancel_btn {
         margin: 1.0rem 0;
         width: 80%;
+        @include mobile {
+          width: 100%;
+        }
       }
       .back_btn {
         @include btn;
         margin: 1.0rem 0;
         padding: 1.0rem 0;
         width: 80%;
+        @include mobile {
+          width: 100%;
+        }
       }
     }
     .test_user {

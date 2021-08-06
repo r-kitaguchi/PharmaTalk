@@ -50,6 +50,9 @@
     .information {
       height: 90%;
       width: 40%;
+      @include mobile {
+        display: none;
+      }
       p {
         overflow: hidden;
         text-align: left;
@@ -60,8 +63,7 @@
     }
   }
   h3 {
-    margin: 0 auto;
-    width: 50rem;
+    text-align: center;
   }
   .nobody {
     text-align: center;
@@ -89,15 +91,22 @@
     .btn, .cancel_btn, .back_btn {
       border-color: transparent;
       color: #000;
+      font-size: 1.5rem;
       text-decoration: none;
       padding: 0.5rem 3.0rem;
     }
     .btn, .back_btn {
       @include btn;
       margin-bottom: 1.0rem;
+      @include mobile {
+        padding: 0.5rem 1.0rem;
+      }
     }
     .cancel_btn {
       @include btn($btn_sub_color, $btn_hover_sub_color);
+      @include mobile {
+        padding: 0.5rem 1.0rem;
+      }
     }
     .end_or_back {
       .back_btn, .cancel_btn {
@@ -121,7 +130,7 @@
       margin-left: -5.0rem;
       width: 1.0rem;
       @include mobile {
-        margin-left: -4.0rem;
+        margin-left: -3.5rem;
       }
     }
     .profile {

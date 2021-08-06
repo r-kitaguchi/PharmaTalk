@@ -12,7 +12,8 @@
       <% if @pharmacist_profile.image? %>
         <div class="edit_image">
           <%= image_tag @pharmacist_profile.image.thumb.url, class: "user_icon" %>
-          <p><%= f.check_box :remove_image %>画像を削除する</p>
+          <%= f.check_box :remove_image %>
+          <%= f.label :remove_image %>
         </div>
       <% end %>
 

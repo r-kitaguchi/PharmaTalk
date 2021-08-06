@@ -13,6 +13,7 @@ ja:
         university: "大学名"
         year: "学年"
         introduction: "自己紹介"
+        remove_image: "画像を削除する"
       pharmacist:
         current_password: "現在のパスワード"
         email: "メールアドレス"
@@ -27,6 +28,7 @@ ja:
         work_location: "勤務地"
         university: "出身大学"
         introduction: "自己紹介"
+        remove_image: "画像を削除する"
     models:
       student: "学生"
       pharmacist: "薬剤師"

@@ -49,8 +49,14 @@
     .work_place_type, .year {
       align-items: center;
       display: flex;
+      @include mobile {
+        flex-direction: column;
+      }
       label {
         margin: 0 5rem 0 0.5rem;
+        @include mobile {
+          margin: 0.5rem 0 1.0rem 0;
+        }
       }
     }
     input, textarea, .edit_image, .work_place_type {
@@ -62,9 +68,9 @@
     .edit_image {
       align-items: center;
       display: flex;
-    }
-    p {
-      margin-left: 5.0rem;
+      img {
+        margin-right: 5.0rem;
+      }
     }
     .btn {
       @include btn;
