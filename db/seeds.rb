@@ -51,7 +51,7 @@ second_student.create_student_profile!(
   introduction: "小林です。よろしくお願いします。"
 )
 
-20.times do |n|
+300.times do |n|
   email = Faker::Internet.email
 
   Pharmacist.create!(
@@ -61,18 +61,45 @@ second_student.create_student_profile!(
   )
 end
 
-Pharmacist.where(id: 2..21).each do |pharmacist|
+Pharmacist.where(id: 2..101).each do |pharmacist|
   name = Gimei.kanji
-  work_place_type = Faker::Number.between(from:0, to:2)
   work_location = Faker::Number.between(from:1, to:47)
 
   pharmacist.create_pharmacist_profile!(
     name: name,
     work_place: "サンプル薬局",
-    work_place_type: work_place_type,
+    work_place_type: 0,
     work_location: work_location,
     university: "サンプル大学",
-    introduction: "よろしくお願いします！"
+    introduction: "#{name}です。よろしくお願いします！"
+  )
+end
+
+Pharmacist.where(id: 102..201).each do |pharmacist|
+  name = Gimei.kanji
+  work_location = Faker::Number.between(from:1, to:47)
+
+  pharmacist.create_pharmacist_profile!(
+    name: name,
+    work_place: "サンプルドラッグ",
+    work_place_type: 1,
+    work_location: work_location,
+    university: "サンプル大学",
+    introduction: "#{name}です。よろしくお願いします！"
+  )
+end
+
+Pharmacist.where(id: 202..301).each do |pharmacist|
+  name = Gimei.kanji
+  work_location = Faker::Number.between(from:1, to:47)
+
+  pharmacist.create_pharmacist_profile!(
+    name: name,
+    work_place: "サンプル病院",
+    work_place_type: 2,
+    work_location: work_location,
+    university: "サンプル大学",
+    introduction: "#{name}です。よろしくお願いします！"
   )
 end
 
